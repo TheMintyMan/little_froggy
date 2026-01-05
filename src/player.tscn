@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuqk6ein0cmrj"]
+[gd_scene load_steps=5 format=3 uid="uid://cuqk6ein0cmrj"]
 
 [ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://src/player.gd" id="1_lowyb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rc2ur"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lowyb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lowyb"]
+albedo_color = Color(0.2054, 0.79, 0.2054, 1)
 
 [node name="player" type="StaticBody3D"]
 script = ExtResource("1_lowyb")
@@ -14,8 +17,14 @@ shape = SubResource("BoxShape3D_rc2ur")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_lowyb")
+surface_material_override/0 = SubResource("StandardMaterial3D_lowyb")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.1
 one_shot = true
+
+[node name="button_hb" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button_hb"]
+shape = SubResource("BoxShape3D_rc2ur")
