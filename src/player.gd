@@ -36,44 +36,52 @@ func get_input_direction() -> Vector2:
 		#$Timer.start()
 	return v
 	
-
-	
 func move(dir):
 	var grid_pos = Global.get_grid_pos(self)
 	var new_pos = grid_pos + dir
 	
 	var collider = Global.grid_check(new_pos)
+	
 	if collider == null:
 		current_height = 0
 		Global.move_to_grid_pos(self, new_pos)
-	else:
-		#if current_height <= 1:
-		if collider.is_in_group("food"):
-			if collider.eaten(self):
-				var food_value: int 
-				food_value = collider.get_value()
-				leap_count += food_value
-				print("yummyy, current leap count is ", leap_count)
-		
-		if collider.is_in_group("wall"):
-			if collider.is_in_group("leapable"):
-				if (collider.get_height):
-					var collider_height = collider.get_height()
-					if collider_height - current_height == 1:
-						if leap_count < 1:
-							print("cannot leap again")
-						else:
-							current_height += 1
-							leap_count -= 1
-							Global.move_to_grid_pos(self, new_pos)
-							print("you just leaped")
-					elif collider_height - current_height == 0:
-						Global.move_to_grid_pos(self, new_pos)
-			print('wall!')
-		
-		if collider.is_in_group("pushable"):
-			if collider.push(dir):
-				Global.move_to_grid_pos(self, new_pos)
+		return
+	
+	var collider_height: int = collider.global_position.y + 1
+	var height_diff: int = collider_height - current_height
+	
+	if collider is Food:
+		collider.eaten.connect(_on_food_eaten)
+		collider.eat()
+	
+	if collider.is_in_group("leapable"):
+		try_leap(height_diff, new_pos)
+	
+	if collider.is_in_group("wall"):
+		print('wall!')
+		return
+	
+	if collider.is_in_group("pushable"):
+		if collider.push(dir):
+			Global.move_to_grid_pos(self, new_pos)
+
+func _on_food_eaten(value: int) -> void:
+	leap_count += value
+	print("yummyy, current leap count is ", leap_count)
+
+func try_leap(height_diff: int, new_pos: Vector2) -> void:
+	if height_diff == 0:
+		Global.move_to_grid_pos(self, new_pos)
+		return
+	
+	if height_diff == 1:
+		if leap_count < 1:
+			print("cannot leap again")
+			return 
+		current_height += 1
+		leap_count -= 1
+		Global.move_to_grid_pos(self, new_pos)
+		print("you just leaped")
 
 func undo_move(dir):
 	var grid_pos = Global.get_grid_pos(self)
