@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo06dwg0y2lrb"]
+
+[ext_resource type="PackedScene" uid="uid://crmmstia7s4lt" path="res://src/objects/wall.tscn" id="1_i06r4"]
+[ext_resource type="Script" uid="uid://bl41oriato6o0" path="res://src/objects/leap_box.gd" id="2_xuw8r"]
+[ext_resource type="ArrayMesh" uid="uid://b6qsyiylrmjeo" path="res://assets/models/box_leap_mesh.tres" id="3_qgomj"]
+
+[node name="leap_box" groups=["leapable"] instance=ExtResource("1_i06r4")]
+script = ExtResource("2_xuw8r")
+
+[node name="box_mesh" parent="box_mesh" index="0"]
+mesh = ExtResource("3_qgomj")
+
+[editable path="box_mesh"]

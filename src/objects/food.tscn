@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj24k6kohs1yd"]
+
+[ext_resource type="Script" uid="uid://b8fmysegy5vde" path="res://src/objects/food.gd" id="1_3wdjq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1gc57"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lacnl"]
+
+[node name="food" type="StaticBody3D" groups=["food"]]
+script = ExtResource("1_3wdjq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1gc57")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_lacnl")
+skeleton = NodePath("../CollisionShape3D")

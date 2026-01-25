@@ -20,6 +20,7 @@ offset_bottom = 1080.0
 theme = ExtResource("2_fe2o3")
 
 [node name="MainButtons" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -48,25 +49,20 @@ theme_override_font_sizes/font_size = 75
 text = "QUIT"
 
 [node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="back" type="Button" parent="CenterContainer/SettingsMenu"]
-custom_minimum_size = Vector2(353, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 75
-text = "BACK"
-
 [node name="FULLSCREEN" type="CheckBox" parent="CenterContainer/SettingsMenu"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "FULLSCREEN
 "
 
 [node name="mainvolslider" type="HSlider" parent="CenterContainer/SettingsMenu"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 max_value = 1.0
@@ -83,6 +79,7 @@ text = "MAIN VOLUME"
 horizontal_alignment = 1
 
 [node name="musicvolslider" type="HSlider" parent="CenterContainer/SettingsMenu"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 max_value = 1.0
@@ -99,6 +96,7 @@ text = "MUSIC VOLUME"
 horizontal_alignment = 1
 
 [node name="sfxvolslider" type="HSlider" parent="CenterContainer/SettingsMenu"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 max_value = 1.0
@@ -114,7 +112,16 @@ theme_override_font_sizes/font_size = 40
 text = "SFX VOLUME"
 horizontal_alignment = 1
 
+[node name="back" type="Button" parent="CenterContainer/SettingsMenu"]
+custom_minimum_size = Vector2(353, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 75
+text = "BACK"
+
 [node name="CreditsMenu" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 16
@@ -135,7 +142,22 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
 text = "BACK"
 
-[connection signal="pressed" from="CenterContainer/MainButtons/play" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="CenterContainer/MainButtons/settings" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="CenterContainer/MainButtons/credits" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="CenterContainer/MainButtons/quit" to="." method="_on_start_pressed"]
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -4096
+offset_left = -31.0
+offset_top = -19.0
+offset_right = 1943.0
+offset_bottom = 1101.0
+mouse_filter = 2
+color = Color(0.27719998, 0.63, 0.3654, 1)
+
+[connection signal="pressed" from="CenterContainer/MainButtons/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="CenterContainer/SettingsMenu/FULLSCREEN" to="." method="_on_fullscreen_toggled"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/mainvolslider" to="." method="_on_mainvolslider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/musicvolslider" to="." method="_on_musicvolslider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/sfxvolslider" to="." method="_on_sfxvolslider_value_changed"]
+[connection signal="pressed" from="CenterContainer/SettingsMenu/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CenterContainer/CreditsMenu/back" to="." method="_on_back_pressed"]

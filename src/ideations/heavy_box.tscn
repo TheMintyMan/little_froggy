@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmvacgudr85vj"]
+
+[ext_resource type="PackedScene" uid="uid://r5mspbrk5am3" path="res://src/boxbox.tscn" id="1_hp868"]
+[ext_resource type="Script" uid="uid://du2o207a5yru0" path="res://src/ideations/heavy_box.gd" id="2_kimkp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kimkp"]
+albedo_color = Color(0.27058825, 0.19215687, 0.10980392, 1)
+
+[node name="heavy_box" instance=ExtResource("1_hp868")]
+script = ExtResource("2_kimkp")
+
+[node name="MeshInstance3D" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kimkp")

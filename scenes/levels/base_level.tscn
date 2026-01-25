@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://643pky6fq36y"]
 
 [ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://src/player.tscn" id="1_orunl"]
-[ext_resource type="PackedScene" uid="uid://crmmstia7s4lt" path="res://src/wall.tscn" id="2_g46sj"]
+[ext_resource type="PackedScene" uid="uid://crmmstia7s4lt" path="res://src/objects/wall.tscn" id="2_g46sj"]
 [ext_resource type="PackedScene" uid="uid://r5mspbrk5am3" path="res://src/boxbox.tscn" id="3_pneeb"]
 [ext_resource type="PackedScene" uid="uid://df74d6rxmrbfp" path="res://scenes/ui/game_ui.tscn" id="6_3rriw"]
-[ext_resource type="PackedScene" uid="uid://dj24k6kohs1yd" path="res://src/food.tscn" id="6_yotv0"]
-[ext_resource type="PackedScene" uid="uid://bo06dwg0y2lrb" path="res://src/leap_box.tscn" id="7_o5c27"]
+[ext_resource type="PackedScene" uid="uid://dj24k6kohs1yd" path="res://src/objects/food.tscn" id="6_yotv0"]
+[ext_resource type="PackedScene" uid="uid://bo06dwg0y2lrb" path="res://src/objects/leap_box.tscn" id="7_o5c27"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n8dmd"]
 size = Vector2(100, 100)
@@ -34,6 +34,7 @@ light_energy = 0.8
 shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("1_orunl")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="walls" type="Node" parent="."]
 

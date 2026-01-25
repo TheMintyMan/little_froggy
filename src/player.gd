@@ -3,7 +3,8 @@ extends StaticBody3D
 @export var leap_count: int = 1
 var current_height: float = 0.0
 signal leap_count_changed(count)
-var facing_dir: int = 0
+var facing_dir: Vector2 = Vector2.ZERO
+
 
 var action_manager = ActionManager.new({
 	"move": [move, undo_move]
@@ -15,35 +16,40 @@ func _init() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.register_player(self)
+	var forward = -global_transform.basis.z
+	if abs(forward.x) > abs(forward.z):
+		facing_dir.x = sign(forward.x)
+	else:
+		facing_dir.y = sign(forward.z)
+	
+	
 	print("current height: ", current_height)
 	print('ready')
+	print("currently facing: ", facing_dir)
 	await get_tree().create_timer(0.1).timeout
 	emit_signal("leap_count_changed", leap_count)
 
 func get_input_direction() -> Vector2:
 	#if $Timer.time_left != 0:
 		#return Vector2()
-	
 	var v = Vector2()
 	if Input.is_action_just_pressed("playerDown"):
 		v.y += 1
 		self.global_rotation = Vector3(0, deg_to_rad(0), 0)
-		facing_dir = 180
 	if Input.is_action_just_pressed("playerUp"):
 		v.y -= 1
 		self.global_rotation = Vector3(0, deg_to_rad(180), 0)
-		facing_dir = 0
-	if Input.is_action_just_pressed("playerLeft"):
-		v.x -= 1
-		self.global_rotation = Vector3(0, deg_to_rad(-90), 0)
-		facing_dir = -90
 	if Input.is_action_just_pressed("playerRight"):
 		v.x += 1
 		self.global_rotation = Vector3(0, deg_to_rad(90), 0)
-		facing_dir = 90
+	if Input.is_action_just_pressed("playerLeft"):
+		v.x -= 1
+		self.global_rotation = Vector3(0, deg_to_rad(-90), 0)
+
 		
 	if v.x != 0 and v.y != 0:
 		return Vector2()
+		
 	#if v != Vector2.ZERO:
 		#$Timer.start()
 	return v

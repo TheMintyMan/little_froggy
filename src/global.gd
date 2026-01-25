@@ -27,7 +27,7 @@ func register_player(player_node:Node):
 	player = player_node
 	print("player registered using global")
 	
-func unregister_player(player_node:Node):
+func unregister_player( player_node:Node):
 	player = null
 	print("unregistered player")
 	
