@@ -9,6 +9,7 @@ func _ready() -> void:
 	goto_level(level_index)
 	
 func next_level():
+	Global.unregister_player()
 	goto_level((level_index + 1) % levels.size())
 	
 func previous_level():

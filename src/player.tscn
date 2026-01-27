@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuqk6ein0cmrj"]
+[gd_scene format=3 uid="uid://cuqk6ein0cmrj"]
 
 [ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://src/player.gd" id="1_lowyb"]
 [ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://assets/models/froggy_mesh.tscn" id="2_gmfve"]
@@ -10,25 +10,25 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lowyb"]
 albedo_color = Color(0.2054, 0.79, 0.2054, 1)
 
-[node name="player" type="StaticBody3D"]
+[node name="player" type="StaticBody3D" unique_id=788165335]
 script = ExtResource("1_lowyb")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1768648184]
 shape = SubResource("BoxShape3D_rc2ur")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1398162460]
 visible = false
 mesh = SubResource("BoxMesh_lowyb")
 surface_material_override/0 = SubResource("StandardMaterial3D_lowyb")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=522074154]
 process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="player_button_hb" type="Area3D" parent="."]
+[node name="player_button_hb" type="Area3D" parent="." unique_id=1405034169]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="player_button_hb"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player_button_hb" unique_id=965832330]
 shape = SubResource("BoxShape3D_rc2ur")
 
-[node name="froggy_mesh" parent="." instance=ExtResource("2_gmfve")]
+[node name="froggy_mesh" parent="." unique_id=902014204 instance=ExtResource("2_gmfve")]

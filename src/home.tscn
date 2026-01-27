@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b030330rh7v25"]
+
+[ext_resource type="Script" uid="uid://brlmy5ytrepmk" path="res://src/home.gd" id="1_4gm1x"]
+[ext_resource type="PackedScene" uid="uid://51w4gkfjtvoj" path="res://assets/models/home_mesh.tscn" id="1_033df"]
+
+[node name="home" type="Node3D" unique_id=1422672344]
+script = ExtResource("1_4gm1x")
+
+[node name="home_mesh" parent="." unique_id=1106055042 instance=ExtResource("1_033df")]

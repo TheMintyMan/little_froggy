@@ -2,20 +2,20 @@ extends StaticBody3D
 
 class_name Food
 
-signal eaten(value: int)
 @export var value: int = 1
 var _is_eaten = false
+@onready var level_root: Level = get_tree().current_scene
+@onready var player: Player = level_root.get_player()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Global.register_food(value)
+	level_root.register_food()
 
 func eat() -> void:
 	if _is_eaten:
 		return
-	Global.on_food_eaten(value)
+	level_root.on_food_eaten()
 	_is_eaten = true
-	eaten.emit(value)
 	queue_free()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

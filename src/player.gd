@@ -1,10 +1,13 @@
 extends StaticBody3D
+class_name Player
 
 @export var leap_count: int = 1
 var current_height: float = 0.0
-signal leap_count_changed(count)
+var leapable_height: float = 0.5
+signal leap_count_changed(count: int)
+signal do_stuff
 var facing_dir: Vector2 = Vector2.ZERO
-
+@onready var level_root: Level = get_tree().current_scene
 
 var action_manager = ActionManager.new({
 	"move": [move, undo_move]
@@ -15,13 +18,12 @@ func _init() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Global.register_player(self)
+	level_root.register_player(self)
 	var forward = -global_transform.basis.z
 	if abs(forward.x) > abs(forward.z):
 		facing_dir.x = sign(forward.x)
 	else:
 		facing_dir.y = sign(forward.z)
-	
 	
 	print("current height: ", current_height)
 	print('ready')
@@ -45,7 +47,8 @@ func get_input_direction() -> Vector2:
 	if Input.is_action_just_pressed("playerLeft"):
 		v.x -= 1
 		self.global_rotation = Vector3(0, deg_to_rad(-90), 0)
-
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
 		
 	if v.x != 0 and v.y != 0:
 		return Vector2()
@@ -69,9 +72,9 @@ func move(dir):
 	var height_diff: int = collider_height - current_height
 	
 	if collider is Food:
-		collider.eaten.connect(_on_food_eaten)
 		collider.eat()
-	
+		on_food_eaten(1) # Arbitrary value currently
+		
 	if collider.is_in_group("leapable"):
 		try_leap(height_diff, new_pos)
 	
@@ -83,8 +86,8 @@ func move(dir):
 		if collider.push(dir):
 			Global.move_to_grid_pos(self, new_pos)
 
-func _on_food_eaten(value: int) -> void:
-	leap_count += value
+func on_food_eaten(value: int) -> void:
+	leap_count += value 
 	emit_signal("leap_count_changed", leap_count)
 	print("yummyy, current leap count is ", leap_count)
 
@@ -101,7 +104,7 @@ func try_leap(height_diff: int, new_pos: Vector2) -> void:
 		leap_count -= 1
 		Global.move_to_grid_pos(self, new_pos)
 		emit_signal("leap_count_changed", leap_count)
-		print("you just leaped")
+		print("you just leaped")	
 
 func undo_move(dir):
 	var grid_pos = Global.get_grid_pos(self)
