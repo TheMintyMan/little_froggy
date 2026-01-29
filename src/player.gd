@@ -64,10 +64,7 @@ func move(dir):
 	if collider == null:
 		Global.move_to_grid_pos(self, new_world_pos)
 		return
-	
-	var collider_height: int = collider.global_position.y
-	var height_diff: int = collider_height - self.global_position.y
-	
+
 	if collider is Food:
 		collider.eat()
 		on_food_eaten(1) # Arbitrary value currently
@@ -77,8 +74,8 @@ func move(dir):
 		Global.move_to_grid_pos(self, new_world_pos)
 		
 	if collider.is_in_group("leapable"):
-		try_leap(height_diff, collider.position)
-	
+		try_leap(get_height_diff(self, collider), collider.position)
+		
 	if collider.is_in_group("wall"):
 		print('wall!')
 		return
@@ -92,8 +89,22 @@ func on_food_eaten(value: int) -> void:
 	emit_signal("leap_count_changed", leap_count)
 	print("yummyy, current leap count is ", leap_count)
 
-func try_leap(height_diff: int, new_pos: Vector3) -> void:
+## Calculates the height difference
+func get_height_diff(input: Node3D, collider: Node3D) -> float:
+	for child in collider.get_children():
+		if child is CollisionShape3D:
+			var shape = child.shape
+			if shape is BoxShape3D:
+				print("height diff = ", (shape.size.y + collider.position.y) - input.global_position.y)
+				return (shape.size.y + collider.position.y) - input.global_position.y
+	print("no collider with BoxShape found")
+	return 0.0
+
+func try_leap(height_diff: float, new_pos: Vector3) -> void:
+	new_pos.y = self.position.y + height_diff
+	
 	if height_diff <= 0:
+		
 		Global.move_to_grid_pos(self, new_pos)
 		return
 	
@@ -102,7 +113,9 @@ func try_leap(height_diff: int, new_pos: Vector3) -> void:
 			print("cannot leap again")
 			return 
 		leap_count -= 1
+		
 		Global.move_to_grid_pos(self, new_pos)
+		print(self.position.y)
 		emit_signal("leap_count_changed", leap_count)
 		print("you just leaped")	
 
