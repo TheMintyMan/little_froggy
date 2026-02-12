@@ -6,7 +6,7 @@ class_name Player
 signal leap_count_changed(count: int)
 var facing_dir: Vector2 = Vector2.ZERO
 var in_house: bool = false
-@onready var level_root: Level = get_tree().current_scene
+var level_root: Level
 
 var action_manager = ActionManager.new({
 	"move": [move, undo_move]
@@ -17,6 +17,7 @@ func _init() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	level_root = get_tree().current_scene.get_child(1)
 	level_root.register_player(self)
 	var forward = -global_transform.basis.z
 	if abs(forward.x) > abs(forward.z):
