@@ -1,9 +1,9 @@
 extends Node3D
+class_name Main
 
 @export var levels : Array[PackedScene] = []
 @export var level_index = 0
 var current_level : Node
-
 
 func _ready() -> void:
 	goto_level(level_index)

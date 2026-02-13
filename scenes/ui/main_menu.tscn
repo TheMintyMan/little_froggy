@@ -1,74 +1,74 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5qfaw1r1db5f"]
+[gd_scene format=3 uid="uid://b5qfaw1r1db5f"]
 
 [ext_resource type="Script" uid="uid://bscjlso2ecyr8" path="res://scenes/ui/main_menu.gd" id="1_guuao"]
 [ext_resource type="Theme" uid="uid://bm1af7yexnpiq" path="res://scenes/ui/ui_themes_01.tres" id="2_fe2o3"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Node2D" unique_id=338212714]
 script = ExtResource("1_guuao")
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=720182260]
 offset_right = 1920.0
-offset_bottom = 500.0
-theme_override_font_sizes/font_size = 300
-text = "Game Name"
+offset_bottom = 499.99985
+theme_override_font_sizes/font_size = 200
+text = "LITTLE FROGGY"
 horizontal_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1534868858]
 offset_top = 500.0
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme = ExtResource("2_fe2o3")
 
-[node name="MainButtons" type="VBoxContainer" parent="CenterContainer"]
+[node name="MainButtons" type="VBoxContainer" parent="CenterContainer" unique_id=1097232194]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="play" type="Button" parent="CenterContainer/MainButtons"]
+[node name="play" type="Button" parent="CenterContainer/MainButtons" unique_id=608969861]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
 text = "PLAY"
 
-[node name="settings" type="Button" parent="CenterContainer/MainButtons"]
+[node name="settings" type="Button" parent="CenterContainer/MainButtons" unique_id=1634068387]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
 text = "SETTINGS"
 
-[node name="credits" type="Button" parent="CenterContainer/MainButtons"]
+[node name="credits" type="Button" parent="CenterContainer/MainButtons" unique_id=46676346]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
 text = "CREDITS"
 
-[node name="quit" type="Button" parent="CenterContainer/MainButtons"]
+[node name="quit" type="Button" parent="CenterContainer/MainButtons" unique_id=1291583438]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
 text = "QUIT"
 
-[node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer"]
+[node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer" unique_id=1951596928]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="FULLSCREEN" type="CheckBox" parent="CenterContainer/SettingsMenu"]
+[node name="FULLSCREEN" type="CheckBox" parent="CenterContainer/SettingsMenu" unique_id=1724062969]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "FULLSCREEN
 "
 
-[node name="mainvolslider" type="HSlider" parent="CenterContainer/SettingsMenu"]
+[node name="mainvolslider" type="HSlider" parent="CenterContainer/SettingsMenu" unique_id=2045919526]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 
-[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/mainvolslider"]
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/mainvolslider" unique_id=598378564]
 custom_minimum_size = Vector2(484, 55)
 layout_mode = 0
 offset_top = -16.0
@@ -78,14 +78,14 @@ theme_override_font_sizes/font_size = 40
 text = "MAIN VOLUME"
 horizontal_alignment = 1
 
-[node name="musicvolslider" type="HSlider" parent="CenterContainer/SettingsMenu"]
+[node name="musicvolslider" type="HSlider" parent="CenterContainer/SettingsMenu" unique_id=1880064735]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 
-[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/musicvolslider"]
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/musicvolslider" unique_id=808001521]
 custom_minimum_size = Vector2(484, 55)
 layout_mode = 0
 offset_top = -16.0
@@ -95,14 +95,14 @@ theme_override_font_sizes/font_size = 40
 text = "MUSIC VOLUME"
 horizontal_alignment = 1
 
-[node name="sfxvolslider" type="HSlider" parent="CenterContainer/SettingsMenu"]
+[node name="sfxvolslider" type="HSlider" parent="CenterContainer/SettingsMenu" unique_id=1393666077]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 
-[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/sfxvolslider"]
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/sfxvolslider" unique_id=1545207216]
 custom_minimum_size = Vector2(484, 55)
 layout_mode = 0
 offset_top = -16.0
@@ -112,7 +112,7 @@ theme_override_font_sizes/font_size = 40
 text = "SFX VOLUME"
 horizontal_alignment = 1
 
-[node name="back" type="Button" parent="CenterContainer/SettingsMenu"]
+[node name="back" type="Button" parent="CenterContainer/SettingsMenu" unique_id=1093181469]
 custom_minimum_size = Vector2(353, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -120,13 +120,13 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
 text = "BACK"
 
-[node name="CreditsMenu" type="VBoxContainer" parent="CenterContainer"]
+[node name="CreditsMenu" type="VBoxContainer" parent="CenterContainer" unique_id=1650249645]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="CenterContainer/CreditsMenu"]
+[node name="Label" type="Label" parent="CenterContainer/CreditsMenu" unique_id=1384181113]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 120
@@ -134,7 +134,7 @@ text = "A Game by Developer"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="back" type="Button" parent="CenterContainer/CreditsMenu"]
+[node name="back" type="Button" parent="CenterContainer/CreditsMenu" unique_id=999040302]
 custom_minimum_size = Vector2(353, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -142,7 +142,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
 text = "BACK"
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1602740849]
 z_index = -4096
 offset_left = -31.0
 offset_top = -19.0

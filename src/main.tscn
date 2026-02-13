@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://6vxl5swe4yan" path="res://src/main.gd" id="1_gh0ne"]
 [ext_resource type="PackedScene" uid="uid://b5qfaw1r1db5f" path="res://scenes/ui/main_menu.tscn" id="2_3cfgd"]
 [ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="2_5q4o7"]
+[ext_resource type="PackedScene" uid="uid://br737y7gye703" path="res://scenes/win_screen.tscn" id="4_3cfgd"]
 
 [node name="main" type="Node3D" unique_id=543328921 groups=["main"]]
 script = ExtResource("1_gh0ne")
-levels = Array[PackedScene]([ExtResource("2_3cfgd"), ExtResource("2_5q4o7")])
+levels = Array[PackedScene]([ExtResource("2_3cfgd"), ExtResource("2_5q4o7"), ExtResource("4_3cfgd")])

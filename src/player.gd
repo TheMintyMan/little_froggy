@@ -7,6 +7,7 @@ signal leap_count_changed(count: int)
 var facing_dir: Vector2 = Vector2.ZERO
 var in_house: bool = false
 var level_root: Level
+var main: Main
 
 var action_manager = ActionManager.new({
 	"move": [move, undo_move]
@@ -17,6 +18,7 @@ func _init() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	main = get_tree().current_scene
 	level_root = get_tree().current_scene.get_child(1)
 	level_root.register_player(self)
 	var forward = -global_transform.basis.z
@@ -47,7 +49,7 @@ func get_input_direction() -> Vector2:
 		v.x -= 1
 		self.global_rotation = Vector3(0, deg_to_rad(-90), 0)
 	if Input.is_action_just_pressed("restart"):
-		get_tree().reload_current_scene()
+		main.goto_level(main.level_index)
 		
 	if v.x != 0 and v.y != 0:
 		return Vector2()
