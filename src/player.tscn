@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://assets/models/froggy_mesh.tscn" id="2_gmfve"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rc2ur"]
+size = Vector3(1, 0.5, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lowyb"]
 
@@ -12,8 +13,11 @@ albedo_color = Color(0.2054, 0.79, 0.2054, 1)
 
 [node name="player" type="StaticBody3D" unique_id=788165335]
 script = ExtResource("1_lowyb")
+leap_count = null
+leapable_height = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1768648184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_rc2ur")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1398162460]
@@ -29,6 +33,7 @@ one_shot = true
 [node name="player_button_hb" type="Area3D" parent="." unique_id=1405034169]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_button_hb" unique_id=965832330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_rc2ur")
 
-[node name="froggy_mesh" parent="." unique_id=902014204 instance=ExtResource("2_gmfve")]
+[node name="froggy_mesh" parent="." unique_id=278600154 instance=ExtResource("2_gmfve")]

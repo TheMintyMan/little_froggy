@@ -26,8 +26,9 @@ func height_check(n: Node3D, pos: Vector2) -> float:
 		height = new_grid_node.postion.y
 	return height
 
-func grid_check(pos:Vector2) -> Node3D:
+func grid_check(pos:Vector2, mask:int = 1) -> Node3D:
 	$RayCast3D.global_position = Vector3(pos.x*TILESIZE, $RayCast3D.global_position.y, pos.y*TILESIZE)
+	$RayCast3D.collision_mask = mask
 	$RayCast3D.force_raycast_update()
 	return $RayCast3D.get_collider()
 	

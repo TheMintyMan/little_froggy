@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcv2bxq2pv7al"]
+[gd_scene format=3 uid="uid://dcv2bxq2pv7al"]
 
 [ext_resource type="Script" uid="uid://b0t8a5s1bku6s" path="res://src/global.gd" id="1_r7evp"]
 
-[node name="Global" type="Node3D"]
+[node name="Global" type="Node3D" unique_id=1884747530]
 script = ExtResource("1_r7evp")
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=2027257308]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 enabled = false
 hit_from_inside = true

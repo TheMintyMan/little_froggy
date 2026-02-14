@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpt3yxoh0ryfo"]
+[gd_scene format=3 uid="uid://cpt3yxoh0ryfo"]
 
 [ext_resource type="Script" uid="uid://b18d4uxkpvf3q" path="res://src/objects/fly.gd" id="1_lacnl"]
 
@@ -6,12 +6,13 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_lacnl"]
 
-[node name="food" type="StaticBody3D" groups=["food"]]
+[node name="food" type="StaticBody3D" unique_id=1857005287 groups=["food"]]
+collision_mask = 2
 script = ExtResource("1_lacnl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1624560760]
 shape = SubResource("BoxShape3D_1gc57")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=271560049]
 mesh = SubResource("BoxMesh_lacnl")
 skeleton = NodePath("../CollisionShape3D")

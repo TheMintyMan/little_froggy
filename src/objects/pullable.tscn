@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bulcsytki81dn"]
+
+[ext_resource type="PackedScene" uid="uid://c1n54b0n2nsga" path="res://assets/models/pullable_mesh.tscn" id="1_dln68"]
+[ext_resource type="Script" uid="uid://d21xoor4rxnfr" path="res://src/objects/pushable.gd" id="1_ux8qk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rnni0"]
+size = Vector3(1, 0.5, 1)
+
+[node name="pullable" type="StaticBody3D" unique_id=155854616 groups=["pullable"]]
+script = ExtResource("1_ux8qk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=557786376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_rnni0")
+
+[node name="pullable_mesh" parent="." unique_id=1517966532 instance=ExtResource("1_dln68")]

@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 func register_player(player_node:Node):
 	player = player_node
 	print("player registered using global")
-	
+
 func unregister_player():
 	player = null
 	print("unregistered player")

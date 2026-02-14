@@ -1,5 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0msjixjwi0ug"]
+[gd_scene format=3 uid="uid://b0msjixjwi0ug"]
 
 [ext_resource type="PackedScene" uid="uid://c6lfobnwhyl2r" path="res://assets/models/src_models/froggy_mesh.glb" id="1_kufho"]
 
-[node name="froggy_mesh" instance=ExtResource("1_kufho")]
+[node name="froggy_mesh" unique_id=8508922 instance=ExtResource("1_kufho")]
