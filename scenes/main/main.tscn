@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cykegwa3skkx1" path="res://scenes/levels/level02_frogs_leap.tscn" id="4_hujxm"]
 [ext_resource type="PackedScene" uid="uid://bdgpnxmyv1e6" path="res://scenes/levels/level03_hungry_frog.tscn" id="5_yyfjg"]
 [ext_resource type="PackedScene" uid="uid://b2v2xgplvbl4y" path="res://scenes/levels/level04_eating_leaping.tscn" id="6_b1x3f"]
+[ext_resource type="PackedScene" uid="uid://buhax2088y61l" path="res://scenes/levels/level05.tscn" id="8_yyfjg"]
 
 [node name="main" type="Node3D" unique_id=543328921 groups=["main"]]
 script = ExtResource("1_gh0ne")
-levels = Array[PackedScene]([ExtResource("2_3cfgd"), ExtResource("3_3cfgd"), ExtResource("4_hujxm"), ExtResource("5_yyfjg"), ExtResource("6_b1x3f"), ExtResource("4_3cfgd")])
+levels = Array[PackedScene]([ExtResource("2_3cfgd"), ExtResource("3_3cfgd"), ExtResource("4_hujxm"), ExtResource("5_yyfjg"), ExtResource("6_b1x3f"), ExtResource("8_yyfjg"), ExtResource("4_3cfgd")])

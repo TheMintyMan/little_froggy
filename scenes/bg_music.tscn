@@ -4,5 +4,6 @@
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=1797208376]
 stream = ExtResource("1_f6gl3")
+volume_db = 8.0
 autoplay = true
 bus = &"MUSIC"

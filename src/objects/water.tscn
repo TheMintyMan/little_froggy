@@ -9,7 +9,7 @@ albedo_color = Color(0.3384729, 0.3384729, 0.33847287, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnfwo"]
 
-[node name="wall" type="StaticBody3D" unique_id=816203989 groups=["wall"]]
+[node name="wall" type="StaticBody3D" unique_id=816203989 groups=["wall", "water"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1059652741]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

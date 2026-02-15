@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://buhax2088y61l"]
+
+[ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_wrw6x"]
+[ext_resource type="PackedScene" uid="uid://bulcsytki81dn" path="res://src/objects/pullable.tscn" id="2_nwdue"]
+[ext_resource type="PackedScene" uid="uid://bo06dwg0y2lrb" path="res://src/objects/leap_box.tscn" id="3_3j5jt"]
+[ext_resource type="PackedScene" uid="uid://dj24k6kohs1yd" path="res://src/objects/food.tscn" id="4_d4jvh"]
+
+[node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_wrw6x")]
+
+[node name="home" parent="." index="8" unique_id=1153236180]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, -1)
+
+[node name="Label3D" parent="." index="9" unique_id=743755706]
+text = "level 1: 
+leaf me be"
+
+[node name="pullable" parent="." index="10" unique_id=155854616 instance=ExtResource("2_nwdue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+
+[node name="leap_box" parent="." index="11" unique_id=75867206 instance=ExtResource("3_3j5jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="leap_box2" parent="." index="12" unique_id=2053986043 instance=ExtResource("3_3j5jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -4)
+
+[node name="leap_box5" parent="." index="13" unique_id=1449192965 instance=ExtResource("3_3j5jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
+
+[node name="leap_box6" parent="." index="14" unique_id=1422058424 instance=ExtResource("3_3j5jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -5)
+
+[node name="leap_box7" parent="." index="15" unique_id=1704156827 instance=ExtResource("3_3j5jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4)
+
+[node name="leap_box8" parent="." index="16" unique_id=1433490273 instance=ExtResource("3_3j5jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -4)
+
+[node name="leap_box3" parent="." index="17" unique_id=2034554438 instance=ExtResource("3_3j5jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5)
+
+[node name="leap_box4" parent="." index="18" unique_id=2052704531 instance=ExtResource("3_3j5jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -5)
+
+[node name="food" parent="." index="19" unique_id=20428002 instance=ExtResource("4_d4jvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -5)
+
+[node name="food2" parent="." index="20" unique_id=1045120255 instance=ExtResource("4_d4jvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -2)

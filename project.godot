@@ -42,6 +42,7 @@ main=""
 food=""
 leapable=""
 pullable=""
+water=""
 
 [input]
 

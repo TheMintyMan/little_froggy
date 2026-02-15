@@ -1,5 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://51w4gkfjtvoj"]
+[gd_scene format=3 uid="uid://51w4gkfjtvoj"]
 
 [ext_resource type="PackedScene" uid="uid://c3iuw3vgr2sg" path="res://assets/models/src_models/home_mesh.glb" id="1_wegip"]
 
-[node name="home_mesh" instance=ExtResource("1_wegip")]
+[node name="home_mesh" unique_id=164108149 instance=ExtResource("1_wegip")]

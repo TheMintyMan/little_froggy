@@ -41,5 +41,5 @@ func undo():
 	
 func convert_rot_dir(rot: float) -> Vector2:
 	var dir: Vector2 = Vector2(cos(rot), sin(rot))
-	var dir_int: Vector2i = Vector2i(round(dir.x), round(dir.y))
+	var dir_int: Vector2i = Vector2i(round(dir.x*-1), round(dir.y))
 	return dir_int

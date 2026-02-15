@@ -3,12 +3,12 @@ extends Node2D
 func _ready() -> void:
 	%MainButtons.grab_focus()
 	%FULLSCREEN.button_pressed = true if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN else false
-	#%mainvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
-	%mainvolslider.value = 0.5
-	#%musicvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("MUSIC")))
-	%musicvolslider.value = 0.5
-	#%sfxvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
-	%sfxvolslider.value = 0.5
+	%mainvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	%mainvolslider.set_value_no_signal(0.5)
+	%musicvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("MUSIC")))
+	%musicvolslider.set_value_no_signal(0.5)
+	%sfxvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
+	%sfxvolslider.set_value_no_signal(0.5)
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"), 0.5)
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("MUSIC"), 0.5)
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("SFX"), 0.5)
