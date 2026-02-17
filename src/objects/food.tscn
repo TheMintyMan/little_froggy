@@ -6,6 +6,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gc57"]
 size = Vector3(0.5, 0.5, 0.5)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_1ud4p"]
+
 [node name="food" type="StaticBody3D" unique_id=20428002 groups=["food"]]
 collision_layer = 2
 collision_mask = 2
@@ -16,3 +18,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_1gc57")
 
 [node name="food_mesh" parent="." unique_id=1145934779 instance=ExtResource("2_1ud4p")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=627065457]
+mesh = SubResource("PlaneMesh_1ud4p")

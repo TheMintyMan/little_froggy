@@ -89,3 +89,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 
 [node name="food" parent="." index="33" unique_id=20428002 instance=ExtResource("4_qnv2w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
+
+[node name="food2" parent="." index="34" unique_id=717971300 instance=ExtResource("4_qnv2w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, -4)

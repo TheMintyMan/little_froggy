@@ -3,6 +3,7 @@ class_name Player
 
 @export var leap_count: int = 0
 @export var leapable_height: float = 0.5
+@export var player_movement: PlayerMovement
 signal leap_count_changed(count: int)
 var facing_dir: Vector2 = Vector2.ZERO
 var in_house: bool = false
@@ -36,16 +37,20 @@ func get_input_direction() -> Vector2:
 		#return Vector2()
 	var v = Vector2()
 	if Input.is_action_just_pressed("playerDown"):
-		v.y += 1
+		v.y = 1
+		v.x = 0
 		self.global_rotation = Vector3(0, deg_to_rad(0), 0)
 	if Input.is_action_just_pressed("playerUp"):
-		v.y -= 1
+		v.y = -1
+		v.x = 0
 		self.global_rotation = Vector3(0, deg_to_rad(180), 0)
 	if Input.is_action_just_pressed("playerRight"):
-		v.x += 1
+		v.x = 1
+		v.y = 0
 		self.global_rotation = Vector3(0, deg_to_rad(90), 0)
 	if Input.is_action_just_pressed("playerLeft"):
-		v.x -= 1
+		v.x = -1
+		v.y= 0
 		self.global_rotation = Vector3(0, deg_to_rad(-90), 0)
 	
 	if Input.is_action_just_pressed("ability01"):
@@ -187,8 +192,12 @@ func convert_rot_dir() -> Vector2:
 
 func _physics_process(_delta: float) -> void:
 	var input_direction = get_input_direction()
+	
 	if Input.is_action_just_pressed("undo"):
 		Global.undo()
+	
+	if Input.is_action_just_pressed("test"):
+		player_movement.move_default(self, Vector3(self.global_position.x, self.global_position.y, self.global_position.z-1))
 
 	if input_direction != Vector2.ZERO:
 		Global.time_index += 1

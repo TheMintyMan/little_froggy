@@ -13,9 +13,6 @@ func move(dir:Vector2):
 func undo_move(dir:Vector2):
 	var new_grid_pos: Vector2 = Global.get_grid_pos(self) - dir
 	var new_grid_node = Global.grid_check(new_grid_pos)
-	var height: float
-	if new_grid_node == null:
-		height = self.position.y
 	var new_world_pos: Vector3 = Vector3(new_grid_pos.x, self.position.y, new_grid_pos.y)
 	Global.move_to_grid_pos(self, new_world_pos)
 
