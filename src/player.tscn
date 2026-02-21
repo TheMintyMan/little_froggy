@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cuqk6ein0cmrj"]
 
 [ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://src/player.gd" id="1_lowyb"]
-[ext_resource type="Script" uid="uid://fj6qrn366jky" path="res://src/player_movement.gd" id="2_ehvfd"]
+[ext_resource type="Script" uid="uid://fj6qrn366jky" path="res://src/movement_component.gd" id="2_ehvfd"]
 [ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://assets/models/froggy_mesh.tscn" id="2_gmfve"]
 
 [sub_resource type="Curve" id="Curve_ehvfd"]
@@ -11,13 +11,13 @@ point_count = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_rc2ur"]
 size = Vector3(1, 0.5, 1)
 
-[node name="player" type="StaticBody3D" unique_id=788165335 node_paths=PackedStringArray("player_movement")]
+[node name="player" type="StaticBody3D" unique_id=788165335 node_paths=PackedStringArray("movement_comp")]
 script = ExtResource("1_lowyb")
-player_movement = NodePath("player_movement")
+movement_comp = NodePath("movement_component")
 
-[node name="player_movement" type="Node" parent="." unique_id=75637125]
+[node name="movement_component" type="Node" parent="." unique_id=75637125]
 script = ExtResource("2_ehvfd")
-movement_curve = SubResource("Curve_ehvfd")
+_movement_curve = SubResource("Curve_ehvfd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1768648184]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

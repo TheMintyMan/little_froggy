@@ -53,10 +53,12 @@ func check_win_condition() -> void:
 		print("win check: not yet won")
 		return
 	
-	if food_on_grid == 0 && player.global_position == frog_home.global_position:
+	if food_on_grid == 0 && player.target_pos == frog_home.global_position:
 		win_condition_met.emit(true)
 		print("win check: won 1")
+		await get_tree().create_timer(0.5).timeout
 		main.next_level()
 	elif food_on_grid == 0 && frog_home == null:
 		win_condition_met.emit(false)
+		await get_tree().create_timer(0.5).timeout
 		print("win check: won 2")

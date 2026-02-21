@@ -1,15 +1,17 @@
 extends StaticBody3D
 class_name Player
 
+@export var movement_comp: MovementComponent
+
 @export var leap_count: int = 0
 @export var leapable_height: float = 0.5
-@export var player_movement: PlayerMovement
 signal leap_count_changed(count: int)
 var facing_dir: Vector2 = Vector2.ZERO
 var in_house: bool = false
 var level_root: Level
 var main: Main
 var home_dir
+var target_pos: Vector3
 
 var action_manager = ActionManager.new({
 	"move": [move, undo_move],
@@ -67,13 +69,16 @@ func get_input_direction() -> Vector2:
 	return v
 	
 func move(dir):
+	if movement_comp.is_moving():
+		# Later to add it to the queue if it's already moving
+		return
+	
 	var grid_pos = Global.get_grid_pos(self)
 	var new_grid_pos: Vector2 = grid_pos + dir
 	var new_world_pos: Vector3 = Vector3(new_grid_pos.x, 0,new_grid_pos.y)
 	
 	var collider = Global.grid_check(new_grid_pos)
 	var collider_02 = Global.grid_check(new_grid_pos, 2)
-	
 	
 	facing_dir = dir
 	
@@ -83,7 +88,8 @@ func move(dir):
 			return
 		else:
 			in_house = false
-			Global.move_to_grid_pos(self, new_world_pos)
+			target_pos = new_world_pos
+			movement_comp.set_move_default(new_world_pos)
 			
 	if collider_02 is Food:
 		if get_height_diff(self, collider_02, false) <= 0:
@@ -102,14 +108,16 @@ func move(dir):
 			print("The frog has entered home")
 			self.rotation = collider_02.rotation
 			facing_dir = convert_rot_dir()
-			Global.move_to_grid_pos(self, new_world_pos)
+			target_pos = new_world_pos
+			movement_comp.set_move_default(new_world_pos)
 			in_house = true
 			level_root.check_win_condition()
 		else:
 			return
 	
 	if collider == null:
-		Global.move_to_grid_pos(self, new_world_pos)
+		target_pos = new_world_pos
+		movement_comp.set_move_default(new_world_pos)
 		return
 
 	if collider.is_in_group("leapable"):
@@ -122,8 +130,10 @@ func move(dir):
 	
 	if collider.is_in_group("pushable"):
 		if collider.push(dir):
-			Global.move_to_grid_pos(self, new_world_pos)
-	Global.move_to_grid_pos(self, new_world_pos)
+			target_pos = new_world_pos
+			movement_comp.set_move_default(new_world_pos)
+	target_pos = new_world_pos
+	movement_comp.set_move_default(new_world_pos)
 
 func try_pull():
 	var grid_pos : Vector2 = Global.get_grid_pos(self) + (facing_dir*2)
@@ -161,7 +171,7 @@ func try_leap(height_diff: float, new_pos: Vector3) -> void:
 	
 	if height_diff <= 0:
 		
-		Global.move_to_grid_pos(self, new_pos)
+		movement_comp.set_move_default(new_pos)
 		return
 	
 	if height_diff <= leapable_height:
@@ -189,15 +199,12 @@ func convert_rot_dir() -> Vector2:
 	else:
 		dir.y = sign(forward.z)
 		return dir
-
-func _physics_process(_delta: float) -> void:
+	
+func _physics_process(delta: float) -> void:
 	var input_direction = get_input_direction()
 	
 	if Input.is_action_just_pressed("undo"):
-		Global.undo()
-	
-	if Input.is_action_just_pressed("test"):
-		player_movement.move_default(self, Vector3(self.global_position.x, self.global_position.y, self.global_position.z-1))
+		Global.undo()	
 
 	if input_direction != Vector2.ZERO:
 		Global.time_index += 1
