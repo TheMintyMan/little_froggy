@@ -89,7 +89,7 @@ func move(dir):
 		else:
 			in_house = false
 			target_pos = new_world_pos
-			movement_comp.set_move_default(new_world_pos)
+			movement_comp.set_move(new_world_pos)
 			
 	if collider_02 is Food:
 		if get_height_diff(self, collider_02, false) <= 0:
@@ -109,7 +109,7 @@ func move(dir):
 			self.rotation = collider_02.rotation
 			facing_dir = convert_rot_dir()
 			target_pos = new_world_pos
-			movement_comp.set_move_default(new_world_pos)
+			movement_comp.set_move(new_world_pos)
 			in_house = true
 			level_root.check_win_condition()
 		else:
@@ -117,7 +117,7 @@ func move(dir):
 	
 	if collider == null:
 		target_pos = new_world_pos
-		movement_comp.set_move_default(new_world_pos)
+		movement_comp.set_move(new_world_pos)
 		return
 
 	if collider.is_in_group("leapable"):
@@ -131,9 +131,9 @@ func move(dir):
 	if collider.is_in_group("pushable"):
 		if collider.push(dir):
 			target_pos = new_world_pos
-			movement_comp.set_move_default(new_world_pos)
+			movement_comp.set_move(new_world_pos)
 	target_pos = new_world_pos
-	movement_comp.set_move_default(new_world_pos)
+	movement_comp.set_move(new_world_pos)
 
 func try_pull():
 	var grid_pos : Vector2 = Global.get_grid_pos(self) + (facing_dir*2)
@@ -171,7 +171,7 @@ func try_leap(height_diff: float, new_pos: Vector3) -> void:
 	
 	if height_diff <= 0:
 		
-		movement_comp.set_move_default(new_pos)
+		movement_comp.set_move(new_pos)
 		return
 	
 	if height_diff <= leapable_height:
@@ -180,7 +180,7 @@ func try_leap(height_diff: float, new_pos: Vector3) -> void:
 			return 
 		leap_count -= 1
 		
-		Global.move_to_grid_pos(self, new_pos)
+		movement_comp.set_move_leap(new_pos)
 		print(self.position.y)
 		emit_signal("leap_count_changed", leap_count)
 		print("you just leaped")
