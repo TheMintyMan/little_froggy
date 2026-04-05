@@ -7,8 +7,6 @@ class_name MovementComponent
 var _parent: Node3D
 
 var _moving: bool = false
-var _moving_turn: bool = false
-var _moving_leap: bool = false
 
 var _time_elapsed_move: float = 0.0
 var _time_elapsed_turn: float = 0.0
@@ -23,7 +21,7 @@ func _ready() -> void:
 	pass
 
 func is_moving() -> bool:
-	if _moving || _moving_leap || _moving_turn == true:
+	if _moving == true:
 		return true
 	else:
 		return false
@@ -44,14 +42,14 @@ func _move(delta: float):
 
 func set_move_turn(rot: float):
 	_target_rot = rot
-	_moving_turn = true
+	_moving = true
 
 func _move_turn():
 	pass
 
 func set_move_leap(pos: Vector3):
 	_target_pos = pos
-	_moving_turn = true
+	_moving = true
 
 func _move_leap(delta: float):
 	_move(delta)

@@ -6,6 +6,7 @@ class_name Player
 @export var leap_count: int = 0
 @export var leapable_height: float = 0.5
 signal leap_count_changed(count: int)
+
 var facing_dir: Vector2 = Vector2.ZERO
 var in_house: bool = false
 var level_root: Level
@@ -71,6 +72,7 @@ func get_input_direction() -> Vector2:
 func move(dir):
 	if movement_comp.is_moving():
 		# Later to add it to the queue if it's already moving
+		# For now, don't do anything while moving
 		return
 	
 	var grid_pos = Global.get_grid_pos(self)
@@ -170,7 +172,6 @@ func try_leap(height_diff: float, new_pos: Vector3) -> void:
 	new_pos.y = self.position.y + height_diff
 	
 	if height_diff <= 0:
-		
 		movement_comp.set_move(new_pos)
 		return
 	
@@ -180,7 +181,7 @@ func try_leap(height_diff: float, new_pos: Vector3) -> void:
 			return 
 		leap_count -= 1
 		
-		movement_comp.set_move_leap(new_pos)
+		movement_comp.set_move(new_pos)
 		print(self.position.y)
 		emit_signal("leap_count_changed", leap_count)
 		print("you just leaped")
