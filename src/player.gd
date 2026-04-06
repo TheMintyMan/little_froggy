@@ -136,38 +136,42 @@ func move(dir):
 func try_pull():
 	var grid_pos_01 : Vector2 = Global.get_grid_pos(self) + (facing_dir)
 	var grid_pos_02 : Vector2 = Global.get_grid_pos(self) + (facing_dir*2)
-	
 	var collider_01_01 = Global.grid_check(grid_pos_01)
 	var collider_01_02 = Global.grid_check(grid_pos_02)
-	
 	var collider_02_01 = Global.grid_check(grid_pos_01, 2)
 	var collider_02_02 = Global.grid_check(grid_pos_02, 2)
 	
 	print ("collider pull far: ", grid_pos_02,", ", collider_01_02)
 	
-	
-	# wall check for anim
-	if collider_01_01 == null:
-		if collider_01_02 == null:
+	# anim check
+	if collider_01_01 == null and collider_02_01 == null:
+		if collider_01_02 == null and collider_02_02 == null:
 			movement_comp.eat_far()
-		if collider_01_02 != null:
-			if collider_01_02.is_in_group("pullable"):
-				movement_comp.eat_far()
-				collider_02_02.push(facing_dir*-1)
-			else:
-				movement_comp.eat_close()
-	
-	# eat logic
-	if collider_02_01 and collider_02_02 == null:
-		return
+			return
+	# checks for the far blocks
+	if collider_01_02 != null:
+		if collider_01_02.is_in_group("pullable"):
+			movement_comp.eat_far()
+			collider_01_02.push(facing_dir*-1)
+			return
+		if collider_01_02.is_in_group("wall"):
+			movement_comp.eat_close()
+			return
 	if collider_02_02 != null:
 		if collider_02_02.is_in_group("food"):
+			movement_comp.eat_far()
 			if get_height_diff(self, collider_02_02, false) <= 0:
 				collider_02_02.eat()
 				on_food_eaten(1) # Arbitrary value currently
 				return
+	# checks for the close blocks
+	if collider_01_01 != null:
+		if collider_01_01.is_in_group("pullable"):
+			movement_comp.eat_close()
+			return
 	if collider_02_01 != null:
 		if collider_02_01.is_in_group("food"):
+			movement_comp.eat_close()
 			if get_height_diff(self, collider_02_01, false) <= 0:
 				collider_02_01.eat()
 				on_food_eaten(1) # Arbitrary value currently
