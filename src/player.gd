@@ -1,7 +1,7 @@
 extends StaticBody3D
 class_name Player
 
-@export var movement_comp: MovementComponent
+@export var movement_comp: FroggyMovementComponent
 
 @export var leap_count: int = 0
 @export var leapable_height: float = 0.5
@@ -92,14 +92,10 @@ func move(dir):
 			in_house = false
 			target_pos = new_world_pos
 			movement_comp.set_move(new_world_pos)
-			
+	
 	if collider_02 is Food:
-		if get_height_diff(self, collider_02, false) <= 0:
-			collider_02.eat()
-			on_food_eaten(1) # Arbitrary value currently
-			return
-		else:
-			pass
+		print('wall!')
+		return
 	
 	if collider_02 is Home:
 		if get_height_diff(self, collider_02, false) <= 0:
@@ -138,13 +134,44 @@ func move(dir):
 	movement_comp.set_move(new_world_pos)
 
 func try_pull():
-	var grid_pos : Vector2 = Global.get_grid_pos(self) + (facing_dir*2)
-	var collider = Global.grid_check(grid_pos)
-	print ("collider pull: ", grid_pos,", ", collider)
-	if collider == null:
+	var grid_pos_01 : Vector2 = Global.get_grid_pos(self) + (facing_dir)
+	var grid_pos_02 : Vector2 = Global.get_grid_pos(self) + (facing_dir*2)
+	
+	var collider_01_01 = Global.grid_check(grid_pos_01)
+	var collider_01_02 = Global.grid_check(grid_pos_02)
+	
+	var collider_02_01 = Global.grid_check(grid_pos_01, 2)
+	var collider_02_02 = Global.grid_check(grid_pos_02, 2)
+	
+	print ("collider pull far: ", grid_pos_02,", ", collider_01_02)
+	
+	
+	# wall check for anim
+	if collider_01_01 == null:
+		if collider_01_02 == null:
+			movement_comp.eat_far()
+		if collider_01_02 != null:
+			if collider_01_02.is_in_group("pullable"):
+				movement_comp.eat_far()
+				collider_02_02.push(facing_dir*-1)
+			else:
+				movement_comp.eat_close()
+	
+	# eat logic
+	if collider_02_01 and collider_02_02 == null:
 		return
-	if collider.is_in_group("pullable"):
-		collider.push(facing_dir*-1)
+	if collider_02_02 != null:
+		if collider_02_02.is_in_group("food"):
+			if get_height_diff(self, collider_02_02, false) <= 0:
+				collider_02_02.eat()
+				on_food_eaten(1) # Arbitrary value currently
+				return
+	if collider_02_01 != null:
+		if collider_02_01.is_in_group("food"):
+			if get_height_diff(self, collider_02_01, false) <= 0:
+				collider_02_01.eat()
+				on_food_eaten(1) # Arbitrary value currently
+				return
 
 func on_food_eaten(value: int) -> void:
 	leap_count += value 

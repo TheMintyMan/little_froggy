@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cuqk6ein0cmrj"]
 
 [ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://src/player.gd" id="1_lowyb"]
-[ext_resource type="Script" uid="uid://fj6qrn366jky" path="res://src/movement_component.gd" id="2_ehvfd"]
+[ext_resource type="Script" uid="uid://h3xemvyx7jfc" path="res://src/froggy_movement.gd" id="2_ehvfd"]
 [ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://assets/models/froggy_mesh.tscn" id="2_gmfve"]
 
 [sub_resource type="Curve" id="Curve_ehvfd"]
@@ -11,13 +11,56 @@ point_count = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_rc2ur"]
 size = Vector3(1, 0.5, 1)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bktlc"]
+animation = &"froggy_eat_close_action"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pg28d"]
+animation = &"froggy_eat_far_action"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ehvfd"]
+animation = &"froggy_default_action"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_21lrq"]
+advance_mode = 2
+advance_condition = &"eating_close"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rq7o7"]
+advance_mode = 2
+advance_condition = &"eating_far"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nrj4s"]
+advance_mode = 2
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rclot"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hclnh"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ndfpv"]
+states/EatClose/node = SubResource("AnimationNodeAnimation_bktlc")
+states/EatClose/position = Vector2(679, 50)
+states/EatFar/node = SubResource("AnimationNodeAnimation_pg28d")
+states/EatFar/position = Vector2(679, 174)
+states/Idle/node = SubResource("AnimationNodeAnimation_ehvfd")
+states/Idle/position = Vector2(400, 100)
+states/Start/position = Vector2(191, 100)
+transitions = ["Idle", "EatClose", SubResource("AnimationNodeStateMachineTransition_21lrq"), "Idle", "EatFar", SubResource("AnimationNodeStateMachineTransition_rq7o7"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_nrj4s"), "EatClose", "Idle", SubResource("AnimationNodeStateMachineTransition_rclot"), "EatFar", "Idle", SubResource("AnimationNodeStateMachineTransition_hclnh")]
+graph_offset = Vector2(94, -32)
+
 [node name="player" type="StaticBody3D" unique_id=788165335 node_paths=PackedStringArray("movement_comp")]
 script = ExtResource("1_lowyb")
 movement_comp = NodePath("movement_component")
 
-[node name="movement_component" type="Node" parent="." unique_id=75637125]
+[node name="movement_component" type="Node" parent="." unique_id=75637125 node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("2_ehvfd")
 _movement_curve = SubResource("Curve_ehvfd")
+anim_tree = NodePath("../AnimationTree")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1768648184]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -34,4 +77,14 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_rc2ur")
 
-[node name="froggy_mesh" parent="." unique_id=278600154 instance=ExtResource("2_gmfve")]
+[node name="froggy_mesh" parent="." unique_id=1321095365 instance=ExtResource("2_gmfve")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1937179696]
+root_node = NodePath("../froggy_mesh")
+tree_root = SubResource("AnimationNodeStateMachine_ndfpv")
+anim_player = NodePath("../froggy_mesh/AnimationPlayer")
+parameters/conditions/Idle = true
+parameters/conditions/eating_close = false
+parameters/conditions/eating_far = false
+
+[editable path="froggy_mesh"]
