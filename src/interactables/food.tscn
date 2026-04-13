@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dj24k6kohs1yd"]
 
-[ext_resource type="Script" uid="uid://b8fmysegy5vde" path="res://src/objects/food.gd" id="1_3wdjq"]
+[ext_resource type="Script" uid="uid://b8fmysegy5vde" path="res://src/interactables/food.gd" id="1_3wdjq"]
 [ext_resource type="PackedScene" uid="uid://cs1exx2glrq6c" path="res://assets/models/src_models/food_mesh.glb" id="2_1ud4p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gc57"]

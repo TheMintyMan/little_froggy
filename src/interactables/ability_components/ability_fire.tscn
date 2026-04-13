@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cw7yspvper10e"]
+
+[ext_resource type="Script" uid="uid://bgltvu1775r06" path="res://src/interactables/ability_components/ability_component_base.gd" id="1_r8sou"]
+
+[node name="ability_fire" type="Node" unique_id=2004218360]
+script = ExtResource("1_r8sou")

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bdgpnxmyv1e6"]
 
 [ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_60032"]
-[ext_resource type="PackedScene" uid="uid://dj24k6kohs1yd" path="res://src/objects/food.tscn" id="2_jxuea"]
-[ext_resource type="PackedScene" uid="uid://bo06dwg0y2lrb" path="res://src/objects/leap_box.tscn" id="3_hp8ax"]
+[ext_resource type="PackedScene" uid="uid://dj24k6kohs1yd" path="res://src/interactables/food.tscn" id="2_jxuea"]
+[ext_resource type="PackedScene" uid="uid://bo06dwg0y2lrb" path="res://src/interactables/leap_box.tscn" id="3_hp8ax"]
 
 [node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_60032")]
 

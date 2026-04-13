@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bo06dwg0y2lrb"]
 
 [ext_resource type="PackedScene" uid="uid://b3fsujm2wm1e0" path="res://assets/models/box_leap_mesh.tscn" id="2_6sfed"]
-[ext_resource type="Script" uid="uid://bl41oriato6o0" path="res://src/objects/leap_box.gd" id="2_xuw8r"]
+[ext_resource type="Script" uid="uid://bl41oriato6o0" path="res://src/interactables/leap_box.gd" id="2_xuw8r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnfwo"]
 size = Vector3(1, 0.5, 1)

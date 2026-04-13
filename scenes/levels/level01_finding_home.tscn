@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cderl44wgxp6p"]
 
 [ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_ko10n"]
-[ext_resource type="PackedScene" uid="uid://crmmstia7s4lt" path="res://src/objects/wall.tscn" id="2_t0arp"]
+[ext_resource type="PackedScene" uid="uid://crmmstia7s4lt" path="res://src/interactables/wall.tscn" id="2_t0arp"]
 
 [node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_ko10n")]
 

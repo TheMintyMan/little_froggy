@@ -9,7 +9,6 @@ var player: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
 	level_root = get_tree().current_scene.get_child(1)
 	level_root.register_food()
 	player = level_root.get_player()

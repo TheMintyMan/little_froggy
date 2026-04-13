@@ -2,7 +2,6 @@ extends StaticBody3D
 class_name Player
 
 @export var movement_comp: FroggyMovementComponent
-
 @export var leap_count: int = 0
 @export var leapable_height: float = 0.5
 signal leap_count_changed(count: int)
@@ -42,26 +41,20 @@ func get_input_direction() -> Vector2:
 	if Input.is_action_just_pressed("playerDown"):
 		v.y = 1
 		v.x = 0
-		self.global_rotation = Vector3(0, deg_to_rad(0), 0)
 	if Input.is_action_just_pressed("playerUp"):
 		v.y = -1
 		v.x = 0
-		self.global_rotation = Vector3(0, deg_to_rad(180), 0)
 	if Input.is_action_just_pressed("playerRight"):
 		v.x = 1
 		v.y = 0
-		self.global_rotation = Vector3(0, deg_to_rad(90), 0)
 	if Input.is_action_just_pressed("playerLeft"):
 		v.x = -1
 		v.y= 0
-		self.global_rotation = Vector3(0, deg_to_rad(-90), 0)
-	
 	if Input.is_action_just_pressed("ability01"):
 		try_pull()
-	
 	if Input.is_action_just_pressed("restart"):
 		main.goto_level(main.level_index)
-	
+
 	if v.x != 0 and v.y != 0:
 		return Vector2()
 		
@@ -74,6 +67,17 @@ func move(dir):
 		# Later to add it to the queue if it's already moving
 		# For now, don't do anything while moving
 		return
+	
+	# rotate the character
+	if dir == Vector2(0,1):
+		self.global_rotation = Vector3(0, deg_to_rad(0), 0)
+	if dir == Vector2(0,-1):
+		self.global_rotation = Vector3(0, deg_to_rad(180), 0)
+	if dir == Vector2(1,0):
+		self.global_rotation = Vector3(0, deg_to_rad(90), 0)
+	if dir == Vector2(-1,0):
+		self.global_rotation = Vector3(0, deg_to_rad(-90), 0)
+	
 	
 	var grid_pos = Global.get_grid_pos(self)
 	var new_grid_pos: Vector2 = grid_pos + dir

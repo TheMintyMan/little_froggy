@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3niperoukbwk"
 path.s3tc="res://.godot/imported/eye_tex.png-0827e1718495bb2bf9d4d19badad8235.s3tc.ctex"
+path.etc2="res://.godot/imported/eye_tex.png-0827e1718495bb2bf9d4d19badad8235.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/eye_tex.png"
-dest_files=["res://.godot/imported/eye_tex.png-0827e1718495bb2bf9d4d19badad8235.s3tc.ctex"]
+dest_files=["res://.godot/imported/eye_tex.png-0827e1718495bb2bf9d4d19badad8235.s3tc.ctex", "res://.godot/imported/eye_tex.png-0827e1718495bb2bf9d4d19badad8235.etc2.ctex"]
 
 [params]
 
