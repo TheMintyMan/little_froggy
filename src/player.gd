@@ -94,7 +94,20 @@ func move(dir):
 			movement_comp.set_move(new_world_pos)
 	
 	if collider_02 is Food:
-		print('wall!')
+		if collider != null:
+			if collider.is_in_group("leapable"):
+				try_leap(get_height_diff(self, collider), collider.position)
+				collider_02.eat()
+				on_food_eaten(1)
+			else:
+				return
+		if self.position.y != 0:
+			return
+		if get_height_diff(self, collider_02, false) <=0:
+			collider_02.eat()
+			on_food_eaten(1)
+			movement_comp.set_move(new_world_pos)
+		movement_comp.set_move(new_world_pos)
 		return
 	
 	if collider_02 is Home:
@@ -156,7 +169,6 @@ func try_pull():
 			return
 		if collider_01_02.is_in_group("wall"):
 			movement_comp.eat_close()
-			return
 	if collider_02_02 != null:
 		if collider_02_02.is_in_group("food"):
 			movement_comp.eat_far()
