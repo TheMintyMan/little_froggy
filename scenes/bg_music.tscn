@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dtg550aa5tfsp"]
 
-[ext_resource type="AudioStream" uid="uid://d0lkg1fklxl5o" path="res://assets/audio/little_froggy_01.wav" id="1_f6gl3"]
+[ext_resource type="AudioStream" uid="uid://dqidm8k1tgasr" path="res://assets/audio/little_froggy_01.ogg" id="1_f6gl3"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=1797208376]
 stream = ExtResource("1_f6gl3")
-volume_db = 8.0
+volume_db = -6.0
 autoplay = true
 bus = &"MUSIC"

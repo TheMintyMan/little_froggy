@@ -31,7 +31,8 @@ script = ExtResource("1_h4ce7")
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 3, 11.5, 1)
 fov = 50.0
 size = 11.0
-near = 0.1
+near = 1.0
+far = 100.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1417446894]
 transform = Transform3D(0.099999964, 0, 0, 0, 1, 0, 0, 0, 0.099999964, 3.5, 0, -3.5)

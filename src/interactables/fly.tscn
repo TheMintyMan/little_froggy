@@ -1,18 +1,62 @@
 [gd_scene format=3 uid="uid://cpt3yxoh0ryfo"]
 
 [ext_resource type="Script" uid="uid://b18d4uxkpvf3q" path="res://src/interactables/fly.gd" id="1_lacnl"]
+[ext_resource type="PackedScene" uid="uid://dvloubbptds8x" path="res://assets/models/fly/fly_mesh.tscn" id="2_041y5"]
+[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/froggy_mat.tres" id="3_egll8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gc57"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_lacnl"]
-
 [node name="food" type="StaticBody3D" unique_id=1857005287 groups=["food"]]
+collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_lacnl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1624560760]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.4, 0)
 shape = SubResource("BoxShape3D_1gc57")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=271560049]
-mesh = SubResource("BoxMesh_lacnl")
-skeleton = NodePath("../CollisionShape3D")
+[node name="fly" parent="." unique_id=2002339381 instance=ExtResource("2_041y5")]
+
+[node name="Cylinder" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="0" unique_id=912982862]
+material_override = ExtResource("3_egll8")
+
+[node name="Cylinder_002" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="1" unique_id=497651145]
+material_override = ExtResource("3_egll8")
+
+[node name="Cylinder_003" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="2" unique_id=1310007569]
+material_override = ExtResource("3_egll8")
+
+[node name="Cylinder_004" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="3" unique_id=148899577]
+material_override = ExtResource("3_egll8")
+
+[node name="Cylinder_005" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="4" unique_id=810989815]
+material_override = ExtResource("3_egll8")
+
+[node name="Cylinder_006" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="5" unique_id=581689861]
+material_override = ExtResource("3_egll8")
+
+[node name="Cylinder_007" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="6" unique_id=21713861]
+material_override = ExtResource("3_egll8")
+
+[node name="Cylinder_008" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="7" unique_id=1076180901]
+material_override = ExtResource("3_egll8")
+
+[node name="Cylinder_009" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="8" unique_id=787591351]
+material_override = ExtResource("3_egll8")
+
+[node name="Plane_001" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="9" unique_id=1321410214]
+material_override = ExtResource("3_egll8")
+
+[node name="Sphere_001" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="10" unique_id=1190861772]
+material_override = ExtResource("3_egll8")
+
+[node name="Sphere_002" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="11" unique_id=396287028]
+material_override = ExtResource("3_egll8")
+
+[node name="Sphere_003" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="12" unique_id=1856037126]
+material_override = ExtResource("3_egll8")
+
+[node name="Sphere_004" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1079698563) index="13" unique_id=1294440947]
+material_override = ExtResource("3_egll8")
+
+[editable path="fly"]

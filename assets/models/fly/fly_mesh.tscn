@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dvloubbptds8x"]
+
+[ext_resource type="PackedScene" uid="uid://5kfeu2gwjvvg" path="res://assets/models/fly/fly.glb" id="1_hrwyb"]
+
+[node name="fly" unique_id=2002339381 instance=ExtResource("1_hrwyb")]
+
+[node name="Skeleton3D" parent="fly_armature" parent_id_path=PackedInt32Array(1423404495) index="0" unique_id=1079698563]
+bones/1/position = Vector3(0, 0.3948698, 0)
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=99801160]
+autoplay = &"fly_default_action"

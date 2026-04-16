@@ -4,3 +4,4 @@
 
 [resource]
 albedo_texture = ExtResource("1_7qcw1")
+roughness = 0.8

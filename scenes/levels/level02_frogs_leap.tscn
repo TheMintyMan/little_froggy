@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_yjvbj"]
 [ext_resource type="PackedScene" uid="uid://bo06dwg0y2lrb" path="res://src/interactables/leap_box.tscn" id="2_c2p8j"]
 [ext_resource type="PackedScene" uid="uid://cafh2r1mnp0p2" path="res://src/interactables/water.tscn" id="3_mat8m"]
-[ext_resource type="PackedScene" uid="uid://dj24k6kohs1yd" path="res://src/interactables/food.tscn" id="4_qnv2w"]
+[ext_resource type="PackedScene" uid="uid://cpt3yxoh0ryfo" path="res://src/interactables/fly.tscn" id="4_qnv2w"]
 
 [node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_yjvbj")]
 
@@ -87,8 +87,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 [node name="wall5" parent="." index="32" unique_id=1352612684 instance=ExtResource("3_mat8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 
-[node name="food" parent="." index="33" unique_id=20428002 instance=ExtResource("4_qnv2w")]
+[node name="food3" parent="." index="33" unique_id=1857005287 instance=ExtResource("4_qnv2w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
 
-[node name="food2" parent="." index="34" unique_id=717971300 instance=ExtResource("4_qnv2w")]
+[node name="food" parent="." index="34" unique_id=2017677778 instance=ExtResource("4_qnv2w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, -4)

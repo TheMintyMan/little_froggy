@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bdgpnxmyv1e6"]
 
 [ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_60032"]
-[ext_resource type="PackedScene" uid="uid://dj24k6kohs1yd" path="res://src/interactables/food.tscn" id="2_jxuea"]
 [ext_resource type="PackedScene" uid="uid://bo06dwg0y2lrb" path="res://src/interactables/leap_box.tscn" id="3_hp8ax"]
+[ext_resource type="PackedScene" uid="uid://cpt3yxoh0ryfo" path="res://src/interactables/fly.tscn" id="3_lmmoi"]
 
 [node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_60032")]
 
@@ -16,95 +16,95 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, -5)
 text = "level 3:
 castle on the hill"
 
-[node name="food" parent="." index="10" unique_id=20428002 instance=ExtResource("2_jxuea")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -1)
-
-[node name="food4" parent="." index="11" unique_id=1582429084 instance=ExtResource("2_jxuea")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
-
-[node name="food2" parent="." index="12" unique_id=2026649542 instance=ExtResource("2_jxuea")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -3)
-
-[node name="food5" parent="." index="13" unique_id=1082578310 instance=ExtResource("2_jxuea")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -2)
-
-[node name="food3" parent="." index="14" unique_id=174875243 instance=ExtResource("2_jxuea")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -4)
-
-[node name="leap_box" parent="." index="15" unique_id=75867206 instance=ExtResource("3_hp8ax")]
+[node name="leap_box" parent="." index="10" unique_id=75867206 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -3)
 
-[node name="leap_box12" parent="." index="16" unique_id=2008674095 instance=ExtResource("3_hp8ax")]
+[node name="leap_box12" parent="." index="11" unique_id=2008674095 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
 
-[node name="leap_box2" parent="." index="17" unique_id=747159518 instance=ExtResource("3_hp8ax")]
+[node name="leap_box2" parent="." index="12" unique_id=747159518 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
 
-[node name="leap_box3" parent="." index="18" unique_id=1428374474 instance=ExtResource("3_hp8ax")]
+[node name="leap_box3" parent="." index="13" unique_id=1428374474 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, -4)
 
-[node name="leap_box25" parent="." index="19" unique_id=2119421013 instance=ExtResource("3_hp8ax")]
+[node name="leap_box25" parent="." index="14" unique_id=2119421013 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
 
-[node name="leap_box26" parent="." index="20" unique_id=1610378418 instance=ExtResource("3_hp8ax")]
+[node name="leap_box26" parent="." index="15" unique_id=1610378418 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -3)
 
-[node name="leap_box8" parent="." index="21" unique_id=572029205 instance=ExtResource("3_hp8ax")]
+[node name="leap_box8" parent="." index="16" unique_id=572029205 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4)
 
-[node name="leap_box9" parent="." index="22" unique_id=1782513247 instance=ExtResource("3_hp8ax")]
+[node name="leap_box9" parent="." index="17" unique_id=1782513247 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -4)
 
-[node name="leap_box21" parent="." index="23" unique_id=1434935214 instance=ExtResource("3_hp8ax")]
+[node name="leap_box21" parent="." index="18" unique_id=1434935214 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
 
-[node name="leap_box22" parent="." index="24" unique_id=158206878 instance=ExtResource("3_hp8ax")]
+[node name="leap_box22" parent="." index="19" unique_id=158206878 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -4)
 
-[node name="leap_box23" parent="." index="25" unique_id=1342454050 instance=ExtResource("3_hp8ax")]
+[node name="leap_box23" parent="." index="20" unique_id=1342454050 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -4)
 
-[node name="leap_box4" parent="." index="26" unique_id=1863142252 instance=ExtResource("3_hp8ax")]
+[node name="leap_box4" parent="." index="21" unique_id=1863142252 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -5)
 
-[node name="leap_box5" parent="." index="27" unique_id=1166749353 instance=ExtResource("3_hp8ax")]
+[node name="leap_box5" parent="." index="22" unique_id=1166749353 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, -5)
 
-[node name="leap_box6" parent="." index="28" unique_id=1247877672 instance=ExtResource("3_hp8ax")]
+[node name="leap_box6" parent="." index="23" unique_id=1247877672 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
 
-[node name="leap_box7" parent="." index="29" unique_id=1064274252 instance=ExtResource("3_hp8ax")]
+[node name="leap_box7" parent="." index="24" unique_id=1064274252 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -5)
 
-[node name="leap_box17" parent="." index="30" unique_id=1236260226 instance=ExtResource("3_hp8ax")]
+[node name="leap_box17" parent="." index="25" unique_id=1236260226 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -5)
 
-[node name="leap_box24" parent="." index="31" unique_id=944352189 instance=ExtResource("3_hp8ax")]
+[node name="leap_box24" parent="." index="26" unique_id=944352189 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -4)
 
-[node name="leap_box18" parent="." index="32" unique_id=443441636 instance=ExtResource("3_hp8ax")]
+[node name="leap_box18" parent="." index="27" unique_id=443441636 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -5)
 
-[node name="leap_box19" parent="." index="33" unique_id=1583239889 instance=ExtResource("3_hp8ax")]
+[node name="leap_box19" parent="." index="28" unique_id=1583239889 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -5)
 
-[node name="leap_box20" parent="." index="34" unique_id=14795153 instance=ExtResource("3_hp8ax")]
+[node name="leap_box20" parent="." index="29" unique_id=14795153 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5)
 
-[node name="leap_box10" parent="." index="35" unique_id=1746572849 instance=ExtResource("3_hp8ax")]
+[node name="leap_box10" parent="." index="30" unique_id=1746572849 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 
-[node name="leap_box11" parent="." index="36" unique_id=1799407237 instance=ExtResource("3_hp8ax")]
+[node name="leap_box11" parent="." index="31" unique_id=1799407237 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -1)
 
-[node name="leap_box13" parent="." index="37" unique_id=1804848612 instance=ExtResource("3_hp8ax")]
+[node name="leap_box13" parent="." index="32" unique_id=1804848612 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
 
-[node name="leap_box14" parent="." index="38" unique_id=1409118097 instance=ExtResource("3_hp8ax")]
+[node name="leap_box14" parent="." index="33" unique_id=1409118097 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -2)
 
-[node name="leap_box15" parent="." index="39" unique_id=1098772771 instance=ExtResource("3_hp8ax")]
+[node name="leap_box15" parent="." index="34" unique_id=1098772771 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 
-[node name="leap_box16" parent="." index="40" unique_id=742666164 instance=ExtResource("3_hp8ax")]
+[node name="leap_box16" parent="." index="35" unique_id=742666164 instance=ExtResource("3_hp8ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -3)
+
+[node name="food6" parent="." index="36" unique_id=1857005287 instance=ExtResource("3_lmmoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -1)
+
+[node name="food7" parent="." index="37" unique_id=1798064089 instance=ExtResource("3_lmmoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
+
+[node name="food8" parent="." index="38" unique_id=173459572 instance=ExtResource("3_lmmoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -5)
+
+[node name="food9" parent="." index="39" unique_id=1239856395 instance=ExtResource("3_lmmoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -2)
+
+[node name="food10" parent="." index="40" unique_id=1709312329 instance=ExtResource("3_lmmoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -3)

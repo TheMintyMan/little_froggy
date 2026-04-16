@@ -1,5 +1,13 @@
 [gd_scene format=3 uid="uid://51w4gkfjtvoj"]
 
 [ext_resource type="PackedScene" uid="uid://c3iuw3vgr2sg" path="res://assets/models/src_models/home_mesh.glb" id="1_wegip"]
+[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/froggy_mat.tres" id="2_cyvem"]
 
-[node name="home_mesh" unique_id=164108149 instance=ExtResource("1_wegip")]
+[node name="home_mesh" unique_id=374531708 instance=ExtResource("1_wegip")]
+
+[node name="home_mesh" parent="." index="0" unique_id=2126812208]
+surface_material_override/0 = ExtResource("2_cyvem")
+
+[node name="Cylinder_010" parent="." index="1" unique_id=1766072809]
+gi_mode = 0
+surface_material_override/0 = ExtResource("2_cyvem")
