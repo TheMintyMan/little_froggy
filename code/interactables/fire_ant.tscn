@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ddgaiv4hiaxwa"]
+
+[ext_resource type="Script" uid="uid://6w6jj7pj2hj6" path="res://code/interactables/abilities/ability_item_base.gd" id="1_jwd7m"]
+[ext_resource type="PackedScene" uid="uid://cw7yspvper10e" path="res://code/interactables/ability_components/ability_fire.tscn" id="3_4ao7b"]
+[ext_resource type="PackedScene" uid="uid://blkj1yygvlro8" path="res://art/models/fire_ant/fire_ant.glb" id="3_76r6j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1gc57"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="food" type="StaticBody3D" unique_id=20428002 node_paths=PackedStringArray("ability_component") groups=["food"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_jwd7m")
+ability_component = NodePath("ability_fire")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=804836041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_1gc57")
+
+[node name="ability_fire" parent="." unique_id=2004218360 instance=ExtResource("3_4ao7b")]
+
+[node name="fire_ant" parent="." unique_id=1672079355 instance=ExtResource("3_76r6j")]
