@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://643pky6fq36y"]
 
-[ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://src/level.gd" id="1_h4ce7"]
-[ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://src/player.tscn" id="1_orunl"]
-[ext_resource type="PackedScene" uid="uid://crmmstia7s4lt" path="res://src/interactables/wall.tscn" id="2_g46sj"]
-[ext_resource type="Texture2D" uid="uid://cheju5heji08t" path="res://assets/textures/grid_border.png" id="2_j7gcg"]
+[ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://code/level.gd" id="1_h4ce7"]
+[ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://code/player.tscn" id="1_orunl"]
+[ext_resource type="PackedScene" uid="uid://crmmstia7s4lt" path="res://code/interactables/wall.tscn" id="2_g46sj"]
+[ext_resource type="Texture2D" uid="uid://cheju5heji08t" path="res://art/textures/grid_border.png" id="2_j7gcg"]
 [ext_resource type="PackedScene" uid="uid://df74d6rxmrbfp" path="res://scenes/ui/game_ui.tscn" id="6_3rriw"]
-[ext_resource type="PackedScene" uid="uid://b030330rh7v25" path="res://src/home.tscn" id="8_53c65"]
+[ext_resource type="PackedScene" uid="uid://b030330rh7v25" path="res://code/home.tscn" id="8_53c65"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n8dmd"]
 size = Vector2(100, 100)
@@ -26,13 +26,6 @@ ambient_light_color = Color(0.21647921, 0.23008806, 0.23008859, 1)
 
 [node name="BaseLevel" type="Node3D" unique_id=688875371]
 script = ExtResource("1_h4ce7")
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1291834232]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 3, 11.5, 1)
-fov = 50.0
-size = 11.0
-near = 1.0
-far = 100.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1417446894]
 transform = Transform3D(0.099999964, 0, 0, 0, 1, 0, 0, 0, 0.099999964, 3.5, 0, -3.5)
@@ -57,6 +50,9 @@ shadow_enabled = true
 [node name="player" parent="." unique_id=788165335 instance=ExtResource("1_orunl")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 0)
 leap_count = 1
+
+[node name="camera_component" parent="player" index="5" unique_id=2018505148]
+transform = Transform3D(1, 6.0754984e-16, 1.6692294e-15, -1.7763568e-15, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 4, 5.5, 1)
 
 [node name="walls" type="Node" parent="." unique_id=1884262265]
 
@@ -186,3 +182,6 @@ font_size = 120
 outline_size = 0
 horizontal_alignment = 2
 vertical_alignment = 0
+
+[editable path="player"]
+[editable path="player/froggy_mesh"]

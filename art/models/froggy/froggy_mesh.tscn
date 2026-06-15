@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://b0msjixjwi0ug"]
 
-[ext_resource type="PackedScene" uid="uid://bc1efvrjnst67" path="res://assets/models/froggy/froggy.glb" id="1_kufho"]
-[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/froggy_mat.tres" id="2_18wik"]
-[ext_resource type="Material" uid="uid://d1070ret7ojcn" path="res://assets/materials/froggy_eye_mat.tres" id="3_bg5dm"]
+[ext_resource type="PackedScene" uid="uid://bc1efvrjnst67" path="res://art/models/froggy/froggy.glb" id="1_kufho"]
+[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://art/materials/froggy_mat.tres" id="2_18wik"]
+[ext_resource type="Material" uid="uid://d1070ret7ojcn" path="res://art/materials/froggy_eye_mat.tres" id="3_bg5dm"]
 
 [node name="froggy" unique_id=1321095365 instance=ExtResource("1_kufho")]
 
-[node name="Skeleton3D" parent="froggy_armature" parent_id_path=PackedInt32Array(194849941) index="1" unique_id=183213590]
+[node name="Skeleton3D" parent="froggy_armature" parent_id_path=PackedInt32Array(1118323071) index="1" unique_id=279197982]
+bones/1/position = Vector3(0.2954327, 0.13385308, -0.053261533)
 bones/1/rotation = Quaternion(0.16093208, 0.65866506, 0.71975803, -0.14902872)
 bones/2/position = Vector3(5.3576096e-15, 0.12851253, -0.3804059)
 bones/2/rotation = Quaternion(0.5217706, -5.0847865e-07, -3.1099935e-07, 0.8530859)
@@ -22,34 +23,45 @@ bones/27/rotation = Quaternion(0.6584526, 0.34900331, 0.53549117, -0.39734885)
 bones/28/rotation = Quaternion(-0.005143242, 0.37720802, -0.7010854, 0.6051173)
 bones/30/rotation = Quaternion(0.65845245, -0.34900326, -0.5354913, -0.3973489)
 bones/31/rotation = Quaternion(-0.0051433067, -0.37720802, 0.70108527, 0.6051175)
+bones/32/position = Vector3(0.16248949, 0.05636834, -0.007932581)
 bones/33/rotation = Quaternion(0.16093208, 0.6586652, 0.71975803, -0.14902847)
 bones/34/rotation = Quaternion(0.98939854, -0.06065678, 0.018155854, -0.13069703)
 bones/34/scale = Vector3(1.0000023, 1.0000001, 1.0000124)
 bones/35/rotation = Quaternion(0.97804826, -0.06538477, 0.044781227, 0.19272026)
+bones/36/position = Vector3(-0.16248949, 0.05636834, -0.007932195)
 bones/37/rotation = Quaternion(-0.16093215, 0.6586651, 0.7197581, 0.14902855)
 bones/38/rotation = Quaternion(0.98939854, 0.06065679, -0.018155871, -0.13069691)
 bones/38/scale = Vector3(1.0000021, 1.0000001, 1.0000123)
 bones/39/rotation = Quaternion(0.9780482, 0.06538489, -0.044781137, 0.19272049)
+bones/40/rotation = Quaternion(0.19733912, 0, 0.9803353, 0)
+bones/48/position = Vector3(0.30530167, 0.010078191, 0.19357067)
+bones/48/rotation = Quaternion(-0.055504475, 0, 0.99845845, 0)
+bones/55/position = Vector3(-0.031547938, -0.08214808, -0.21062076)
+bones/56/position = Vector3(-0.2954327, 0.13385308, -0.053261533)
+bones/57/rotation = Quaternion(-0.19733912, 0, 0.9803353, 0)
 bones/58/rotation = Quaternion(-0.016830435, -0.6416868, 0.76608574, -0.032672793)
+bones/65/position = Vector3(-0.30530167, 0.010078191, 0.19357067)
+bones/65/rotation = Quaternion(0.055504475, 0, 0.99845845, 0)
+bones/72/position = Vector3(0.031547938, -0.08214808, -0.21062076)
 bones/73/position = Vector3(-2.4191536e-15, 0.2352063, -0.15979299)
 
-[node name="Bone" parent="froggy_armature/Skeleton3D" index="0" unique_id=33146739]
+[node name="Bone" parent="froggy_armature/Skeleton3D" index="0" unique_id=2113039118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13356e-15, 0.12851253, -0.38040593)
 
-[node name="Bone_001" parent="froggy_armature/Skeleton3D" index="1" unique_id=126408823]
+[node name="Bone_001" parent="froggy_armature/Skeleton3D" index="1" unique_id=864741708]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -1.2855936e-15, 0.2352063, -0.15979299)
 
-[node name="Bone_002" parent="froggy_armature/Skeleton3D" index="2" unique_id=1783327094]
+[node name="Bone_002" parent="froggy_armature/Skeleton3D" index="2" unique_id=1024895767]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -1.6063228e-14, 0.28276053, 0.060819983)
 
-[node name="frogy_mesh" parent="froggy_armature/Skeleton3D" index="3" unique_id=42196560]
+[node name="frogy_mesh" parent="froggy_armature/Skeleton3D" index="3" unique_id=1189049507]
 material_override = ExtResource("2_18wik")
 
-[node name="l_froggy_eye_mesh" parent="froggy_armature/Skeleton3D" index="4" unique_id=333870965]
+[node name="l_froggy_eye_mesh" parent="froggy_armature/Skeleton3D" index="4" unique_id=914947014]
 material_override = ExtResource("3_bg5dm")
 
-[node name="r_froggy_eye_mesh" parent="froggy_armature/Skeleton3D" index="5" unique_id=2107194020]
+[node name="r_froggy_eye_mesh" parent="froggy_armature/Skeleton3D" index="5" unique_id=2005313390]
 material_override = ExtResource("3_bg5dm")
 
-[node name="tongue_mesh" parent="froggy_armature/Skeleton3D" index="6" unique_id=11434384]
+[node name="tongue_mesh" parent="froggy_armature/Skeleton3D" index="6" unique_id=2037098549]
 material_override = ExtResource("2_18wik")

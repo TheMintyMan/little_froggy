@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cicab3bclorlj"]
+
+[node name="Node3D" type="Node3D" unique_id=1763239750]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1465447595]
+transform = Transform3D(-1, -8.2150535e-08, 2.9900352e-08, 0, 0.34202015, 0.9396926, -8.742278e-08, 0.9396926, -0.34202015, 0, 5.5, -1)
+fov = 50.0

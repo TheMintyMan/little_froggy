@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://mb1kgx2yrlsj"]
+
+[ext_resource type="PackedScene" uid="uid://jjbugjk33mrx" path="res://art/models/level_select/map_select_pad.glb" id="1_arw84"]
+
+[node name="map_select_pad_mesh" unique_id=1142040540 instance=ExtResource("1_arw84")]

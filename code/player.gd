@@ -13,6 +13,8 @@ var main: Main
 var home_dir
 var target_pos: Vector3
 
+var previous_collider: Node3D = null
+
 var action_manager = ActionManager.new({
 	"move": [move, undo_move],
 })
@@ -32,7 +34,8 @@ func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	emit_signal("leap_count_changed", leap_count)
 	
-	home_dir = Global.convert_rot_dir(level_root.get_home().global_rotation.y+90)
+	if level_root.get_home():
+		home_dir = Global.convert_rot_dir(level_root.get_home().global_rotation.y+90)
 
 func get_input_direction() -> Vector2:
 	#if $Timer.time_left != 0:
@@ -87,6 +90,27 @@ func move(dir):
 	var collider_02 = Global.grid_check(new_grid_pos, 2)
 	
 	facing_dir = dir
+	
+	movement_comp.jump_basic()
+	
+	if previous_collider != null:
+		if previous_collider.has_method("un_hit"):
+			print(self.name, " is unhitting")
+			previous_collider.un_hit(self)
+			previous_collider = null
+		if previous_collider.get_parent().has_method("un_hit"):
+			print(self.name, " is unhitting")
+			previous_collider.get_parent().un_hit(self)
+			previous_collider = null
+			
+	if collider != null:
+		previous_collider = collider
+		if collider.has_method("hit"):
+			print(self.name, " has hit something")
+			collider.hit(self)
+		if collider.get_parent().has_method("hit"):
+			print(self.name, " has hit something")
+			collider.get_parent().hit(self)
 	
 	if in_house:
 		if dir != home_dir:
@@ -252,6 +276,9 @@ func texture_swap():
 	pass
 
 func _physics_process(delta: float) -> void:
+	pass
+
+func _unhandled_input(event: InputEvent) -> void:
 	var input_direction = get_input_direction()
 	
 	if Input.is_action_just_pressed("undo"):
@@ -260,5 +287,4 @@ func _physics_process(delta: float) -> void:
 	if input_direction != Vector2.ZERO:
 		Global.time_index += 1
 		action_manager.do_action("move", [input_direction])
-		
 		

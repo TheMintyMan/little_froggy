@@ -4,6 +4,7 @@ class_name FroggyMovementComponent
 var _isMoving: bool = false
 var eating_close: bool = false
 var eating_far: bool = false
+var jumping_basic: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +13,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super(delta)
 	
+func jump_basic():
+	anim_tree["parameters/conditions/jumping_basic"] = true
+	await get_tree().create_timer(0.2).timeout
+	anim_tree["parameters/conditions/jumping_basic"] = false
+	jumping_basic = true
+
 func eat_close():
 	#anim_tree["parameters/conditions/Idle"] = false
 	anim_tree["parameters/conditions/eating_close"] = true

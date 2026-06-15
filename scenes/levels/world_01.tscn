@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://dpdq7kvo2s85d"]
+
+[ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://code/level.gd" id="1_goo8t"]
+[ext_resource type="Texture2D" uid="uid://cheju5heji08t" path="res://art/textures/grid_border.png" id="2_q6x5w"]
+[ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://code/player.tscn" id="3_lpix7"]
+[ext_resource type="PackedScene" uid="uid://df74d6rxmrbfp" path="res://scenes/ui/game_ui.tscn" id="5_trulv"]
+[ext_resource type="PackedScene" uid="uid://b030330rh7v25" path="res://code/home.tscn" id="6_46jk6"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n8dmd"]
+size = Vector2(100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhwlw"]
+albedo_color = Color(0.25469905, 0.2814494, 0.17207846, 1)
+albedo_texture = ExtResource("2_q6x5w")
+uv1_offset = Vector3(0.5, 0, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7gcg"]
+albedo_color = Color(0.13265029, 0.16411918, 0.094849445, 1)
+
+[sub_resource type="Environment" id="Environment_n8dmd"]
+ambient_light_source = 2
+ambient_light_color = Color(0.21647921, 0.23008806, 0.23008859, 1)
+
+[node name="BaseLevel" type="Node3D" unique_id=688875371]
+script = ExtResource("1_goo8t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1417446894]
+transform = Transform3D(0.099999964, 0, 0, 0, 1, 0, 0, 0, 0.099999964, 3.5, 0, -3.5)
+mesh = SubResource("PlaneMesh_n8dmd")
+surface_material_override/0 = SubResource("StandardMaterial3D_qhwlw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1189393740]
+transform = Transform3D(0.8799997, 0, 0, 0, 1, 0, 0, 0, 0.55999976, 3.5, -0.5, -3.5)
+sorting_offset = -1.0
+sorting_use_aabb_center = false
+mesh = SubResource("PlaneMesh_n8dmd")
+surface_material_override/0 = SubResource("StandardMaterial3D_j7gcg")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=920940107]
+environment = SubResource("Environment_n8dmd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=545897305]
+transform = Transform3D(0.49999997, 0.8365163, -0.2241439, 0, 0.25881907, 0.9659258, 0.86602545, -0.48296288, 0.12940952, 0, 2, 3)
+light_energy = 0.8
+shadow_enabled = true
+
+[node name="player" parent="." unique_id=788165335 instance=ExtResource("3_lpix7")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 0)
+leap_count = 1
+
+[node name="camera_component" parent="player" index="5" unique_id=2018505148]
+transform = Transform3D(1, 6.0754984e-16, 1.6692294e-15, -1.7763568e-15, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 4, 5.5, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=835282202]
+
+[node name="Game_UI" parent="CanvasLayer" unique_id=531994181 instance=ExtResource("5_trulv")]
+
+[node name="home" parent="." unique_id=1153236180 instance=ExtResource("6_46jk6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -7)
+
+[node name="Label3D" type="Label3D" parent="." unique_id=743755706]
+process_mode = 4
+physics_interpolation_mode = 2
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.5, 0, -9)
+modulate = Color(0.41311836, 0.4446169, 0.38178962, 1)
+text = "level 1: 
+finding home"
+font_size = 120
+outline_size = 0
+horizontal_alignment = 2
+vertical_alignment = 0
+
+[editable path="player"]
+[editable path="player/froggy_mesh"]

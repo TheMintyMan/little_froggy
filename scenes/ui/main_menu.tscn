@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bscjlso2ecyr8" path="res://scenes/ui/main_menu.gd" id="1_guuao"]
 [ext_resource type="Theme" uid="uid://bm1af7yexnpiq" path="res://scenes/ui/ui_themes_01.tres" id="2_fe2o3"]
-[ext_resource type="AudioStream" uid="uid://cwqwmamkmtfxb" path="res://assets/audio/little_frogg_menu_hover.wav" id="3_1g8jr"]
+[ext_resource type="AudioStream" uid="uid://cwqwmamkmtfxb" path="res://art/audio/little_frogg_menu_hover.wav" id="3_1g8jr"]
 
 [node name="MainMenu" type="Node2D" unique_id=338212714]
 script = ExtResource("1_guuao")

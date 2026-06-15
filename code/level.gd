@@ -6,6 +6,7 @@ var food_on_grid: int = 0
 var frog_home: Node3D = null
 var player: Player
 var main: Main
+var camera: Camera3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,6 +46,11 @@ func register_home(home_node:Node) -> void:
 	
 func get_home() -> Home:
 	return frog_home
+
+func get_camera() -> Camera3D:
+	if $player/camera:
+		camera = $player/camera
+	return camera
 
 func check_win_condition() -> void:
 	print("food on grid", food_on_grid)

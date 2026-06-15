@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://bnna74u4qraei"]
+
+[ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://code/level.gd" id="1_f1clp"]
+[ext_resource type="Texture2D" uid="uid://cheju5heji08t" path="res://art/textures/grid_border.png" id="2_r3rjt"]
+[ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://code/player.tscn" id="3_gj351"]
+[ext_resource type="PackedScene" uid="uid://6x85ijb42one" path="res://code/interactables/level_select_pad.tscn" id="4_r3rjt"]
+[ext_resource type="PackedScene" uid="uid://c07a5xkmoe5aq" path="res://art/models/level_select/map_select_01_mesh.tscn" id="5_55cj2"]
+[ext_resource type="PackedScene" uid="uid://dpdq7kvo2s85d" path="res://scenes/levels/world_01.tscn" id="5_gj351"]
+[ext_resource type="PackedScene" uid="uid://df74d6rxmrbfp" path="res://scenes/ui/game_ui.tscn" id="5_m5y4t"]
+[ext_resource type="PackedScene" uid="uid://51w4gkfjtvoj" path="res://art/models/home_mesh.tscn" id="6_f1clp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n8dmd"]
+size = Vector2(100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhwlw"]
+albedo_color = Color(0.25469905, 0.2814494, 0.17207846, 1)
+albedo_texture = ExtResource("2_r3rjt")
+uv1_offset = Vector3(0.5, 0, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7gcg"]
+albedo_color = Color(0.13265029, 0.16411918, 0.094849445, 1)
+
+[sub_resource type="Environment" id="Environment_n8dmd"]
+ambient_light_source = 2
+ambient_light_color = Color(0.21647921, 0.23008806, 0.23008859, 1)
+
+[node name="BaseLevel" type="Node3D" unique_id=688875371]
+script = ExtResource("1_f1clp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1417446894]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 3.5, 0, -6)
+mesh = SubResource("PlaneMesh_n8dmd")
+surface_material_override/0 = SubResource("StandardMaterial3D_qhwlw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1189393740]
+transform = Transform3D(0.8799997, 0, 0, 0, 1, 0, 0, 0, 0.55999976, 3.5, -0.5, -3.5)
+sorting_offset = -1.0
+sorting_use_aabb_center = false
+mesh = SubResource("PlaneMesh_n8dmd")
+surface_material_override/0 = SubResource("StandardMaterial3D_j7gcg")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=920940107]
+environment = SubResource("Environment_n8dmd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=545897305]
+transform = Transform3D(0.49999997, 0.8365163, -0.2241439, 0, 0.25881907, 0.9659258, 0.86602545, -0.48296288, 0.12940952, 0, 2, 3)
+light_energy = 0.8
+shadow_enabled = true
+
+[node name="player" parent="." unique_id=788165335 instance=ExtResource("3_gj351")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 0)
+leap_count = 1
+
+[node name="camera" parent="player" index="5" unique_id=2018505148]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 5.5, -1)
+
+[node name="Area3D" parent="." unique_id=304263724 instance=ExtResource("4_r3rjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+level = ExtResource("5_gj351")
+
+[node name="level_popup_pos" parent="Area3D/level_select_pad" parent_id_path=PackedInt32Array(304263724, 2068162663) index="2" unique_id=1642438854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+
+[node name="Area3D2" parent="." unique_id=1273845707 instance=ExtResource("4_r3rjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0000005, 0, -8)
+
+[node name="level_popup_pos" parent="Area3D2/level_select_pad" parent_id_path=PackedInt32Array(1273845707, 2068162663) index="2" unique_id=1642438854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+
+[node name="Area3D3" parent="." unique_id=2049503163 instance=ExtResource("4_r3rjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -11.000002)
+
+[node name="level_popup_pos" parent="Area3D3/level_select_pad" parent_id_path=PackedInt32Array(2049503163, 2068162663) index="2" unique_id=1642438854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=835282202]
+
+[node name="Game_UI" parent="CanvasLayer" unique_id=531994181 instance=ExtResource("5_m5y4t")]
+
+[node name="Label3D" type="Label3D" parent="." unique_id=743755706]
+process_mode = 4
+physics_interpolation_mode = 2
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1, 0.01, 0)
+modulate = Color(0.41311836, 0.4446169, 0.38178962, 1)
+text = "World"
+font_size = 120
+outline_size = 0
+
+[node name="map_select_01" parent="." unique_id=545258511 instance=ExtResource("5_55cj2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+
+[node name="map_select_02" parent="." unique_id=2120476356 instance=ExtResource("5_55cj2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 0, -8)
+
+[node name="map_select_03" parent="." unique_id=1449872217 instance=ExtResource("5_55cj2")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 7, 0, -11)
+
+[node name="home_mesh" parent="." unique_id=374531708 instance=ExtResource("6_f1clp")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5, 0, 0)
+
+[editable path="player"]
+[editable path="player/froggy_mesh"]
+[editable path="Area3D"]
+[editable path="Area3D/CanvasLayer/level_popup"]
+[editable path="Area3D2"]
+[editable path="Area3D2/CanvasLayer/level_popup"]
+[editable path="Area3D3"]
+[editable path="Area3D3/CanvasLayer/level_popup"]

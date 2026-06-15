@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://cuqk6ein0cmrj"]
 
-[ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://src/player.gd" id="1_lowyb"]
-[ext_resource type="Script" uid="uid://h3xemvyx7jfc" path="res://src/froggy_movement.gd" id="2_ehvfd"]
-[ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://assets/models/froggy/froggy_mesh.tscn" id="2_gmfve"]
+[ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://code/player.gd" id="1_bdtmh"]
+[ext_resource type="Script" uid="uid://h3xemvyx7jfc" path="res://code/froggy_movement.gd" id="2_ehvfd"]
+[ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://art/models/froggy/froggy_mesh.tscn" id="2_gmfve"]
+[ext_resource type="Script" uid="uid://bnq5mkde4jji3" path="res://code/camera_follow.gd" id="4_xueb2"]
 
 [sub_resource type="Curve" id="Curve_ehvfd"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_xueb2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50440526, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rc2ur"]
 size = Vector3(1, 0.5, 1)
@@ -19,6 +24,14 @@ animation = &"froggy_eat_far_action"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ehvfd"]
 animation = &"froggy_default_action"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xueb2"]
+animation = &"froggy_leap_action"
+use_custom_timeline = true
+timeline_length = 0.2
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_21lrq"]
 advance_mode = 2
@@ -42,24 +55,37 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"Idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_roao2"]
+advance_mode = 2
+advance_condition = &"jumping_basic"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xueb2"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"Idle"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ndfpv"]
 states/EatClose/node = SubResource("AnimationNodeAnimation_bktlc")
-states/EatClose/position = Vector2(679, 50)
+states/EatClose/position = Vector2(679, 45)
 states/EatFar/node = SubResource("AnimationNodeAnimation_pg28d")
-states/EatFar/position = Vector2(679, 174)
+states/EatFar/position = Vector2(679, 172)
+states/End/position = Vector2(1056, 100)
 states/Idle/node = SubResource("AnimationNodeAnimation_ehvfd")
-states/Idle/position = Vector2(400, 100)
+states/Idle/position = Vector2(382, 100)
 states/Start/position = Vector2(191, 100)
-transitions = ["Idle", "EatClose", SubResource("AnimationNodeStateMachineTransition_21lrq"), "Idle", "EatFar", SubResource("AnimationNodeStateMachineTransition_rq7o7"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_nrj4s"), "EatClose", "Idle", SubResource("AnimationNodeStateMachineTransition_rclot"), "EatFar", "Idle", SubResource("AnimationNodeStateMachineTransition_hclnh")]
-graph_offset = Vector2(94, -32)
+states/froggy_leap_action/node = SubResource("AnimationNodeAnimation_xueb2")
+states/froggy_leap_action/position = Vector2(679, 275)
+transitions = ["Idle", "EatClose", SubResource("AnimationNodeStateMachineTransition_21lrq"), "Idle", "EatFar", SubResource("AnimationNodeStateMachineTransition_rq7o7"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_nrj4s"), "EatClose", "Idle", SubResource("AnimationNodeStateMachineTransition_rclot"), "EatFar", "Idle", SubResource("AnimationNodeStateMachineTransition_hclnh"), "Idle", "froggy_leap_action", SubResource("AnimationNodeStateMachineTransition_roao2"), "froggy_leap_action", "Idle", SubResource("AnimationNodeStateMachineTransition_xueb2")]
+graph_offset = Vector2(10, -22)
 
 [node name="player" type="StaticBody3D" unique_id=788165335 node_paths=PackedStringArray("movement_comp")]
-script = ExtResource("1_lowyb")
+script = ExtResource("1_bdtmh")
 movement_comp = NodePath("movement_component")
 
 [node name="movement_component" type="Node" parent="." unique_id=75637125 node_paths=PackedStringArray("anim_tree")]
 script = ExtResource("2_ehvfd")
 _movement_curve = SubResource("Curve_ehvfd")
+_movement_jump_basic_curve = SubResource("Curve_xueb2")
 anim_tree = NodePath("../AnimationTree")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1768648184]
@@ -71,12 +97,6 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="player_button_hb" type="Area3D" parent="." unique_id=1405034169]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="player_button_hb" unique_id=965832330]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-shape = SubResource("BoxShape3D_rc2ur")
-
 [node name="froggy_mesh" parent="." unique_id=1321095365 instance=ExtResource("2_gmfve")]
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1937179696]
@@ -86,5 +106,21 @@ anim_player = NodePath("../froggy_mesh/AnimationPlayer")
 parameters/conditions/Idle = true
 parameters/conditions/eating_close = false
 parameters/conditions/eating_far = false
+parameters/conditions/jumping_basic = false
+
+[node name="camera" type="Camera3D" parent="." unique_id=2018505148 node_paths=PackedStringArray("follow_object")]
+unique_name_in_owner = true
+transform = Transform3D(-1, -8.2150535e-08, 2.9900352e-08, 0, 0.34202015, 0.9396926, -8.742278e-08, 0.9396926, -0.34202015, 0, 5.5, -1)
+top_level = true
+fov = 50.0
+script = ExtResource("4_xueb2")
+follow_object = NodePath("../froggy_mesh")
+location_offset = Vector3(0, 5.5, 1)
+
+[node name="player_button_hb" type="Area3D" parent="." unique_id=1405034169]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player_button_hb" unique_id=965832330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_rc2ur")
 
 [editable path="froggy_mesh"]

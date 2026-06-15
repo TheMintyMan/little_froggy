@@ -7,7 +7,7 @@
 [node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_vt2k0")]
 
 [node name="food2" parent="." index="10" unique_id=1877213434 instance=ExtResource("2_v56ya")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2)
 
 [node name="food" parent="." index="11" unique_id=1857005287 instance=ExtResource("3_c4gm8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
