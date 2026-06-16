@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://mb1kgx2yrlsj" path="res://art/models/level_select/map_select_pad_mesh.tscn" id="1_0dvt4"]
 [ext_resource type="Script" uid="uid://sbpk47c5fbgr" path="res://code/interactables/level_select_pad.gd" id="1_cbihr"]
-[ext_resource type="Texture2D" uid="uid://bawsw5sbhtvd4" path="res://icon.svg" id="3_5bepq"]
 [ext_resource type="PackedScene" uid="uid://ccd30r0y83qja" path="res://scenes/ui/level_popup_ui.tscn" id="4_q6xnp"]
+[ext_resource type="Texture2D" uid="uid://dio8wxvgw37h4" path="res://art/textures/blue_circle_02.png" id="4_q086a"]
 [ext_resource type="PackedScene" uid="uid://cni62en3oubj2" path="res://scenes/ui/level_select_ui.tscn" id="5_q086a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_076h0"]
@@ -24,9 +24,9 @@ shape = SubResource("BoxShape3D_076h0")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 gi_mode = 0
-pixel_size = 0.003
+pixel_size = 0.001
 billboard = 1
-texture = ExtResource("3_5bepq")
+texture = ExtResource("4_q086a")
 
 [node name="level_popup" parent="." unique_id=1640871134 instance=ExtResource("4_q6xnp")]
 unique_name_in_owner = true

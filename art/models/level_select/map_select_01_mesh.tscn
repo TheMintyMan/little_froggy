@@ -1,5 +1,15 @@
 [gd_scene format=3 uid="uid://c07a5xkmoe5aq"]
 
 [ext_resource type="PackedScene" uid="uid://c81mytupd4h30" path="res://art/models/level_select/map_select_01.glb" id="1_a43kt"]
+[ext_resource type="Material" uid="uid://gnlbds4tfbes" path="res://art/materials/basic_gray_mat.tres" id="2_jnikn"]
 
 [node name="map_select_01" unique_id=545258511 instance=ExtResource("1_a43kt")]
+
+[node name="map_select_mesh" parent="." index="0" unique_id=655584701]
+surface_material_override/0 = ExtResource("2_jnikn")
+
+[node name="flag_pole_mesh" parent="." index="1" unique_id=634328101]
+surface_material_override/0 = ExtResource("2_jnikn")
+
+[node name="flag_cloth_mesh" parent="." index="2" unique_id=1395664914]
+surface_material_override/0 = ExtResource("2_jnikn")
