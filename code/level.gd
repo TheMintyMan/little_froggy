@@ -44,6 +44,9 @@ func register_home(home_node:Node) -> void:
 		print("home registered")
 	return
 	
+func add_ui(ui_instance: Control):
+	%CanvasLayer.add_child(ui_instance)
+	
 func get_home() -> Home:
 	return frog_home
 
@@ -63,7 +66,7 @@ func check_win_condition() -> void:
 		win_condition_met.emit(true)
 		print("win check: won 1")
 		await get_tree().create_timer(0.5).timeout
-		main.next_level()
+		#main.next_level()
 	elif food_on_grid == 0 && frog_home == null:
 		win_condition_met.emit(false)
 		await get_tree().create_timer(0.5).timeout

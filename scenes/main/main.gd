@@ -22,6 +22,13 @@ func goto_level(index):
 	current_level = levels[index].instantiate()
 	add_child(current_level)
 	level_index = index
+
+func goto_world(new_level :PackedScene):
+	prints('to_level')
+	if current_level != null:
+		current_level.queue_free()
+	var instanced_new_level = new_level.instantiate()
+	add_child(instanced_new_level)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

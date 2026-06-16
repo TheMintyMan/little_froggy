@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cni62en3oubj2"]
 
+[ext_resource type="Script" uid="uid://c2n1hf2uhp736" path="res://scenes/ui/level_select_ui.gd" id="1_fbsny"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_doblq"]
 bg_color = Color(0.23392546, 0.23392549, 0.23392531, 1)
 corner_radius_top_left = 10
@@ -21,6 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_fbsny")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=624287106]
 layout_mode = 0
@@ -62,8 +65,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Enter"
 
-[node name="btn_enter2" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1872693814]
+[node name="btn_exit" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1872693814]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Exit
 "
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/btn_leaderboard" to="." method="_on_btn_leaderboard_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/btn_enter" to="." method="_on_btn_enter_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/btn_exit" to="." method="_on_btn_exit_pressed"]

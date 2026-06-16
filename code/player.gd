@@ -12,6 +12,7 @@ var level_root: Level
 var main: Main
 var home_dir
 var target_pos: Vector3
+var is_movement_disabled: bool = false
 
 var previous_collider: Node3D = null
 
@@ -95,18 +96,18 @@ func move(dir):
 	
 	if previous_collider != null:
 		if previous_collider.has_method("un_hit"):
-			print(self.name, " is unhitting")
+			#print(self.name, " is unhitting")
 			previous_collider.un_hit(self)
 			previous_collider = null
 		if previous_collider.get_parent().has_method("un_hit"):
-			print(self.name, " is unhitting")
+			#print(self.name, " is unhitting")
 			previous_collider.get_parent().un_hit(self)
 			previous_collider = null
 			
 	if collider != null:
 		previous_collider = collider
 		if collider.has_method("hit"):
-			print(self.name, " has hit something")
+			#print(self.name, " has hit something")
 			collider.hit(self)
 		if collider.get_parent().has_method("hit"):
 			print(self.name, " has hit something")
@@ -255,7 +256,6 @@ func try_leap(height_diff: float, new_pos: Vector3) -> void:
 		movement_comp.set_move(new_pos)
 		print(self.position.y)
 		emit_signal("leap_count_changed", leap_count)
-		print("you just leaped")
 
 func undo_move(dir):
 	var grid_pos = Global.get_grid_pos(self)
@@ -271,7 +271,13 @@ func convert_rot_dir() -> Vector2:
 	else:
 		dir.y = sign(forward.z)
 		return dir
+
+func movement_disable():
+	is_movement_disabled = true
 	
+func movement_enable():
+	is_movement_disabled = false
+
 func texture_swap():
 	pass
 
@@ -279,12 +285,12 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
-	var input_direction = get_input_direction()
+	if !is_movement_disabled:
+		var input_direction = get_input_direction()
 	
-	if Input.is_action_just_pressed("undo"):
-		Global.undo()	
-
-	if input_direction != Vector2.ZERO:
-		Global.time_index += 1
-		action_manager.do_action("move", [input_direction])
+		if Input.is_action_just_pressed("undo"):
+			Global.undo()
+		if input_direction != Vector2.ZERO:
+			Global.time_index += 1
+			action_manager.do_action("move", [input_direction])
 		

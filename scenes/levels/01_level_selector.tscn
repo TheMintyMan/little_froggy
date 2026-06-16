@@ -76,6 +76,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -11.000002)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=835282202]
+unique_name_in_owner = true
 
 [node name="Game_UI" parent="CanvasLayer" unique_id=531994181 instance=ExtResource("5_m5y4t")]
 
@@ -103,8 +104,5 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5, 0
 [editable path="player"]
 [editable path="player/froggy_mesh"]
 [editable path="Area3D"]
-[editable path="Area3D/CanvasLayer/level_popup"]
 [editable path="Area3D2"]
-[editable path="Area3D2/CanvasLayer/level_popup"]
 [editable path="Area3D3"]
-[editable path="Area3D3/CanvasLayer/level_popup"]
