@@ -4,18 +4,20 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dirnbwoimikhi"
-path="res://.godot/imported/ground_dirt.glb-9d5558e0079d634bedd5b351353fa99b.scn"
+path="res://.godot/imported/ground_dirt.glb-8c6f8456e708512149f3d0ea2b1f7238.scn"
 
 [deps]
 
-source_file="res://art/models/grounds/src/ground_dirt.glb"
-dest_files=["res://.godot/imported/ground_dirt.glb-9d5558e0079d634bedd5b351353fa99b.scn"]
+source_file="res://assets/models/grounds/src/ground_dirt.glb"
+dest_files=["res://.godot/imported/ground_dirt.glb-8c6f8456e708512149f3d0ea2b1f7238.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -40,3 +42,4 @@ materials/extract_path=""
 _subresources={}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
+gltf/texture_map_mode=0

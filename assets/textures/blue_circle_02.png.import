@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dio8wxvgw37h4"
-path.s3tc="res://.godot/imported/blue_circle_02.png-b28d7bff9c1f67d75a759c231247525d.s3tc.ctex"
-path.etc2="res://.godot/imported/blue_circle_02.png-b28d7bff9c1f67d75a759c231247525d.etc2.ctex"
+path.s3tc="res://.godot/imported/blue_circle_02.png-36b1d0afb7795e4e69c825c77cf9a552.s3tc.ctex"
+path.etc2="res://.godot/imported/blue_circle_02.png-36b1d0afb7795e4e69c825c77cf9a552.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/textures/blue_circle_02.png"
-dest_files=["res://.godot/imported/blue_circle_02.png-b28d7bff9c1f67d75a759c231247525d.s3tc.ctex", "res://.godot/imported/blue_circle_02.png-b28d7bff9c1f67d75a759c231247525d.etc2.ctex"]
+source_file="res://assets/textures/blue_circle_02.png"
+dest_files=["res://.godot/imported/blue_circle_02.png-36b1d0afb7795e4e69c825c77cf9a552.s3tc.ctex", "res://.godot/imported/blue_circle_02.png-36b1d0afb7795e4e69c825c77cf9a552.etc2.ctex"]
 
 [params]
 

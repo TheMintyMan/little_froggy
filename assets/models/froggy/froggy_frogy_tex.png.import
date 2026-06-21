@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsymeo22iccev"
-path.s3tc="res://.godot/imported/froggy_frogy_tex.png-70123525fd6758a9682450d1808ac572.s3tc.ctex"
-path.etc2="res://.godot/imported/froggy_frogy_tex.png-70123525fd6758a9682450d1808ac572.etc2.ctex"
+path.s3tc="res://.godot/imported/froggy_frogy_tex.png-8fca4ce832f5f4e12b040c037be4ea13.s3tc.ctex"
+path.etc2="res://.godot/imported/froggy_frogy_tex.png-8fca4ce832f5f4e12b040c037be4ea13.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -15,8 +15,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://art/models/froggy/froggy_frogy_tex.png"
-dest_files=["res://.godot/imported/froggy_frogy_tex.png-70123525fd6758a9682450d1808ac572.s3tc.ctex", "res://.godot/imported/froggy_frogy_tex.png-70123525fd6758a9682450d1808ac572.etc2.ctex"]
+source_file="res://assets/models/froggy/froggy_frogy_tex.png"
+dest_files=["res://.godot/imported/froggy_frogy_tex.png-8fca4ce832f5f4e12b040c037be4ea13.s3tc.ctex", "res://.godot/imported/froggy_frogy_tex.png-8fca4ce832f5f4e12b040c037be4ea13.etc2.ctex"]
 
 [params]
 

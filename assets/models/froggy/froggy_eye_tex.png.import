@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbrc5m6epkfg"
-path.s3tc="res://.godot/imported/froggy_eye_tex.png-083a822a9b2694343623b9f4216ce637.s3tc.ctex"
-path.etc2="res://.godot/imported/froggy_eye_tex.png-083a822a9b2694343623b9f4216ce637.etc2.ctex"
+path.s3tc="res://.godot/imported/froggy_eye_tex.png-90f36dcecc84c5b992a76d90d48e1ed9.s3tc.ctex"
+path.etc2="res://.godot/imported/froggy_eye_tex.png-90f36dcecc84c5b992a76d90d48e1ed9.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -15,8 +15,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://art/models/froggy/froggy_eye_tex.png"
-dest_files=["res://.godot/imported/froggy_eye_tex.png-083a822a9b2694343623b9f4216ce637.s3tc.ctex", "res://.godot/imported/froggy_eye_tex.png-083a822a9b2694343623b9f4216ce637.etc2.ctex"]
+source_file="res://assets/models/froggy/froggy_eye_tex.png"
+dest_files=["res://.godot/imported/froggy_eye_tex.png-90f36dcecc84c5b992a76d90d48e1ed9.s3tc.ctex", "res://.godot/imported/froggy_eye_tex.png-90f36dcecc84c5b992a76d90d48e1ed9.etc2.ctex"]
 
 [params]
 

@@ -4,18 +4,20 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bc1efvrjnst67"
-path="res://.godot/imported/froggy.glb-bb657e7479b66d63335768664e1edc74.scn"
+path="res://.godot/imported/froggy.glb-85ebb2c578f84db8e5cecb7640e97cfa.scn"
 
 [deps]
 
-source_file="res://art/models/froggy/froggy.glb"
-dest_files=["res://.godot/imported/froggy.glb-bb657e7479b66d63335768664e1edc74.scn"]
+source_file="res://assets/models/froggy/froggy.glb"
+dest_files=["res://.godot/imported/froggy.glb-85ebb2c578f84db8e5cecb7640e97cfa.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -41,7 +43,7 @@ _subresources={
 "animations": {
 "froggy_default_action": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://art/models/froggy/froggy_animations/froggy_default_action.res",
+"save_to_file/fallback_path": "res://assets/models/froggy/froggy_animations/froggy_default_action.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://be6p614hiriv8",
 "settings/loop_mode": 0,
@@ -2097,7 +2099,7 @@ _subresources={
 },
 "froggy_eat_close_action": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://art/models/froggy/froggy_animations/froggy_eat_close_action.res",
+"save_to_file/fallback_path": "res://assets/models/froggy/froggy_animations/froggy_eat_close_action.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://b41skmer6asfs",
 "settings/loop_mode": 0,
@@ -4153,7 +4155,7 @@ _subresources={
 },
 "froggy_eat_far_action": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://art/models/froggy/froggy_animations/froggy_eat_far_action.res",
+"save_to_file/fallback_path": "res://assets/models/froggy/froggy_animations/froggy_eat_far_action.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://ejq8la5ila7r",
 "settings/loop_mode": 0,
@@ -6209,7 +6211,7 @@ _subresources={
 },
 "froggy_leap_action": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://art/models/froggy/froggy_animations/froggy_leap_action.res",
+"save_to_file/fallback_path": "res://assets/models/froggy/froggy_animations/froggy_leap_action.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://bv5124ol4ik04",
 "settings/loop_mode": 0,
@@ -8267,3 +8269,4 @@ _subresources={
 }
 gltf/naming_version=2
 gltf/embedded_image_handling=1
+gltf/texture_map_mode=0

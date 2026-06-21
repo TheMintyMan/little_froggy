@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cheju5heji08t"
-path.s3tc="res://.godot/imported/grid_border.png-da7b6ceb3b3e16d0ed85c158159bc348.s3tc.ctex"
-path.etc2="res://.godot/imported/grid_border.png-da7b6ceb3b3e16d0ed85c158159bc348.etc2.ctex"
+path.s3tc="res://.godot/imported/grid_border.png-00fd5fde211cc0edfddd0bcce22c15d9.s3tc.ctex"
+path.etc2="res://.godot/imported/grid_border.png-00fd5fde211cc0edfddd0bcce22c15d9.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/textures/grid_border.png"
-dest_files=["res://.godot/imported/grid_border.png-da7b6ceb3b3e16d0ed85c158159bc348.s3tc.ctex", "res://.godot/imported/grid_border.png-da7b6ceb3b3e16d0ed85c158159bc348.etc2.ctex"]
+source_file="res://assets/textures/grid_border.png"
+dest_files=["res://.godot/imported/grid_border.png-00fd5fde211cc0edfddd0bcce22c15d9.s3tc.ctex", "res://.godot/imported/grid_border.png-00fd5fde211cc0edfddd0bcce22c15d9.etc2.ctex"]
 
 [params]
 

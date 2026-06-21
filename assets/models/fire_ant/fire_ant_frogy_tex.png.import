@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://h3c0ipxagolr"
-path.s3tc="res://.godot/imported/fire_ant_frogy_tex.png-36f25a0795b0e304a0609fa3e6b12c11.s3tc.ctex"
-path.etc2="res://.godot/imported/fire_ant_frogy_tex.png-36f25a0795b0e304a0609fa3e6b12c11.etc2.ctex"
+path.s3tc="res://.godot/imported/fire_ant_frogy_tex.png-fb87643f35eeab1c416d89d122810e86.s3tc.ctex"
+path.etc2="res://.godot/imported/fire_ant_frogy_tex.png-fb87643f35eeab1c416d89d122810e86.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -15,8 +15,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://art/models/fire_ant/fire_ant_frogy_tex.png"
-dest_files=["res://.godot/imported/fire_ant_frogy_tex.png-36f25a0795b0e304a0609fa3e6b12c11.s3tc.ctex", "res://.godot/imported/fire_ant_frogy_tex.png-36f25a0795b0e304a0609fa3e6b12c11.etc2.ctex"]
+source_file="res://assets/models/fire_ant/fire_ant_frogy_tex.png"
+dest_files=["res://.godot/imported/fire_ant_frogy_tex.png-fb87643f35eeab1c416d89d122810e86.s3tc.ctex", "res://.godot/imported/fire_ant_frogy_tex.png-fb87643f35eeab1c416d89d122810e86.etc2.ctex"]
 
 [params]
 

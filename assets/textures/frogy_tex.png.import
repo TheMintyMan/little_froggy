@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3wl8ec803wgi"
-path.s3tc="res://.godot/imported/frogy_tex.png-187c0cbe2efac5c0f3128ea33f0a18e8.s3tc.ctex"
-path.etc2="res://.godot/imported/frogy_tex.png-187c0cbe2efac5c0f3128ea33f0a18e8.etc2.ctex"
+path.s3tc="res://.godot/imported/frogy_tex.png-5936394498b63a1e78d174fe7e588f8a.s3tc.ctex"
+path.etc2="res://.godot/imported/frogy_tex.png-5936394498b63a1e78d174fe7e588f8a.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/textures/frogy_tex.png"
-dest_files=["res://.godot/imported/frogy_tex.png-187c0cbe2efac5c0f3128ea33f0a18e8.s3tc.ctex", "res://.godot/imported/frogy_tex.png-187c0cbe2efac5c0f3128ea33f0a18e8.etc2.ctex"]
+source_file="res://assets/textures/frogy_tex.png"
+dest_files=["res://.godot/imported/frogy_tex.png-5936394498b63a1e78d174fe7e588f8a.s3tc.ctex", "res://.godot/imported/frogy_tex.png-5936394498b63a1e78d174fe7e588f8a.etc2.ctex"]
 
 [params]
 
