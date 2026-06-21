@@ -27,6 +27,12 @@ This is mainly an idea for the future. But I think it's a good diea to start imp
 The camera follows the frog. Each level could potentially vary in size.
 Maybe, there could be the over world map and the actual puzzle maps, just like how mario and a bunch of games has the overworld map and then the gameplay inside that. Might be cool
 
+## Worlds
+Currently, there's 3 themed 'worlds' in the game.
+- Swamp Lands
+- Froggy Temple (inspired by tibetan monks kinda stuff, high up in the mountains, budists inspiration)
+- Froggy City
+
 ## Map
 Maybe you can press 'm' to bring up the map. The map will just have information on areas you have uncovered and all objects on the map.
 It would be useful if the game is a bit more zoomed in and the map is larger, some players will want to be able to solve the puzzle by looking at the entire map on one screen.
