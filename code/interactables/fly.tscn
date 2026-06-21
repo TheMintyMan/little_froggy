@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cpt3yxoh0ryfo"]
 
-[ext_resource type="Script" uid="uid://b18d4uxkpvf3q" path="res://src/interactables/fly.gd" id="1_lacnl"]
+[ext_resource type="Script" uid="uid://b18d4uxkpvf3q" path="res://code/interactables/fly.gd" id="1_lacnl"]
 [ext_resource type="PackedScene" uid="uid://dvloubbptds8x" path="res://assets/models/fly/fly_mesh.tscn" id="2_041y5"]
 [ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/froggy_mat.tres" id="3_egll8"]
 

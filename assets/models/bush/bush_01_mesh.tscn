@@ -1,5 +1,5 @@
 [gd_scene format=3 uid="uid://cx2x252w4ufdg"]
 
-[ext_resource type="PackedScene" uid="uid://bkjkaorw63o3v" path="res://art/models/bush/bush_01.glb" id="1_pks06"]
+[ext_resource type="PackedScene" uid="uid://bkjkaorw63o3v" path="res://assets/models/bush/bush_01.glb" id="1_pks06"]
 
 [node name="bush_01" unique_id=1947392924 instance=ExtResource("1_pks06")]

@@ -9,9 +9,9 @@ func _ready() -> void:
 	%musicvolslider.set_value_no_signal(0.5)
 	%sfxvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
 	%sfxvolslider.set_value_no_signal(0.5)
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"), 0.5)
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("MUSIC"), 0.5)
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("SFX"), 0.5)
+	#AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"), 0.5)
+	#AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("MUSIC"), 0.5)
+	#AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("SFX"), 0.5)
 	
 	
 func _on_play_pressed() -> void:

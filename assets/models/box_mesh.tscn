@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://fvmljhs2irro"]
+
+[ext_resource type="PackedScene" path="res://assets/models/box_mesh.glb" id="1_npggv"]
+
+[node name="box_mesh" instance=ExtResource("1_npggv")]

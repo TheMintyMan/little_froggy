@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bscjlso2ecyr8" path="res://scenes/ui/main_menu.gd" id="1_guuao"]
 [ext_resource type="Theme" uid="uid://bm1af7yexnpiq" path="res://scenes/ui/ui_themes_01.tres" id="2_fe2o3"]
-[ext_resource type="AudioStream" uid="uid://cwqwmamkmtfxb" path="res://art/audio/little_frogg_menu_hover.wav" id="3_1g8jr"]
+[ext_resource type="AudioStream" uid="uid://cwqwmamkmtfxb" path="res://assets/audio/little_frogg_menu_hover.wav" id="3_1g8jr"]
+[ext_resource type="StyleBox" uid="uid://cf882ibvx2lcu" path="res://assets/ui/styles/buttons/new_style_box_flat.tres" id="3_m1kxf"]
+[ext_resource type="StyleBox" uid="uid://keinvrg4sxdn" path="res://assets/ui/styles/buttons/new_style_box_flat_hover.tres" id="4_x2yvf"]
 
 [node name="MainMenu" type="Node2D" unique_id=338212714]
 script = ExtResource("1_guuao")
@@ -29,24 +31,32 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = ExtResource("3_m1kxf")
+theme_override_styles/hover = ExtResource("4_x2yvf")
 text = "PLAY"
 
 [node name="settings" type="Button" parent="CenterContainer/MainButtons" unique_id=1634068387]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = ExtResource("3_m1kxf")
+theme_override_styles/hover = ExtResource("4_x2yvf")
 text = "SETTINGS"
 
 [node name="credits" type="Button" parent="CenterContainer/MainButtons" unique_id=46676346]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = ExtResource("3_m1kxf")
+theme_override_styles/hover = ExtResource("4_x2yvf")
 text = "CREDITS"
 
 [node name="quit" type="Button" parent="CenterContainer/MainButtons" unique_id=1291583438]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = ExtResource("3_m1kxf")
+theme_override_styles/hover = ExtResource("4_x2yvf")
 text = "QUIT"
 
 [node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer" unique_id=1951596928]
@@ -59,6 +69,8 @@ theme_override_constants/separation = 16
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = ExtResource("3_m1kxf")
+theme_override_styles/hover = ExtResource("4_x2yvf")
 text = "FULLSCREEN
 "
 
@@ -68,6 +80,7 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 max_value = 1.0
 step = 0.001
+value = 0.5
 
 [node name="Label" type="Label" parent="CenterContainer/SettingsMenu/mainvolslider" unique_id=598378564]
 custom_minimum_size = Vector2(484, 55)
@@ -85,6 +98,7 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 max_value = 1.0
 step = 0.001
+value = 0.5
 
 [node name="Label" type="Label" parent="CenterContainer/SettingsMenu/musicvolslider" unique_id=808001521]
 custom_minimum_size = Vector2(484, 55)
@@ -102,6 +116,7 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 max_value = 1.0
 step = 0.001
+value = 0.5
 
 [node name="Label" type="Label" parent="CenterContainer/SettingsMenu/sfxvolslider" unique_id=1545207216]
 custom_minimum_size = Vector2(484, 55)
@@ -141,6 +156,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = ExtResource("3_m1kxf")
+theme_override_styles/hover = ExtResource("4_x2yvf")
 text = "BACK"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1602740849]

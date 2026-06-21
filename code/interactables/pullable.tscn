@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bulcsytki81dn"]
 
 [ext_resource type="PackedScene" uid="uid://c1n54b0n2nsga" path="res://assets/models/pullable_mesh.tscn" id="1_dln68"]
-[ext_resource type="Script" uid="uid://d21xoor4rxnfr" path="res://src/interactables/pushable.gd" id="1_ux8qk"]
+[ext_resource type="Script" uid="uid://d21xoor4rxnfr" path="res://code/interactables/pushable.gd" id="1_ux8qk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rnni0"]
 size = Vector3(1, 0.5, 1)

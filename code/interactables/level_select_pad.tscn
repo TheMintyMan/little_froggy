@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://6x85ijb42one"]
 
-[ext_resource type="PackedScene" uid="uid://mb1kgx2yrlsj" path="res://art/models/level_select/map_select_pad_mesh.tscn" id="1_0dvt4"]
+[ext_resource type="PackedScene" uid="uid://mb1kgx2yrlsj" path="res://assets/models/level_select/map_select_pad_mesh.tscn" id="1_0dvt4"]
 [ext_resource type="Script" uid="uid://sbpk47c5fbgr" path="res://code/interactables/level_select_pad.gd" id="1_cbihr"]
 [ext_resource type="PackedScene" uid="uid://ccd30r0y83qja" path="res://scenes/ui/level_popup_ui.tscn" id="4_q6xnp"]
-[ext_resource type="Texture2D" uid="uid://dio8wxvgw37h4" path="res://art/textures/blue_circle_02.png" id="4_q086a"]
+[ext_resource type="Texture2D" uid="uid://dio8wxvgw37h4" path="res://assets/textures/blue_circle_02.png" id="4_q086a"]
 [ext_resource type="PackedScene" uid="uid://cni62en3oubj2" path="res://scenes/ui/level_select_ui.tscn" id="5_q086a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_076h0"]

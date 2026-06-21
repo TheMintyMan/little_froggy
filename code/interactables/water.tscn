@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cafh2r1mnp0p2"]
 
-[ext_resource type="PackedScene" uid="uid://7ag6ivrttlhq" path="res://assets/models/water_mesh.tscn" id="1_jnvxd"]
+[ext_resource type="PackedScene" uid="uid://7ag6ivrttlhq" path="res://assets/models/grounds/water_mesh.tscn" id="1_jnvxd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1lwpx"]
 

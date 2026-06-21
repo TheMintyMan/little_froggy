@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://code/player.gd" id="1_bdtmh"]
 [ext_resource type="Script" uid="uid://h3xemvyx7jfc" path="res://code/froggy_movement.gd" id="2_ehvfd"]
-[ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://art/models/froggy/froggy_mesh.tscn" id="2_gmfve"]
+[ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://assets/models/froggy/froggy_mesh.tscn" id="2_gmfve"]
 [ext_resource type="Script" uid="uid://bnq5mkde4jji3" path="res://code/camera_follow.gd" id="4_xueb2"]
 
 [sub_resource type="Curve" id="Curve_ehvfd"]

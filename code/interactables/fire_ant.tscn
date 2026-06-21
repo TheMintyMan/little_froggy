@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6w6jj7pj2hj6" path="res://code/interactables/abilities/ability_item_base.gd" id="1_jwd7m"]
 [ext_resource type="PackedScene" uid="uid://cw7yspvper10e" path="res://code/interactables/ability_components/ability_fire.tscn" id="3_4ao7b"]
-[ext_resource type="PackedScene" uid="uid://blkj1yygvlro8" path="res://art/models/fire_ant/fire_ant.glb" id="3_76r6j"]
+[ext_resource type="PackedScene" uid="uid://blkj1yygvlro8" path="res://assets/models/fire_ant/fire_ant.glb" id="3_76r6j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gc57"]
 size = Vector3(0.5, 0.5, 0.5)

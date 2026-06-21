@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dp2oe3a26rdcn"]
+
+[ext_resource type="PackedScene" uid="uid://bnuunic3dq78i" path="res://assets/models/grounds/src/ground_base.glb" id="1_vt1ne"]
+
+[node name="ground_base_mesh" unique_id=1502961091 instance=ExtResource("1_vt1ne")]

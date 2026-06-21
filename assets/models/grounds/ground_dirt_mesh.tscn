@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://8gefbbxt1k5d"]
+
+[ext_resource type="PackedScene" uid="uid://dirnbwoimikhi" path="res://assets/models/grounds/src/ground_dirt.glb" id="1_w6cjo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w6cjo"]
+albedo_color = Color(0.26, 0.18200001, 0.13, 1)
+
+[node name="ground_dirt_mesh" unique_id=1261399168 instance=ExtResource("1_w6cjo")]
+
+[node name="ground_dirt_mesh" parent="." index="0" unique_id=1818616005]
+surface_material_override/0 = SubResource("StandardMaterial3D_w6cjo")

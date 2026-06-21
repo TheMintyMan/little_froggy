@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b0msjixjwi0ug"]
 
-[ext_resource type="PackedScene" uid="uid://bc1efvrjnst67" path="res://art/models/froggy/froggy.glb" id="1_kufho"]
-[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://art/materials/froggy_mat.tres" id="2_18wik"]
-[ext_resource type="Material" uid="uid://d1070ret7ojcn" path="res://art/materials/froggy_eye_mat.tres" id="3_bg5dm"]
+[ext_resource type="PackedScene" uid="uid://bc1efvrjnst67" path="res://assets/models/froggy/froggy.glb" id="1_kufho"]
+[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/froggy_mat.tres" id="2_18wik"]
+[ext_resource type="Material" uid="uid://d1070ret7ojcn" path="res://assets/materials/froggy_eye_mat.tres" id="3_bg5dm"]
 
 [node name="froggy" unique_id=1321095365 instance=ExtResource("1_kufho")]
 

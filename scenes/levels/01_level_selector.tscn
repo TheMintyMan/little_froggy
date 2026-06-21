@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bnna74u4qraei"]
 
 [ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://code/level.gd" id="1_f1clp"]
-[ext_resource type="Texture2D" uid="uid://cheju5heji08t" path="res://art/textures/grid_border.png" id="2_r3rjt"]
+[ext_resource type="Texture2D" uid="uid://cheju5heji08t" path="res://assets/textures/grid_border.png" id="2_r3rjt"]
 [ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://code/player.tscn" id="3_gj351"]
 [ext_resource type="PackedScene" uid="uid://6x85ijb42one" path="res://code/interactables/level_select_pad.tscn" id="4_r3rjt"]
-[ext_resource type="PackedScene" uid="uid://c07a5xkmoe5aq" path="res://art/models/level_select/map_select_01_mesh.tscn" id="5_55cj2"]
-[ext_resource type="PackedScene" uid="uid://dpdq7kvo2s85d" path="res://scenes/levels/world_01.tscn" id="5_gj351"]
+[ext_resource type="PackedScene" uid="uid://c07a5xkmoe5aq" path="res://assets/models/level_select/map_select_01_mesh.tscn" id="5_55cj2"]
+[ext_resource type="PackedScene" uid="uid://c17nmlwllntwo" path="res://scenes/levels/world_swamplands.tscn" id="5_gj351"]
 [ext_resource type="PackedScene" uid="uid://df74d6rxmrbfp" path="res://scenes/ui/game_ui.tscn" id="5_m5y4t"]
-[ext_resource type="PackedScene" uid="uid://51w4gkfjtvoj" path="res://art/models/home_mesh.tscn" id="6_f1clp"]
+[ext_resource type="PackedScene" uid="uid://51w4gkfjtvoj" path="res://assets/models/home_mesh.tscn" id="6_f1clp"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n8dmd"]
 size = Vector2(100, 100)
@@ -24,7 +24,7 @@ albedo_color = Color(0.13265029, 0.16411918, 0.094849445, 1)
 
 [sub_resource type="Environment" id="Environment_n8dmd"]
 ambient_light_source = 2
-ambient_light_color = Color(0.21647921, 0.23008806, 0.23008859, 1)
+ambient_light_color = Color(0.16663557, 0.1796354, 0.17963588, 1)
 
 [node name="BaseLevel" type="Node3D" unique_id=688875371]
 script = ExtResource("1_f1clp")

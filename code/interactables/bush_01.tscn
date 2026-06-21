@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d5da6ki4fybg"]
 
-[ext_resource type="PackedScene" uid="uid://cx2x252w4ufdg" path="res://art/models/bush/bush_01_mesh.tscn" id="1_1rxyn"]
+[ext_resource type="PackedScene" uid="uid://cx2x252w4ufdg" path="res://assets/models/bush/bush_01_mesh.tscn" id="1_1rxyn"]
 
 [node name="bush_01" type="Node3D" unique_id=753547554]
 
