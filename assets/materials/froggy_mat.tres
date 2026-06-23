@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://b3wl8ec803wgi" path="res://assets/textures/frogy_tex.png" id="1_7qcw1"]
 
 [resource]
+albedo_color = Color(0.641934, 0.641934, 0.641934, 1)
 albedo_texture = ExtResource("1_7qcw1")
 roughness = 0.8

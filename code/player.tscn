@@ -99,6 +99,54 @@ one_shot = true
 
 [node name="froggy_mesh" parent="." unique_id=1321095365 instance=ExtResource("2_gmfve")]
 
+[node name="Skeleton3D" parent="froggy_mesh/froggy_armature" parent_id_path=PackedInt32Array(1321095365, 1276013083) index="1" unique_id=1190040084]
+bones/1/position = Vector3(0.2954327, 0.13385308, -0.053261533)
+bones/1/rotation = Quaternion(0.16093208, 0.65866506, 0.71975803, -0.14902872)
+bones/2/position = Vector3(5.3576096e-15, 0.12851253, -0.3804059)
+bones/2/rotation = Quaternion(0.5217706, -5.0847865e-07, -3.1099935e-07, 0.8530859)
+bones/3/rotation = Quaternion(0.022732861, -2.3835644e-07, -3.2519562e-08, 0.99974155)
+bones/4/rotation = Quaternion(0.073812656, 1.1888343e-07, -1.143889e-07, 0.99727213)
+bones/5/rotation = Quaternion(0.068364345, -1.6755418e-13, -9.779604e-08, 0.9976604)
+bones/6/rotation = Quaternion(-0.46599525, 2.1094979e-07, 5.555099e-07, 0.88478726)
+bones/8/rotation = Quaternion(0.7457767, -7.9416665e-08, -8.001317e-07, 0.666196)
+bones/12/position = Vector3(-8.7858805e-09, 0.010882862, -0.009212564)
+bones/12/rotation = Quaternion(0.5279626, 3.7122817e-08, -4.8042654e-07, 0.8492676)
+bones/15/rotation = Quaternion(0.515454, -1.0215231e-07, -5.5302223e-07, 0.85691726)
+bones/27/rotation = Quaternion(0.6584526, 0.34900331, 0.53549117, -0.39734885)
+bones/28/rotation = Quaternion(-0.005143242, 0.37720802, -0.7010854, 0.6051173)
+bones/30/rotation = Quaternion(0.65845245, -0.34900326, -0.5354913, -0.3973489)
+bones/31/rotation = Quaternion(-0.0051433067, -0.37720802, 0.70108527, 0.6051175)
+bones/32/position = Vector3(0.16248949, 0.05636834, -0.007932581)
+bones/33/rotation = Quaternion(0.16093208, 0.6586652, 0.71975803, -0.14902847)
+bones/34/rotation = Quaternion(0.98939854, -0.06065678, 0.018155854, -0.13069703)
+bones/34/scale = Vector3(1.0000023, 1.0000001, 1.0000124)
+bones/35/rotation = Quaternion(0.97804826, -0.06538477, 0.044781227, 0.19272026)
+bones/36/position = Vector3(-0.16248949, 0.05636834, -0.007932195)
+bones/37/rotation = Quaternion(-0.16093215, 0.6586651, 0.7197581, 0.14902855)
+bones/38/rotation = Quaternion(0.98939854, 0.06065679, -0.018155871, -0.13069691)
+bones/38/scale = Vector3(1.0000021, 1.0000001, 1.0000123)
+bones/39/rotation = Quaternion(0.9780482, 0.06538489, -0.044781137, 0.19272049)
+bones/40/rotation = Quaternion(0.19733912, 0, 0.9803353, 0)
+bones/48/position = Vector3(0.30530167, 0.010078191, 0.19357067)
+bones/48/rotation = Quaternion(-0.055504475, 0, 0.99845845, 0)
+bones/55/position = Vector3(-0.031547938, -0.08214808, -0.21062076)
+bones/56/position = Vector3(-0.2954327, 0.13385308, -0.053261533)
+bones/57/rotation = Quaternion(-0.19733912, 0, 0.9803353, 0)
+bones/58/rotation = Quaternion(-0.016830435, -0.6416868, 0.76608574, -0.032672793)
+bones/65/position = Vector3(-0.30530167, 0.010078191, 0.19357067)
+bones/65/rotation = Quaternion(0.055504475, 0, 0.99845845, 0)
+bones/72/position = Vector3(0.031547938, -0.08214808, -0.21062076)
+bones/73/position = Vector3(-2.4191536e-15, 0.2352063, -0.15979299)
+
+[node name="Bone" parent="froggy_mesh/froggy_armature/Skeleton3D" index="0" unique_id=1069729520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13356e-15, 0.12851253, -0.38040593)
+
+[node name="Bone_001" parent="froggy_mesh/froggy_armature/Skeleton3D" index="1" unique_id=1550278151]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -1.2855936e-15, 0.2352063, -0.15979299)
+
+[node name="Bone_002" parent="froggy_mesh/froggy_armature/Skeleton3D" index="2" unique_id=457877066]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -1.6063228e-14, 0.28276053, 0.060819983)
+
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1937179696]
 root_node = NodePath("../froggy_mesh")
 tree_root = SubResource("AnimationNodeStateMachine_ndfpv")
@@ -110,12 +158,12 @@ parameters/conditions/jumping_basic = false
 
 [node name="camera" type="Camera3D" parent="." unique_id=2018505148 node_paths=PackedStringArray("follow_object")]
 unique_name_in_owner = true
-transform = Transform3D(-1, -8.2150535e-08, 2.9900352e-08, 0, 0.34202015, 0.9396926, -8.742278e-08, 0.9396926, -0.34202015, 0, 5.5, -1)
+transform = Transform3D(1, 0, 0, 0, 0.57357645, 0.81915206, 0, -0.81915206, 0.57357645, 0, 3, 1.5)
 top_level = true
 fov = 50.0
 script = ExtResource("4_xueb2")
 follow_object = NodePath("../froggy_mesh")
-location_offset = Vector3(0, 5.5, 1)
+location_offset = Vector3(0, 3, 1.5)
 
 [node name="player_button_hb" type="Area3D" parent="." unique_id=1405034169]
 
