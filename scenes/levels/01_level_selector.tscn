@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bnna74u4qraei"]
 
 [ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://code/level.gd" id="1_f1clp"]
-[ext_resource type="Texture2D" uid="uid://cheju5heji08t" path="res://assets/textures/grid_border.png" id="2_r3rjt"]
 [ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://code/player.tscn" id="3_gj351"]
 [ext_resource type="PackedScene" uid="uid://6x85ijb42one" path="res://code/interactables/level_select_pad.tscn" id="4_r3rjt"]
 [ext_resource type="PackedScene" uid="uid://c07a5xkmoe5aq" path="res://assets/models/level_select/map_select_01_mesh.tscn" id="5_55cj2"]
@@ -10,17 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://51w4gkfjtvoj" path="res://assets/models/home_mesh.tscn" id="6_f1clp"]
 [ext_resource type="PackedScene" uid="uid://71wlnpuwuuxh" path="res://assets/models/decoration/grass_test/grass_test.tscn" id="9_m5y4t"]
 [ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://assets/models/froggy/froggy_mesh.tscn" id="10_m5y4t"]
+[ext_resource type="PackedScene" uid="uid://7ag6ivrttlhq" path="res://assets/models/grounds/water_mesh.tscn" id="11_6dneg"]
 [ext_resource type="PackedScene" uid="uid://bn51dvq1hy65u" path="res://scenes/levels/lighting_day.tscn" id="11_436x6"]
+[ext_resource type="PackedScene" uid="uid://bmq02ypqybuju" path="res://assets/models/grounds/ground_grass_set_01/ts_grass_set_01_base.tscn" id="12_4ueir"]
+[ext_resource type="PackedScene" uid="uid://cnrbu7qi5281d" path="res://assets/models/grounds/ground_grass_set_01/ts_grass_set_01_corner.tscn" id="13_5xfus"]
+[ext_resource type="PackedScene" uid="uid://b2bdqchlsukav" path="res://assets/models/grounds/ground_grass_set_01/ts_grass_set_01_edge_1.tscn" id="14_5b6we"]
+[ext_resource type="PackedScene" uid="uid://dsjm2ojoiyxlp" path="res://assets/models/grounds/ground_grass_set_01/ts_grass_set_01_edge_2.tscn" id="15_fdoh3"]
+[ext_resource type="PackedScene" uid="uid://c1jy2vdq2i421" path="res://assets/models/grounds/ground_grass_set_01/ts_grass_set_01_end.tscn" id="16_p30ns"]
+[ext_resource type="PackedScene" uid="uid://djmrcp3x5a5hu" path="res://assets/models/grounds/ground_grass_set_01/ts_grass_set_01_flat.tscn" id="17_siqff"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n8dmd"]
 size = Vector2(100, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhwlw"]
-albedo_color = Color(0.25469905, 0.2814494, 0.17207846, 1)
-albedo_texture = ExtResource("2_r3rjt")
-uv1_offset = Vector3(0.5, 0, 0.5)
-uv1_triplanar = true
-uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7gcg"]
 albedo_color = Color(0.13265029, 0.16411918, 0.094849445, 1)
@@ -30,14 +29,6 @@ script = ExtResource("1_f1clp")
 
 [node name="player" parent="." unique_id=788165335 instance=ExtResource("3_gj351")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
-
-[node name="camera" parent="player" index="5" unique_id=2018505148]
-location_offset = Vector3(0, 5, 3)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1417446894]
-transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 3.5, 0, -6)
-mesh = SubResource("PlaneMesh_n8dmd")
-surface_material_override/0 = SubResource("StandardMaterial3D_qhwlw")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1189393740]
 transform = Transform3D(0.8799997, 0, 0, 0, 1, 0, 0, 0, 0.55999976, 3.5, -0.5, -3.5)
@@ -91,11 +82,319 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 7, 0
 [node name="home_mesh" parent="." unique_id=374531708 instance=ExtResource("6_f1clp")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5, 0, 0)
 
-[node name="GrassTest" parent="." unique_id=1509021780 instance=ExtResource("9_m5y4t")]
+[node name="env" type="Node3D" parent="." unique_id=496620324]
+
+[node name="GrassTest" parent="env" unique_id=1509021780 instance=ExtResource("9_m5y4t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="GrassTest2" parent="env" unique_id=415811667 instance=ExtResource("9_m5y4t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4)
+
+[node name="GrassTest3" parent="env" unique_id=223439991 instance=ExtResource("9_m5y4t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
 
+[node name="box_mesh" parent="env" unique_id=414116657 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 1, -0.5, 5)
+
+[node name="box_mesh2" parent="env" unique_id=1765725041 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 1, -0.5, 6)
+
+[node name="box_mesh4" parent="env" unique_id=238081540 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 0, -0.5, 5)
+
+[node name="box_mesh5" parent="env" unique_id=505532329 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 0, -0.5, 6)
+
+[node name="box_mesh6" parent="env" unique_id=1760013627 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 1, -0.5, 7)
+
+[node name="box_mesh7" parent="env" unique_id=1803827994 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 1, -0.5, 8)
+
+[node name="box_mesh8" parent="env" unique_id=1791234224 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 0, -0.5, 7)
+
+[node name="box_mesh9" parent="env" unique_id=1617419700 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 0, -0.5, 8)
+
+[node name="box_mesh10" parent="env" unique_id=375322175 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 3, -0.5, 7)
+
+[node name="box_mesh11" parent="env" unique_id=597621379 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 3, -0.5, 8)
+
+[node name="box_mesh12" parent="env" unique_id=1072874771 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 2, -0.5, 7)
+
+[node name="box_mesh13" parent="env" unique_id=313723079 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 2, -0.5, 8)
+
+[node name="box_mesh14" parent="env" unique_id=1845372148 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 5, -0.5, 7)
+
+[node name="box_mesh15" parent="env" unique_id=62628125 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 5, -0.5, 8)
+
+[node name="box_mesh16" parent="env" unique_id=225343359 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 4, -0.5, 7)
+
+[node name="box_mesh17" parent="env" unique_id=2064902417 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 4, -0.5, 8)
+
+[node name="box_mesh18" parent="env" unique_id=1478326280 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -1, -0.5, 5)
+
+[node name="box_mesh19" parent="env" unique_id=1266054573 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -1, -0.5, 6)
+
+[node name="box_mesh20" parent="env" unique_id=1677979675 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -2, -0.5, 5)
+
+[node name="box_mesh21" parent="env" unique_id=714406602 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -2, -0.5, 6)
+
+[node name="box_mesh22" parent="env" unique_id=40834178 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -1, -0.5, 7)
+
+[node name="box_mesh23" parent="env" unique_id=1405100699 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -1, -0.5, 8)
+
+[node name="box_mesh24" parent="env" unique_id=1860633154 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -2, -0.5, 7)
+
+[node name="box_mesh25" parent="env" unique_id=1594048101 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -2, -0.5, 8)
+
+[node name="box_mesh26" parent="env" unique_id=428777887 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -1, -0.5, 3)
+
+[node name="box_mesh27" parent="env" unique_id=752533872 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -1, -0.5, 4)
+
+[node name="box_mesh28" parent="env" unique_id=1187054858 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -2, -0.5, 3)
+
+[node name="box_mesh29" parent="env" unique_id=400657574 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, -2, -0.5, 4)
+
+[node name="box_mesh3" parent="env" unique_id=90246030 instance=ExtResource("11_6dneg")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 2, -0.5, 6)
+
+[node name="ts_grass_set_01_base" parent="env" unique_id=322241746 instance=ExtResource("12_4ueir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
+
+[node name="ts_grass_set_01_corner" parent="env" unique_id=1872126530 instance=ExtResource("13_5xfus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="ts_grass_set_01_corner2" parent="env" unique_id=12665513 instance=ExtResource("13_5xfus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="ts_grass_set_01_corner4" parent="env" unique_id=1287802797 instance=ExtResource("13_5xfus")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5, 0, 6)
+
+[node name="ts_grass_set_01_corner5" parent="env" unique_id=1993685944 instance=ExtResource("13_5xfus")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 5)
+
+[node name="ts_grass_set_01_edge1" parent="env" unique_id=1820081907 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 0, 4)
+
+[node name="ts_grass_set_01_edge3" parent="env" unique_id=382844650 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 0, 6)
+
+[node name="ts_grass_set_01_edge12" parent="env" unique_id=121197318 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 6)
+
+[node name="ts_grass_set_01_edge2" parent="env" unique_id=1657624528 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2, 0, 5)
+
+[node name="ts_grass_set_01_edge5" parent="env" unique_id=78818463 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 3)
+
+[node name="ts_grass_set_01_edge6" parent="env" unique_id=1823888523 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 2)
+
+[node name="ts_grass_set_01_edge7" parent="env" unique_id=121229666 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 1)
+
+[node name="ts_grass_set_01_edge8" parent="env" unique_id=699424598 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="ts_grass_set_01_edge9" parent="env" unique_id=323960454 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -1)
+
+[node name="ts_grass_set_01_edge10" parent="env" unique_id=804477824 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -2)
+
+[node name="ts_grass_set_01_edge13" parent="env" unique_id=1118706338 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 8.742278e-08, 0, -3)
+
+[node name="ts_grass_set_01_edge14" parent="env" unique_id=341853782 instance=ExtResource("14_5b6we")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.7484555e-07, 0, -4)
+
+[node name="ts_grass_set_01_base2" parent="env" unique_id=844557495 instance=ExtResource("12_4ueir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 7)
+
+[node name="ts_grass_set_01_corner3" parent="env" unique_id=57025804 instance=ExtResource("13_5xfus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 7)
+
+[node name="ts_grass_set_01_edge4" parent="env" unique_id=253131916 instance=ExtResource("15_fdoh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 7)
+
+[node name="ts_grass_set_01_edge11" parent="env" unique_id=1855156958 instance=ExtResource("15_fdoh3")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, 0, 2)
+
+[node name="ts_grass_set_01_end" parent="env" unique_id=461732664 instance=ExtResource("16_p30ns")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 7)
+
+[node name="ts_grass_set_01_end2" parent="env" unique_id=539260092 instance=ExtResource("16_p30ns")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0, 2)
+
+[node name="ts_grass_set_01_flat" parent="env" unique_id=1852878340 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 7)
+
+[node name="ts_grass_set_01_flat2" parent="env" unique_id=238384969 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="ts_grass_set_01_flat3" parent="env" unique_id=1150106525 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
+
+[node name="ts_grass_set_01_flat4" parent="env" unique_id=820758808 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+
+[node name="ts_grass_set_01_flat5" parent="env" unique_id=165347966 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="ts_grass_set_01_flat6" parent="env" unique_id=1427762874 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="ts_grass_set_01_flat7" parent="env" unique_id=1115969269 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
+
+[node name="ts_grass_set_01_flat8" parent="env" unique_id=1289982458 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="ts_grass_set_01_flat9" parent="env" unique_id=705362000 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+
+[node name="ts_grass_set_01_flat10" parent="env" unique_id=286383148 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+
+[node name="ts_grass_set_01_flat11" parent="env" unique_id=1821110960 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="ts_grass_set_01_flat12" parent="env" unique_id=79416923 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="ts_grass_set_01_flat13" parent="env" unique_id=386091388 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="ts_grass_set_01_flat14" parent="env" unique_id=1912518210 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="ts_grass_set_01_flat15" parent="env" unique_id=701304626 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="ts_grass_set_01_flat16" parent="env" unique_id=1070494195 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
+
+[node name="ts_grass_set_01_flat17" parent="env" unique_id=1421711365 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="ts_grass_set_01_flat18" parent="env" unique_id=2056398472 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="ts_grass_set_01_flat19" parent="env" unique_id=1750941638 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2)
+
+[node name="ts_grass_set_01_flat26" parent="env" unique_id=151670263 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+
+[node name="ts_grass_set_01_flat27" parent="env" unique_id=409426756 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1)
+
+[node name="ts_grass_set_01_flat28" parent="env" unique_id=2034246230 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="ts_grass_set_01_flat29" parent="env" unique_id=840034674 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -1)
+
+[node name="ts_grass_set_01_flat30" parent="env" unique_id=2052709379 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
+
+[node name="ts_grass_set_01_flat31" parent="env" unique_id=1845525464 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2)
+
+[node name="ts_grass_set_01_flat32" parent="env" unique_id=626806692 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
+
+[node name="ts_grass_set_01_flat33" parent="env" unique_id=1849283406 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="ts_grass_set_01_flat34" parent="env" unique_id=1173606146 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+
+[node name="ts_grass_set_01_flat35" parent="env" unique_id=767107487 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2)
+
+[node name="ts_grass_set_01_flat36" parent="env" unique_id=671031704 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
+
+[node name="ts_grass_set_01_flat41" parent="env" unique_id=1152966555 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
+
+[node name="ts_grass_set_01_flat42" parent="env" unique_id=1284131732 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
+
+[node name="ts_grass_set_01_flat43" parent="env" unique_id=1678103826 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 3)
+
+[node name="ts_grass_set_01_flat44" parent="env" unique_id=1101674639 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="ts_grass_set_01_flat45" parent="env" unique_id=623565182 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 4)
+
+[node name="ts_grass_set_01_flat46" parent="env" unique_id=404353554 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
+
+[node name="ts_grass_set_01_flat47" parent="env" unique_id=1246967435 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5)
+
+[node name="ts_grass_set_01_flat48" parent="env" unique_id=2114664661 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
+
+[node name="ts_grass_set_01_flat37" parent="env" unique_id=2147136701 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 1)
+
+[node name="ts_grass_set_01_flat38" parent="env" unique_id=1324754165 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="ts_grass_set_01_flat39" parent="env" unique_id=67277999 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -1)
+
+[node name="ts_grass_set_01_flat40" parent="env" unique_id=2012272750 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -2)
+
+[node name="ts_grass_set_01_flat20" parent="env" unique_id=1157267198 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+
+[node name="ts_grass_set_01_flat21" parent="env" unique_id=968653322 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+
+[node name="ts_grass_set_01_flat22" parent="env" unique_id=1666205403 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
+[node name="ts_grass_set_01_flat23" parent="env" unique_id=1051489588 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
+
+[node name="ts_grass_set_01_flat24" parent="env" unique_id=224082877 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="ts_grass_set_01_flat25" parent="env" unique_id=955968456 instance=ExtResource("17_siqff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4)
+
 [node name="froggy" parent="." unique_id=602929358 instance=ExtResource("10_m5y4t")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 0, 5)
+transform = Transform3D(-3.278354e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, -3.278354e-08, 3, 0, 5)
 
 [node name="LightingDay" parent="." unique_id=441363176 instance=ExtResource("11_436x6")]
 

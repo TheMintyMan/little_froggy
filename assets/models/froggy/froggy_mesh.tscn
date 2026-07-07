@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://d1070ret7ojcn" path="res://assets/materials/froggy_eye_mat.tres" id="3_bg5dm"]
 
 [node name="froggy" unique_id=602929358 instance=ExtResource("1_kufho")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
 [node name="frogy_mesh" parent="froggy_armature/Skeleton3D" parent_id_path=PackedInt32Array(1190040084) index="3" unique_id=598822950]
 surface_material_override/0 = ExtResource("2_18wik")

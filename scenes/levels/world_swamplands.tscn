@@ -10,7 +10,7 @@
 
 [node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_iqs8g")]
 
-[node name="home" parent="." index="3" unique_id=1153236180]
+[node name="home" parent="." index="1" unique_id=1153236180]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
 [node name="ground_dirt_mesh" parent="grounds_grp" parent_id_path=PackedInt32Array(319165061) index="0" unique_id=1261399168 instance=ExtResource("2_mjutu")]
@@ -349,10 +349,10 @@ transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 4, -0.5, -11)
 [node name="food" parent="food_grp" parent_id_path=PackedInt32Array(1148034658) index="0" unique_id=1857005287 instance=ExtResource("5_3tqph")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13, 0, -8)
 
-[node name="leap_box" parent="." index="9" unique_id=75867206 instance=ExtResource("6_ccg3h")]
+[node name="leap_box" parent="." index="8" unique_id=75867206 instance=ExtResource("6_ccg3h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -6)
 
-[node name="pullable" parent="." index="10" unique_id=155854616 instance=ExtResource("7_ccg3h")]
+[node name="pullable" parent="." index="9" unique_id=155854616 instance=ExtResource("7_ccg3h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -7)
 
 [editable path="player"]

@@ -4,8 +4,6 @@ class_name LevelSelectPad
 var screen_pos: Vector2
 var camera: Camera3D
 
-var level_root: Level
-var player: Player 
 var is_player_on_top: bool = false
 var is_popup_show: bool = false
 var is_hit: bool = false
@@ -16,16 +14,11 @@ var ui_instance: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	level_root = get_tree().current_scene.get_child(1)
-	player = level_root.get_player()
 	%level_popup_pos.hide()
 	#%level_popup.visible = false
 	%level_popup.hide()
-		
+	camera = GameManager.get_camera()
 	set_process(false)
-	
-	if level_root and level_root.has_method("get_camera"):
-		camera = level_root.get_camera()
 
 func hit(object: Node3D):
 	if object is Player:
@@ -61,8 +54,9 @@ func level_select_ui_show():
 		print("showing")
 		ui_instance = level_select_ui.instantiate()
 		ui_instance.instantiator = self
-		level_root.add_ui(ui_instance)
-		player.movement_disable()
+		if GameManager.get_level():
+			GameManager.get_level().add_ui(ui_instance)
+		GameManager.get_player().movement_disable()
 	#if %level_select_ui.has_node("VBoxContainer"):
 		#%level_select_ui.get_node("VBoxContainer").grab_focus()
 	
@@ -71,7 +65,7 @@ func level_select_ui_hide():
 	if ui_instance != null:
 		ui_instance.queue_free()
 		ui_instance = null
-		player.movement_enable()
+		GameManager.get_player().movement_enable()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

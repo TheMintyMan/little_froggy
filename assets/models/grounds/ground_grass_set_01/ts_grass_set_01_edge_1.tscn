@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b2bdqchlsukav"]
+
+[ext_resource type="PackedScene" uid="uid://cjaf3ody60nst" path="res://assets/models/grounds/ground_grass_set_01/src/ts_grass_set_01_edge1.glb" id="1_g3wwv"]
+[ext_resource type="Material" uid="uid://du1l2u5nfqr8w" path="res://assets/models/grounds/ground_grass_set_01/ts_grass_set_mat.tres" id="2_1tnd3"]
+
+[node name="ts_grass_set_01_edge1" unique_id=1820081907 instance=ExtResource("1_g3wwv")]
+
+[node name="ts_grass_set_01_edge1_mesh" parent="." index="0" unique_id=1698964314]
+surface_material_override/0 = ExtResource("2_1tnd3")

@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://du1l2u5nfqr8w"]
+
+[ext_resource type="Texture2D" uid="uid://332verkyh3o2" path="res://assets/textures/swamp_ground.png" id="1_yiyqc"]
+
+[resource]
+albedo_texture = ExtResource("1_yiyqc")

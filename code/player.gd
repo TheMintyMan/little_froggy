@@ -8,11 +8,12 @@ signal leap_count_changed(count: int)
 
 var facing_dir: Vector2 = Vector2.ZERO
 var in_house: bool = false
-var level_root: Level
-var main: Main
+#var level_root: Level
+#var main: Main
 var home_dir
 var target_pos: Vector3
 var is_movement_disabled: bool = false
+@onready var player_camera: Camera3D = %camera
 
 var previous_collider: Node3D = null
 
@@ -25,18 +26,17 @@ func _init() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	main = get_tree().current_scene
-	level_root = get_tree().current_scene.get_child(1)
-	level_root.register_player(self)
+	#main = get_tree().current_scene
 	facing_dir = convert_rot_dir()
+	GameManager.set_player(self)
 	
 	print('ready')
 	print("currently facing: ", facing_dir)
 	await get_tree().create_timer(0.1).timeout
 	emit_signal("leap_count_changed", leap_count)
 	
-	if level_root.get_home():
-		home_dir = Global.convert_rot_dir(level_root.get_home().global_rotation.y+90)
+	if GameManager.get_home():
+		home_dir = Global.convert_rot_dir(GameManager.get_home().global_rotation.y+90)
 
 func get_input_direction() -> Vector2:
 	#if $Timer.time_left != 0:
@@ -57,7 +57,7 @@ func get_input_direction() -> Vector2:
 	if Input.is_action_just_pressed("ability01"):
 		try_pull()
 	if Input.is_action_just_pressed("restart"):
-		main.goto_level(main.level_index)
+		get_tree().reload_current_scene()
 
 	if v.x != 0 and v.y != 0:
 		return Vector2()
@@ -115,7 +115,7 @@ func move(dir):
 	
 	if in_house:
 		if dir != home_dir:
-			print("Frog not facing the same direction as the home", Global.convert_rot_dir(level_root.get_home().global_rotation.y))
+			print("Frog not facing the same direction as the home", Global.convert_rot_dir(GameManager.get_home().global_rotation.y))
 			return
 		else:
 			in_house = false
@@ -151,7 +151,7 @@ func move(dir):
 			target_pos = new_world_pos
 			movement_comp.set_move(new_world_pos)
 			in_house = true
-			level_root.check_win_condition()
+			#GameManager.check_win_condition()
 		else:
 			return
 	

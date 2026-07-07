@@ -2,29 +2,15 @@
 
 [ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://code/level.gd" id="1_h4ce7"]
 [ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://code/player.tscn" id="1_orunl"]
+[ext_resource type="PackedScene" uid="uid://bn51dvq1hy65u" path="res://scenes/levels/lighting_day.tscn" id="4_o1chu"]
 [ext_resource type="PackedScene" uid="uid://df74d6rxmrbfp" path="res://scenes/ui/game_ui.tscn" id="6_3rriw"]
 [ext_resource type="PackedScene" uid="uid://b030330rh7v25" path="res://code/home.tscn" id="8_53c65"]
-
-[sub_resource type="Environment" id="Environment_n8dmd"]
-ambient_light_source = 2
-ambient_light_color = Color(0.14941815, 0.16144848, 0.16144907, 1)
 
 [node name="BaseLevel" type="Node3D" unique_id=688875371]
 script = ExtResource("1_h4ce7")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=920940107]
-environment = SubResource("Environment_n8dmd")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=545897305]
-transform = Transform3D(0.49999997, 0.8365163, -0.2241439, 0, 0.25881907, 0.9659258, 0.86602545, -0.48296288, 0.12940952, 0, 2, 3)
-light_energy = 0.8
-shadow_enabled = true
-
 [node name="player" parent="." unique_id=788165335 instance=ExtResource("1_orunl")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 0)
-
-[node name="camera" parent="player" index="5" unique_id=2018505148]
-transform = Transform3D(1, 6.0754984e-16, 1.6692294e-15, -1.7763568e-15, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 4, 5.5, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
 [node name="home" parent="." unique_id=1153236180 instance=ExtResource("8_53c65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -7)
@@ -40,6 +26,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -7)
 [node name="decorations_grp" type="Node" parent="." unique_id=447094349]
 
 [node name="food_grp" type="Node" parent="." unique_id=1148034658]
+
+[node name="LightingDay" parent="." unique_id=441363176 instance=ExtResource("4_o1chu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -2)
 
 [editable path="player"]
 [editable path="player/froggy_mesh"]
