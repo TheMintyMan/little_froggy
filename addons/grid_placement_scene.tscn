@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bxkrlrkp8555u"]
+
+[ext_resource type="Script" uid="uid://tkg3mudqx3rd" path="res://addons/grid_placement/grid_placer_helper.gd" id="1_nx8d5"]
+[ext_resource type="PackedScene" uid="uid://djmrcp3x5a5hu" path="res://assets/models/grounds/ground_grass_set_01/ts_grass_set_01_flat.tscn" id="2_j2sw8"]
+
+[node name="grid_placement_scene" type="Node3D" unique_id=1760700365]
+
+[node name="GridPlacerHelper" type="Node3D" parent="." unique_id=1836287980]
+script = ExtResource("1_nx8d5")
+object_to_spawn = ExtResource("2_j2sw8")
+cocave_corner_mesh = Array[PackedScene]([null])
+metadata/_custom_type_script = "uid://tkg3mudqx3rd"
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1868248364]
