@@ -1,11 +1,54 @@
 [gd_scene format=3 uid="uid://dvloubbptds8x"]
 
 [ext_resource type="PackedScene" uid="uid://5kfeu2gwjvvg" path="res://assets/models/fly/fly.glb" id="1_hrwyb"]
+[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/froggy_mat.tres" id="2_jt0s4"]
 
 [node name="fly" unique_id=2002339381 instance=ExtResource("1_hrwyb")]
 
-[node name="Skeleton3D" parent="fly_armature" parent_id_path=PackedInt32Array(1423404495) index="0" unique_id=1079698563]
+[node name="Skeleton3D" parent="fly_armature" parent_id_path=PackedInt32Array(1016610760) index="0" unique_id=610912419]
 bones/1/position = Vector3(0, 0.3948698, 0)
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=99801160]
+[node name="Cylinder" parent="fly_armature/Skeleton3D" index="0" unique_id=540859136]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Cylinder_002" parent="fly_armature/Skeleton3D" index="1" unique_id=1059455920]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Cylinder_003" parent="fly_armature/Skeleton3D" index="2" unique_id=132422703]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Cylinder_004" parent="fly_armature/Skeleton3D" index="3" unique_id=144420097]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Cylinder_005" parent="fly_armature/Skeleton3D" index="4" unique_id=1495830937]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Cylinder_006" parent="fly_armature/Skeleton3D" index="5" unique_id=10517294]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Cylinder_007" parent="fly_armature/Skeleton3D" index="6" unique_id=1572500448]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Cylinder_008" parent="fly_armature/Skeleton3D" index="7" unique_id=953483451]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Cylinder_009" parent="fly_armature/Skeleton3D" index="8" unique_id=393383941]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Plane_001" parent="fly_armature/Skeleton3D" index="9" unique_id=1880387241]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Sphere_001" parent="fly_armature/Skeleton3D" index="10" unique_id=1023636183]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Sphere_002" parent="fly_armature/Skeleton3D" index="11" unique_id=146486317]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Sphere_003" parent="fly_armature/Skeleton3D" index="12" unique_id=2002654507]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="Sphere_004" parent="fly_armature/Skeleton3D" index="13" unique_id=98021212]
+surface_material_override/0 = ExtResource("2_jt0s4")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=235936390]
 autoplay = &"fly_default_action"

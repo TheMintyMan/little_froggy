@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://deh7vmcmwhc"]
+
+[ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_2ds6f"]
+
+[node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_2ds6f")]
+
+[editable path="player"]
+[editable path="player/froggy_mesh"]

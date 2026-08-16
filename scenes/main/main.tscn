@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://6vxl5swe4yan" path="res://scenes/main/main.gd" id="1_gh0ne"]
 [ext_resource type="PackedScene" uid="uid://b5qfaw1r1db5f" path="res://scenes/ui/main_menu.tscn" id="2_3cfgd"]
-[ext_resource type="PackedScene" uid="uid://cderl44wgxp6p" path="res://scenes/levels/level01_finding_home.tscn" id="3_3cfgd"]
+[ext_resource type="PackedScene" uid="uid://cderl44wgxp6p" path="res://scenes/levels/depricated_levels/level01_finding_home.tscn" id="3_3cfgd"]
 [ext_resource type="PackedScene" uid="uid://bnna74u4qraei" path="res://scenes/levels/01_level_selector.tscn" id="3_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://br737y7gye703" path="res://scenes/win_screen.tscn" id="4_3cfgd"]
-[ext_resource type="PackedScene" uid="uid://cykegwa3skkx1" path="res://scenes/levels/level02_frogs_leap.tscn" id="4_hujxm"]
-[ext_resource type="PackedScene" uid="uid://bdgpnxmyv1e6" path="res://scenes/levels/level03_hungry_frog.tscn" id="5_yyfjg"]
-[ext_resource type="PackedScene" uid="uid://b2v2xgplvbl4y" path="res://scenes/levels/level04_eating_leaping.tscn" id="6_b1x3f"]
-[ext_resource type="PackedScene" uid="uid://buhax2088y61l" path="res://scenes/levels/level05.tscn" id="8_yyfjg"]
+[ext_resource type="PackedScene" uid="uid://cykegwa3skkx1" path="res://scenes/levels/depricated_levels/level02_frogs_leap.tscn" id="4_hujxm"]
+[ext_resource type="PackedScene" uid="uid://bdgpnxmyv1e6" path="res://scenes/levels/depricated_levels/level03_hungry_frog.tscn" id="5_yyfjg"]
+[ext_resource type="PackedScene" uid="uid://b2v2xgplvbl4y" path="res://scenes/levels/depricated_levels/level04_eating_leaping.tscn" id="6_b1x3f"]
+[ext_resource type="PackedScene" uid="uid://buhax2088y61l" path="res://scenes/levels/depricated_levels/level05.tscn" id="8_yyfjg"]
 
 [node name="main" type="Node3D" unique_id=543328921 groups=["main"]]
 script = ExtResource("1_gh0ne")

@@ -4,16 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://code/player.tscn" id="1_orunl"]
 [ext_resource type="PackedScene" uid="uid://bn51dvq1hy65u" path="res://scenes/levels/lighting_day.tscn" id="4_o1chu"]
 [ext_resource type="PackedScene" uid="uid://df74d6rxmrbfp" path="res://scenes/ui/game_ui.tscn" id="6_3rriw"]
-[ext_resource type="PackedScene" uid="uid://b030330rh7v25" path="res://code/home.tscn" id="8_53c65"]
 
 [node name="BaseLevel" type="Node3D" unique_id=688875371]
 script = ExtResource("1_h4ce7")
 
 [node name="player" parent="." unique_id=788165335 instance=ExtResource("1_orunl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="home" parent="." unique_id=1153236180 instance=ExtResource("8_53c65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -7)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=835282202]
 

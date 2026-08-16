@@ -1,7 +1,6 @@
 extends MovementComponent
 class_name FroggyMovementComponent
 
-var _isMoving: bool = false
 var eating_close: bool = false
 var eating_far: bool = false
 var jumping_basic: bool = false

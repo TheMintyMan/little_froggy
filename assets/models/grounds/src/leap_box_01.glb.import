@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://df2cn81pgykq"
-path="res://.godot/imported/ground_base.glb-f799109681e72ae2d0131d10c3ceba0b.scn"
+uid="uid://ouohejowbcf2"
+path="res://.godot/imported/leap_box_01.glb-c8dc53c58f52fe82a9fc5ae27b05ec59.scn"
 
 [deps]
 
-source_file="res://assets/models/grounds/src/ground_base.glb"
-dest_files=["res://.godot/imported/ground_base.glb-f799109681e72ae2d0131d10c3ceba0b.scn"]
+source_file="res://assets/models/grounds/src/leap_box_01.glb"
+dest_files=["res://.godot/imported/leap_box_01.glb-c8dc53c58f52fe82a9fc5ae27b05ec59.scn"]
 
 [params]
 

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c2yvh42w6v0mw"]
+
+[ext_resource type="PackedScene" uid="uid://bdic6euibpkdh" path="res://assets/models/decoration/src/rock_01.glb" id="1_ij0lh"]
+[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/froggy_mat.tres" id="2_bqnee"]
+
+[node name="rock_01" unique_id=1281739161 instance=ExtResource("1_ij0lh")]
+
+[node name="rock_01_mesh" parent="." index="0" unique_id=1649892042]
+surface_material_override/0 = ExtResource("2_bqnee")

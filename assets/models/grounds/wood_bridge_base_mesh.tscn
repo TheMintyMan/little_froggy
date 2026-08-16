@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cdiik0f5847nd"]
+
+[ext_resource type="PackedScene" uid="uid://c5n3ds7issyon" path="res://assets/models/grounds/src/wood_bridge_base.glb" id="1_1j8vn"]
+[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/froggy_mat.tres" id="2_b3hss"]
+
+[node name="wood_bridge_base" unique_id=1335370693 instance=ExtResource("1_1j8vn")]
+
+[node name="wood_bridge_base_mesh" parent="." index="0" unique_id=797536909]
+material_override = ExtResource("2_b3hss")
+surface_material_override/0 = ExtResource("2_b3hss")

@@ -68,13 +68,13 @@ func level_select_ui_hide():
 		GameManager.get_player().movement_enable()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_popup_show:
 		var global_3d_pos = %level_popup_pos.global_position
 		screen_pos = camera.unproject_position(global_3d_pos)
 		%level_popup.global_position = screen_pos
 		
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if is_hit == true:
 		if is_popup_show:
 			if Input.is_action_just_pressed("ui_confirm"):

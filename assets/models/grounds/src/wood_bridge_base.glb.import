@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://df2cn81pgykq"
-path="res://.godot/imported/ground_base.glb-f799109681e72ae2d0131d10c3ceba0b.scn"
+uid="uid://c5n3ds7issyon"
+path="res://.godot/imported/wood_bridge_base.glb-4868fb925b8bf9708c179d5c7f34c93b.scn"
 
 [deps]
 
-source_file="res://assets/models/grounds/src/ground_base.glb"
-dest_files=["res://.godot/imported/ground_base.glb-f799109681e72ae2d0131d10c3ceba0b.scn"]
+source_file="res://assets/models/grounds/src/wood_bridge_base.glb"
+dest_files=["res://.godot/imported/wood_bridge_base.glb-4868fb925b8bf9708c179d5c7f34c93b.scn"]
 
 [params]
 

@@ -3,7 +3,7 @@ class_name MovementComponent
 
 @export var _movement_curve: Curve
 @export var _movement_jump_basic_curve: Curve
-@export var _movement_speed: float = 1.0
+# @export var _movement_speed: float = 1.0
 @export var _movement_duration: float = 0.2
 @export var anim_tree: AnimationTree
 @onready var _parent: Node3D = get_parent()

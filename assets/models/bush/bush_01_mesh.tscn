@@ -1,5 +1,42 @@
 [gd_scene format=3 uid="uid://cx2x252w4ufdg"]
 
 [ext_resource type="PackedScene" uid="uid://bkjkaorw63o3v" path="res://assets/models/bush/bush_01.glb" id="1_pks06"]
+[ext_resource type="Material" uid="uid://cdisar0x60rwx" path="res://assets/materials/ground_mat.tres" id="2_r4hhn"]
 
 [node name="bush_01" unique_id=1947392924 instance=ExtResource("1_pks06")]
+
+[node name="Cube_018" parent="." index="0" unique_id=1245043006]
+surface_material_override/0 = ExtResource("2_r4hhn")
+
+[node name="Cube_019" parent="." index="1" unique_id=907900098]
+surface_material_override/0 = ExtResource("2_r4hhn")
+
+[node name="Cube_020" parent="." index="2" unique_id=904930878]
+surface_material_override/0 = ExtResource("2_r4hhn")
+
+[node name="Cube_021" parent="." index="3" unique_id=802470088]
+surface_material_override/0 = ExtResource("2_r4hhn")
+
+[node name="Cube_022" parent="." index="4" unique_id=673521372]
+surface_material_override/0 = ExtResource("2_r4hhn")
+
+[node name="Cube_023" parent="." index="5" unique_id=327447192]
+surface_material_override/0 = ExtResource("2_r4hhn")
+
+[node name="Cube_024" parent="." index="6" unique_id=2006150665]
+surface_material_override/0 = ExtResource("2_r4hhn")
+
+[node name="Cube_025" parent="." index="7" unique_id=1395386229]
+surface_material_override/0 = ExtResource("2_r4hhn")
+
+[node name="Cube_026" parent="." index="8" unique_id=1045299505]
+surface_material_override/0 = ExtResource("2_r4hhn")
+
+[node name="Cube_027" parent="." index="9" unique_id=279988056]
+surface_material_override/0 = ExtResource("2_r4hhn")
+
+[node name="Cube_028" parent="." index="10" unique_id=767158837]
+surface_material_override/0 = ExtResource("2_r4hhn")
+
+[node name="Cube_029" parent="." index="11" unique_id=1935512829]
+surface_material_override/0 = ExtResource("2_r4hhn")

@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c731bmtamefu"]
+
+[ext_resource type="Shader" uid="uid://bedsh8oivqbyy" path="res://assets/materials/ground_shader.gdshader" id="1_ba0tb"]
+[ext_resource type="Texture2D" uid="uid://cheju5heji08t" path="res://assets/textures/grid_border.png" id="2_y41si"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ba0tb")
+shader_parameter/texture_mask = ExtResource("2_y41si")
+shader_parameter/mask_scale = Vector2(1, 1)
+shader_parameter/mask_offset = Vector2(0.5, 0.5)
+shader_parameter/use_texture_b = true
+shader_parameter/texture_b_scale = 0.1
+shader_parameter/texture_b_offset = 1.0
+shader_parameter/color_a = Color(0.35, 0.35, 0.35, 1)
+shader_parameter/color_b = Color(0.28547883, 0.29249308, 0.26792663, 1)
+shader_parameter/blend_amount = 0.5

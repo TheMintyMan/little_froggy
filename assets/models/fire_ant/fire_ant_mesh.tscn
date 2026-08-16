@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b77ga5ve1digp"]
+
+[ext_resource type="PackedScene" uid="uid://blkj1yygvlro8" path="res://assets/models/fire_ant/fire_ant.glb" id="1_q56rl"]
+[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/froggy_mat.tres" id="2_stu56"]
+
+[node name="fire_ant" unique_id=1844540159 instance=ExtResource("1_q56rl")]
+
+[node name="ant_mesh" parent="ant_armature/Skeleton3D" parent_id_path=PackedInt32Array(1663337471) index="0" unique_id=203857228]
+surface_material_override/0 = ExtResource("2_stu56")

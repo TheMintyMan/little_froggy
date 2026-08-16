@@ -1,5 +1,9 @@
-[gd_scene format=3 uid="uid://dp2oe3a26rdcn"]
+[gd_scene format=3 uid="uid://cmljggbx2r7kl"]
 
-[ext_resource type="PackedScene" uid="uid://bnuunic3dq78i" path="res://assets/models/grounds/src/ground_base.glb" id="1_vt1ne"]
+[ext_resource type="PackedScene" uid="uid://df2cn81pgykq" path="res://assets/models/grounds/src/ground_base.glb" id="1_y8xes"]
+[ext_resource type="Material" uid="uid://cdisar0x60rwx" path="res://assets/materials/ground_mat.tres" id="2_bdi1v"]
 
-[node name="ground_base_mesh" unique_id=1502961091 instance=ExtResource("1_vt1ne")]
+[node name="ground_base" unique_id=76220537 instance=ExtResource("1_y8xes")]
+
+[node name="ground_base_mesh" parent="." index="0" unique_id=1070904301]
+surface_material_override/0 = ExtResource("2_bdi1v")

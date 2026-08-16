@@ -7,5 +7,5 @@ default_value = Color(0, 0.26666668, 0.53333336, 1)
 
 [resource]
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_jn74m")
-nodes/fragment/2/position = Vector2(-620, 160)
+nodes/fragment/2/position = Vector2(-160, 40)
 nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)

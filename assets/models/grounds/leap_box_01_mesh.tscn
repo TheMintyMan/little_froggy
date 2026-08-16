@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bjd7hmblw3wam"]
+
+[ext_resource type="PackedScene" uid="uid://ouohejowbcf2" path="res://assets/models/grounds/src/leap_box_01.glb" id="1_qww4k"]
+[ext_resource type="Material" uid="uid://c731bmtamefu" path="res://assets/materials/leapable_mat.tres" id="2_5cb5u"]
+
+[node name="leap_box_01" unique_id=396973513 instance=ExtResource("1_qww4k")]
+
+[node name="leap_box_01_mesh" parent="." index="0" unique_id=1846384996]
+surface_material_override/0 = ExtResource("2_5cb5u")

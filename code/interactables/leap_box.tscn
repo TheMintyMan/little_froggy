@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b3fsujm2wm1e0" path="res://assets/models/box_leap_mesh.tscn" id="2_6sfed"]
 [ext_resource type="Script" uid="uid://bl41oriato6o0" path="res://code/interactables/leap_box.gd" id="2_xuw8r"]
+[ext_resource type="PackedScene" uid="uid://bjd7hmblw3wam" path="res://assets/models/grounds/leap_box_01_mesh.tscn" id="3_ib8l7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnfwo"]
 size = Vector3(1, 0.5, 1)
@@ -14,3 +15,6 @@ transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.275, 0)
 shape = SubResource("BoxShape3D_dnfwo")
 
 [node name="box_leap_mesh" parent="." unique_id=2120258223 instance=ExtResource("2_6sfed")]
+visible = false
+
+[node name="leap_box_01" parent="." unique_id=396973513 instance=ExtResource("3_ib8l7")]

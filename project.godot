@@ -26,8 +26,8 @@ buses/default_bus_layout="uid://cokp0jya0gokl"
 [autoload]
 
 Global="*uid://dcv2bxq2pv7al"
-BgMusic="*uid://dtg550aa5tfsp"
 GameManager="*uid://dtd22nwqwrdav"
+BgMusic="uid://dtg550aa5tfsp"
 
 [display]
 

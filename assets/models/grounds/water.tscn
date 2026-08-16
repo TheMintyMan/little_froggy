@@ -15,5 +15,5 @@ subdivide_depth = 20
 
 [node name="Water" type="Node3D" unique_id=35886568]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=880510595]
+[node name="water_mesh" type="MeshInstance3D" parent="." unique_id=880510595]
 mesh = SubResource("PlaneMesh_y8xgx")

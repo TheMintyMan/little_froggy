@@ -281,10 +281,10 @@ func movement_enable():
 func texture_swap():
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if !is_movement_disabled:
 		var input_direction = get_input_direction()
 	
