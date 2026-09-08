@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnfwo"]
 size = Vector3(1, 0.5, 1)
 
-[node name="leap_box" type="StaticBody3D" unique_id=75867206 groups=["leapable", "wall"]]
+[node name="leap_box" type="StaticBody3D" unique_id=75867206 groups=["wall"]]
 script = ExtResource("2_xuw8r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=64018527]
@@ -17,4 +17,4 @@ shape = SubResource("BoxShape3D_dnfwo")
 [node name="box_leap_mesh" parent="." unique_id=2120258223 instance=ExtResource("2_6sfed")]
 visible = false
 
-[node name="leap_box_01" parent="." unique_id=396973513 instance=ExtResource("3_ib8l7")]
+[node name="leap_box_01" parent="." unique_id=396973513 groups=["floor"] instance=ExtResource("3_ib8l7")]

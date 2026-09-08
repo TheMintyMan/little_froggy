@@ -27,4 +27,4 @@ offset_right = 194.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gwk6t")
-text = "Leaps Left: 0"
+text = "Food Collected: 0"

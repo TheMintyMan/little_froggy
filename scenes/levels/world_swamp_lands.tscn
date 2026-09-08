@@ -1,8 +1,65 @@
 [gd_scene format=3 uid="uid://deh7vmcmwhc"]
 
 [ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_2ds6f"]
+[ext_resource type="Material" uid="uid://f6ehtoqq0i88" path="res://assets/materials/froggy_mat.tres" id="2_jane3"]
+[ext_resource type="Material" uid="uid://cdisar0x60rwx" path="res://assets/materials/ground_mat.tres" id="2_tgqbw"]
+[ext_resource type="Script" uid="uid://bqbvqpanuf0yf" path="res://code/player/camera_follow.gd" id="3_7tlp4"]
+[ext_resource type="PackedScene" uid="uid://bo06dwg0y2lrb" path="res://code/interactables/leap_box.tscn" id="3_a00gh"]
+[ext_resource type="PackedScene" uid="uid://cpt3yxoh0ryfo" path="res://code/interactables/fly.tscn" id="4_wg6ps"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y8xgx"]
 
 [node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_2ds6f")]
+
+[node name="movement_component" parent="player" parent_id_path=PackedInt32Array(788165335) index="0" unique_id=75637125]
+_rotation_curve = null
+
+[node name="tongue_mesh" parent="player/froggy_mesh/froggy_armature/Skeleton3D" parent_id_path=PackedInt32Array(788165335, 1321095365, 1190040084) index="6" unique_id=1639916900]
+surface_material_override/0 = ExtResource("2_jane3")
+
+[node name="camera" parent="player" parent_id_path=PackedInt32Array(788165335) index="5" unique_id=2018505148]
+script = ExtResource("3_7tlp4")
+momentum = 0.0
+speed = 5.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="env_grp/grounds_grp" parent_id_path=PackedInt32Array(319165061) index="0" unique_id=1983927679 groups=["floor"]]
+transform = Transform3D(5.5, 0, 0, 0, 1, 0, 0, 0, 5.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_y8xgx")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_tgqbw")
+
+[node name="leap_box" parent="." index="5" unique_id=75867206 groups=["floor"] instance=ExtResource("3_a00gh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+
+[node name="leap_box2" parent="." index="6" unique_id=127222294 groups=["floor"] instance=ExtResource("3_a00gh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+
+[node name="leap_box3" parent="." index="7" unique_id=182769945 groups=["floor"] instance=ExtResource("3_a00gh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 1)
+
+[node name="leap_box7" parent="." index="8" unique_id=657700410 groups=["floor"] instance=ExtResource("3_a00gh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 2)
+
+[node name="leap_box9" parent="." index="9" unique_id=1385190301 groups=["floor"] instance=ExtResource("3_a00gh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
+
+[node name="leap_box8" parent="." index="10" unique_id=1516988928 groups=["floor"] instance=ExtResource("3_a00gh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 2)
+
+[node name="leap_box10" parent="." index="11" unique_id=1779960334 groups=["floor"] instance=ExtResource("3_a00gh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+
+[node name="leap_box4" parent="." index="12" unique_id=2081372891 groups=["floor"] instance=ExtResource("3_a00gh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 1)
+
+[node name="leap_box5" parent="." index="13" unique_id=1627124054 groups=["floor"] instance=ExtResource("3_a00gh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 1)
+
+[node name="leap_box6" parent="." index="14" unique_id=1622977611 groups=["floor"] instance=ExtResource("3_a00gh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 1)
+
+[node name="food" parent="." index="15" unique_id=1857005287 instance=ExtResource("4_wg6ps")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 3)
 
 [editable path="player"]
 [editable path="player/froggy_mesh"]

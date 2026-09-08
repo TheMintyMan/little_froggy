@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bvdrcdbdsypkm"]
 
 [ext_resource type="PackedScene" uid="uid://dk2f4lxt61ap0" path="res://assets/models/grounds/src/wood_bridge_pole.glb" id="1_7xd7a"]
-[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/froggy_mat.tres" id="2_1446k"]
+[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/master_mat.tres" id="2_1446k"]
 
 [node name="wood_bridge_pole" unique_id=1213832107 instance=ExtResource("1_7xd7a")]
 

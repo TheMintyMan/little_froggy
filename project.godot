@@ -45,9 +45,9 @@ wall="cannot move into or push it"
 pushable=""
 main=""
 food=""
-leapable=""
 pullable=""
 water=""
+floor=""
 
 [input]
 

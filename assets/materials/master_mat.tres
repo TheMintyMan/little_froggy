@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://f6ehtoqq0i88"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://br7g6ii55qi78"]
 
 [ext_resource type="Texture2D" uid="uid://b3wl8ec803wgi" path="res://assets/textures/frogy_tex.png" id="1_m4eoc"]
 
@@ -6,3 +6,5 @@
 albedo_color = Color(0.641934, 0.641934, 0.641934, 1)
 albedo_texture = ExtResource("1_m4eoc")
 roughness = 0.8
+stencil_mode = 3
+stencil_flags = 2

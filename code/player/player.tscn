@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://cuqk6ein0cmrj"]
 
-[ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://code/player.gd" id="1_bdtmh"]
-[ext_resource type="Script" uid="uid://h3xemvyx7jfc" path="res://code/froggy_movement.gd" id="2_ehvfd"]
-[ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://assets/models/froggy/froggy_mesh.tscn" id="2_gmfve"]
-[ext_resource type="Script" uid="uid://bnq5mkde4jji3" path="res://code/camera_follow.gd" id="4_xueb2"]
+[ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://code/player/player.gd" id="1_uhsp7"]
+[ext_resource type="Script" uid="uid://h3xemvyx7jfc" path="res://code/player/froggy_movement.gd" id="2_2ut8c"]
+[ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://assets/models/froggy/froggy_mesh.tscn" id="3_rn3ie"]
+[ext_resource type="Script" uid="uid://bnq5mkde4jji3" path="res://code/player/camera_follow_old.gd" id="4_uhsp7"]
+[ext_resource type="Material" uid="uid://f6ehtoqq0i88" path="res://assets/materials/froggy_mat.tres" id="5_frog"]
+[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/master_mat.tres" id="5_rn3ie"]
 
 [sub_resource type="Curve" id="Curve_ehvfd"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -12,6 +14,10 @@ point_count = 2
 [sub_resource type="Curve" id="Curve_xueb2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50440526, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Curve" id="Curve_rot01"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rc2ur"]
 size = Vector3(1, 0.5, 1)
@@ -79,13 +85,14 @@ transitions = ["Idle", "EatClose", SubResource("AnimationNodeStateMachineTransit
 graph_offset = Vector2(10, -22)
 
 [node name="player" type="StaticBody3D" unique_id=788165335 node_paths=PackedStringArray("movement_comp")]
-script = ExtResource("1_bdtmh")
+script = ExtResource("1_uhsp7")
 movement_comp = NodePath("movement_component")
 
 [node name="movement_component" type="Node" parent="." unique_id=75637125 node_paths=PackedStringArray("anim_tree")]
-script = ExtResource("2_ehvfd")
+script = ExtResource("2_2ut8c")
 _movement_curve = SubResource("Curve_ehvfd")
 _movement_jump_basic_curve = SubResource("Curve_xueb2")
+_rotation_curve = SubResource("Curve_rot01")
 anim_tree = NodePath("../AnimationTree")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1768648184]
@@ -97,55 +104,13 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="froggy_mesh" parent="." unique_id=1321095365 instance=ExtResource("2_gmfve")]
+[node name="froggy_mesh" parent="." unique_id=1321095365 instance=ExtResource("3_rn3ie")]
 
-[node name="Skeleton3D" parent="froggy_mesh/froggy_armature" parent_id_path=PackedInt32Array(1321095365, 1276013083) index="1" unique_id=1190040084]
-bones/1/position = Vector3(0.2954327, 0.13385308, -0.053261533)
-bones/1/rotation = Quaternion(0.16093208, 0.65866506, 0.71975803, -0.14902872)
-bones/2/position = Vector3(5.3576096e-15, 0.12851253, -0.3804059)
-bones/2/rotation = Quaternion(0.5217706, -5.0847865e-07, -3.1099935e-07, 0.8530859)
-bones/3/rotation = Quaternion(0.022732861, -2.3835644e-07, -3.2519562e-08, 0.99974155)
-bones/4/rotation = Quaternion(0.073812656, 1.1888343e-07, -1.143889e-07, 0.99727213)
-bones/5/rotation = Quaternion(0.068364345, -1.6755418e-13, -9.779604e-08, 0.9976604)
-bones/6/rotation = Quaternion(-0.46599525, 2.1094979e-07, 5.555099e-07, 0.88478726)
-bones/8/rotation = Quaternion(0.7457767, -7.9416665e-08, -8.001317e-07, 0.666196)
-bones/12/position = Vector3(-8.7858805e-09, 0.010882862, -0.009212564)
-bones/12/rotation = Quaternion(0.5279626, 3.7122817e-08, -4.8042654e-07, 0.8492676)
-bones/15/rotation = Quaternion(0.515454, -1.0215231e-07, -5.5302223e-07, 0.85691726)
-bones/27/rotation = Quaternion(0.6584526, 0.34900331, 0.53549117, -0.39734885)
-bones/28/rotation = Quaternion(-0.005143242, 0.37720802, -0.7010854, 0.6051173)
-bones/30/rotation = Quaternion(0.65845245, -0.34900326, -0.5354913, -0.3973489)
-bones/31/rotation = Quaternion(-0.0051433067, -0.37720802, 0.70108527, 0.6051175)
-bones/32/position = Vector3(0.16248949, 0.05636834, -0.007932581)
-bones/33/rotation = Quaternion(0.16093208, 0.6586652, 0.71975803, -0.14902847)
-bones/34/rotation = Quaternion(0.98939854, -0.06065678, 0.018155854, -0.13069703)
-bones/34/scale = Vector3(1.0000023, 1.0000001, 1.0000124)
-bones/35/rotation = Quaternion(0.97804826, -0.06538477, 0.044781227, 0.19272026)
-bones/36/position = Vector3(-0.16248949, 0.05636834, -0.007932195)
-bones/37/rotation = Quaternion(-0.16093215, 0.6586651, 0.7197581, 0.14902855)
-bones/38/rotation = Quaternion(0.98939854, 0.06065679, -0.018155871, -0.13069691)
-bones/38/scale = Vector3(1.0000021, 1.0000001, 1.0000123)
-bones/39/rotation = Quaternion(0.9780482, 0.06538489, -0.044781137, 0.19272049)
-bones/40/rotation = Quaternion(0.19733912, 0, 0.9803353, 0)
-bones/48/position = Vector3(0.30530167, 0.010078191, 0.19357067)
-bones/48/rotation = Quaternion(-0.055504475, 0, 0.99845845, 0)
-bones/55/position = Vector3(-0.031547938, -0.08214808, -0.21062076)
-bones/56/position = Vector3(-0.2954327, 0.13385308, -0.053261533)
-bones/57/rotation = Quaternion(-0.19733912, 0, 0.9803353, 0)
-bones/58/rotation = Quaternion(-0.016830435, -0.6416868, 0.76608574, -0.032672793)
-bones/65/position = Vector3(-0.30530167, 0.010078191, 0.19357067)
-bones/65/rotation = Quaternion(0.055504475, 0, 0.99845845, 0)
-bones/72/position = Vector3(0.031547938, -0.08214808, -0.21062076)
-bones/73/position = Vector3(-2.4191536e-15, 0.2352063, -0.15979299)
+[node name="frogy_mesh" parent="froggy_mesh/froggy_armature/Skeleton3D" parent_id_path=PackedInt32Array(1321095365, 1190040084) index="3" unique_id=598822950]
+surface_material_override/0 = ExtResource("5_frog")
 
-[node name="Bone" parent="froggy_mesh/froggy_armature/Skeleton3D" index="0" unique_id=1069729520]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13356e-15, 0.12851253, -0.38040593)
-
-[node name="Bone_001" parent="froggy_mesh/froggy_armature/Skeleton3D" index="1" unique_id=1550278151]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -1.2855936e-15, 0.2352063, -0.15979299)
-
-[node name="Bone_002" parent="froggy_mesh/froggy_armature/Skeleton3D" index="2" unique_id=457877066]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -1.6063228e-14, 0.28276053, 0.060819983)
+[node name="tongue_mesh" parent="froggy_mesh/froggy_armature/Skeleton3D" parent_id_path=PackedInt32Array(1321095365, 1190040084) index="6" unique_id=1639916900]
+surface_material_override/0 = ExtResource("5_rn3ie")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1937179696]
 root_node = NodePath("../froggy_mesh")
@@ -161,7 +126,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.57357645, 0.81915206, 0, -0.81915206, 0.57357645, 0, 6, 3)
 top_level = true
 fov = 50.0
-script = ExtResource("4_xueb2")
+script = ExtResource("4_uhsp7")
 follow_object = NodePath("../froggy_mesh")
 location_offset = Vector3(0, 6, 3)
 

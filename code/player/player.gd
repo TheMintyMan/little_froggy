@@ -2,9 +2,9 @@ extends StaticBody3D
 class_name Player
 
 @export var movement_comp: FroggyMovementComponent
-@export var leap_count: int = 0
+var food_eaten: int = 0
 @export var leapable_height: float = 0.5
-signal leap_count_changed(count: int)
+signal food_count_changed(count: int)
 
 var facing_dir: Vector2 = Vector2.ZERO
 var in_house: bool = false
@@ -33,7 +33,7 @@ func _ready() -> void:
 	print('ready')
 	print("currently facing: ", facing_dir)
 	await get_tree().create_timer(0.1).timeout
-	emit_signal("leap_count_changed", leap_count)
+	emit_signal("food_count_changed", food_eaten)
 	
 	if GameManager.get_home():
 		home_dir = Global.convert_rot_dir(GameManager.get_home().global_rotation.y+90)
@@ -72,17 +72,8 @@ func move(dir):
 		# For now, don't do anything while moving
 		return
 	
-	# rotate the character
-	if dir == Vector2(0,1):
-		self.global_rotation = Vector3(0, deg_to_rad(0), 0)
-	if dir == Vector2(0,-1):
-		self.global_rotation = Vector3(0, deg_to_rad(180), 0)
-	if dir == Vector2(1,0):
-		self.global_rotation = Vector3(0, deg_to_rad(90), 0)
-	if dir == Vector2(-1,0):
-		self.global_rotation = Vector3(0, deg_to_rad(-90), 0)
-	
-	
+	movement_comp.turn_to_dir(dir)
+
 	var grid_pos = Global.get_grid_pos(self)
 	var new_grid_pos: Vector2 = grid_pos + dir
 	var new_world_pos: Vector3 = Vector3(new_grid_pos.x, 0,new_grid_pos.y)
@@ -124,14 +115,14 @@ func move(dir):
 	
 	if collider_02 is Food:
 		if collider != null:
-			if collider.is_in_group("leapable"):
+			if collider.is_in_group("floor"):
 				try_leap(get_height_diff(self, collider), collider.position)
 				collider_02.eat()
 				on_food_eaten(1)
 			else:
 				return
-		if self.position.y != 0:
-			return
+		#if self.position.y != 0:
+			#return
 		if get_height_diff(self, collider_02, false) <=0:
 			collider_02.eat()
 			on_food_eaten(1)
@@ -160,10 +151,10 @@ func move(dir):
 		movement_comp.set_move(new_world_pos)
 		return
 
-	if collider.is_in_group("leapable"):
+	if collider.is_in_group("floor"):
 		try_leap(get_height_diff(self, collider), collider.position)
 		return
-		
+
 	if collider.is_in_group("wall"):
 		print('wall!')
 		return
@@ -219,9 +210,9 @@ func try_pull():
 				return
 
 func on_food_eaten(value: int) -> void:
-	leap_count += value 
-	emit_signal("leap_count_changed", leap_count)
-	print("yummyy, current leap count is ", leap_count)
+	food_eaten += value 
+	emit_signal("food_count_changed", food_eaten)
+	print("yummyy, current food count is ", food_eaten)
 
 ## Calculates the height difference
 func get_height_diff(input: Node3D, collider: Node3D, check_collision_height:bool = true) -> float:
@@ -241,21 +232,14 @@ func get_height_diff(input: Node3D, collider: Node3D, check_collision_height:boo
 	return 0.0
 
 func try_leap(height_diff: float, new_pos: Vector3) -> void:
-	new_pos.y = self.position.y + height_diff
-	
-	if height_diff <= 0:
-		movement_comp.set_move(new_pos)
+	# Leaping down any height is fine; leaping up is capped at leapable_height.
+	if height_diff > leapable_height:
+		print("too high to leap: ", height_diff)
 		return
-	
-	if height_diff <= leapable_height:
-		if leap_count < 1:
-			print("cannot leap again")
-			return 
-		leap_count -= 1
-		
-		movement_comp.set_move(new_pos)
-		print(self.position.y)
-		emit_signal("leap_count_changed", leap_count)
+
+	new_pos.y = self.position.y + height_diff
+	target_pos = new_pos
+	movement_comp.set_move(new_pos)
 
 func undo_move(dir):
 	var grid_pos = Global.get_grid_pos(self)
