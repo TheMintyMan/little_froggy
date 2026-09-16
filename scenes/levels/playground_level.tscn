@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cfcg4imha6awq"]
 
 [ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_vt2k0"]
-[ext_resource type="PackedScene" uid="uid://ddgaiv4hiaxwa" path="res://code/interactables/fire_ant.tscn" id="2_v56ya"]
-[ext_resource type="PackedScene" uid="uid://cpt3yxoh0ryfo" path="res://code/interactables/fly.tscn" id="3_c4gm8"]
+[ext_resource type="PackedScene" uid="uid://ddgaiv4hiaxwa" path="res://interactables/food/fire_ant/fire_ant.tscn" id="2_v56ya"]
+[ext_resource type="PackedScene" uid="uid://cpt3yxoh0ryfo" path="res://interactables/food/fly/fly_vis/fly.tscn" id="3_c4gm8"]
 
 [node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_vt2k0")]
 

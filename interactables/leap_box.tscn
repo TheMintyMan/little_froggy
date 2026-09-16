@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://qqrrlr70hu7c"]
+
+[ext_resource type="PackedScene" uid="uid://b3fsujm2wm1e0" path="res://assets/models/box_leap_mesh.tscn" id="1_32ogn"]
+[ext_resource type="PackedScene" uid="uid://bjd7hmblw3wam" path="res://assets/models/grounds/leap_box_01_mesh.tscn" id="2_krfby"]
+
+[sub_resource type="GDScript" id="GDScript_7ky8i"]
+script/source = "extends StaticBody3D
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dnfwo"]
+size = Vector3(1, 0.5, 1)
+
+[node name="leap_box" type="StaticBody3D" unique_id=75867206 groups=["wall"]]
+script = SubResource("GDScript_7ky8i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=64018527]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.275, 0)
+shape = SubResource("BoxShape3D_dnfwo")
+
+[node name="box_leap_mesh" parent="." unique_id=2120258223 instance=ExtResource("1_32ogn")]
+visible = false
+
+[node name="leap_box_01" parent="." unique_id=396973513 groups=["floor"] instance=ExtResource("2_krfby")]

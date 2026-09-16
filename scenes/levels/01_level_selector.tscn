@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bnna74u4qraei"]
 
-[ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://code/level.gd" id="1_f1clp"]
-[ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://code/player/player.tscn" id="3_gj351"]
+[ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://components/level.gd" id="1_f1clp"]
+[ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://player/player.tscn" id="3_gj351"]
 [ext_resource type="PackedScene" uid="uid://dwkve2pi63v0a" path="res://scenes/levels/zoo.tscn" id="4_m5y4t"]
-[ext_resource type="PackedScene" uid="uid://6x85ijb42one" path="res://code/interactables/level_select_pad.tscn" id="4_r3rjt"]
-[ext_resource type="PackedScene" uid="uid://c07a5xkmoe5aq" path="res://assets/models/level_select/map_select_01_mesh.tscn" id="5_55cj2"]
+[ext_resource type="PackedScene" uid="uid://6x85ijb42one" path="res://interactables/level_selector/level_select_pad.tscn" id="4_r3rjt"]
+[ext_resource type="PackedScene" uid="uid://c07a5xkmoe5aq" path="res://interactables/level_selector/level_select_vis/map_select_01_mesh.tscn" id="5_55cj2"]
 [ext_resource type="PackedScene" uid="uid://df74d6rxmrbfp" path="res://scenes/ui/game_ui.tscn" id="5_m5y4t"]
 [ext_resource type="PackedScene" uid="uid://51w4gkfjtvoj" path="res://assets/models/home_mesh.tscn" id="6_f1clp"]
-[ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://assets/models/froggy/froggy_mesh.tscn" id="10_m5y4t"]
+[ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://player/froggy_vis/froggy_mesh.tscn" id="10_m5y4t"]
 [ext_resource type="PackedScene" uid="uid://bn51dvq1hy65u" path="res://scenes/levels/lighting_day.tscn" id="11_436x6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n8dmd"]

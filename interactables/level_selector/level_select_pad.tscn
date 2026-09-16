@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://6x85ijb42one"]
+
+[ext_resource type="PackedScene" uid="uid://mb1kgx2yrlsj" path="res://interactables/level_selector/level_select_vis/map_select_pad_mesh.tscn" id="1_0dvt4"]
+[ext_resource type="Script" uid="uid://sbpk47c5fbgr" path="res://interactables/level_selector/level_select_pad.gd" id="1_cbihr"]
+[ext_resource type="PackedScene" uid="uid://ccd30r0y83qja" path="res://scenes/ui/level_popup_ui.tscn" id="4_q6xnp"]
+[ext_resource type="Texture2D" uid="uid://dio8wxvgw37h4" path="res://assets/textures/blue_circle_02.png" id="4_q086a"]
+[ext_resource type="PackedScene" uid="uid://cni62en3oubj2" path="res://scenes/ui/level_select_ui.tscn" id="5_q086a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_076h0"]
+
+[node name="level_select_pad" type="Node3D" unique_id=796517294]
+script = ExtResource("1_cbihr")
+level_select_ui = ExtResource("5_q086a")
+
+[node name="level_select_pad" type="StaticBody3D" parent="." unique_id=2068162663]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level_select_pad" unique_id=315066514]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_076h0")
+
+[node name="map_select_pad_mesh" parent="level_select_pad" unique_id=1142040540 instance=ExtResource("1_0dvt4")]
+
+[node name="level_popup_pos" type="Sprite3D" parent="level_select_pad" unique_id=1642438854]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+gi_mode = 0
+pixel_size = 0.001
+billboard = 1
+texture = ExtResource("4_q086a")
+
+[node name="level_popup" parent="." unique_id=1640871134 instance=ExtResource("4_q6xnp")]
+unique_name_in_owner = true

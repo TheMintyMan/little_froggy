@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://643pky6fq36y"]
 
-[ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://code/level.gd" id="1_h4ce7"]
-[ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://code/player/player.tscn" id="1_orunl"]
+[ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://components/level.gd" id="1_h4ce7"]
+[ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://player/player.tscn" id="1_orunl"]
 [ext_resource type="PackedScene" uid="uid://bn51dvq1hy65u" path="res://scenes/levels/lighting_day.tscn" id="4_o1chu"]
 [ext_resource type="PackedScene" uid="uid://df74d6rxmrbfp" path="res://scenes/ui/game_ui.tscn" id="6_3rriw"]
 
