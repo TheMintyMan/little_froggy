@@ -24,4 +24,4 @@ shader_parameter/cloud_height = 15.5
 shader_parameter/coverage = 0.45
 shader_parameter/softness = 0.7
 shader_parameter/shadow_strength = 10.0
-shader_parameter/cloud_mip = 0.0
+shader_parameter/cloud_mip = 3.0
