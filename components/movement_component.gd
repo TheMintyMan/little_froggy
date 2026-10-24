@@ -23,6 +23,10 @@ var _target_pos: Vector3
 
 var _jump_height: float = 0.5
 
+# Duration and arc height of the move in progress (set by set_move)
+var _current_duration: float = _movement_duration
+var _current_jump_height: float = _jump_height
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -30,22 +34,29 @@ func _ready() -> void:
 func is_moving() -> bool:
 	return _moving or _rotating
 
-func set_move(pos: Vector3):
+## duration_scale stretches the move time. A negative jump_height keeps the default arc.
+func set_move(pos: Vector3, duration_scale: float = 1.0, jump_height: float = -1.0):
 	_start_pos = _parent.global_position
 	_target_pos = pos
+	_current_duration = _movement_duration * duration_scale
+	_current_jump_height = _jump_height if jump_height < 0.0 else jump_height
 	_moving = true
+
+## Cancels the move in progress, leaving the parent wherever it is.
+func stop_move():
+	_moving = false
+	_time_elapsed_move = 0.0
 
 func _move(delta: float):
 	_time_elapsed_move += delta
-	var t = _time_elapsed_move / _movement_duration
+	var t = _time_elapsed_move / _current_duration
 	var current_curve_step = _movement_curve.sample(t)
 	var new_pos = lerp(_start_pos, _target_pos, current_curve_step)
 
-	# Arc the hop on top of the interpolated base height so the frog lands
-	# exactly on the target (which may be higher or lower ground).
+	# Jump
 	var base_y = lerp(_start_pos.y, _target_pos.y, current_curve_step)
 	var jump_sample = _movement_jump_basic_curve.sample(t)
-	new_pos.y = base_y + jump_sample * _jump_height
+	new_pos.y = base_y + jump_sample * _current_jump_height
 	
 	# print(t, " ", time_elapsed)
 	#_parent.global_position = lerp(_parent.global_position, _target_pos, _movement_curve.sample(t))

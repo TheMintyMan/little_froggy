@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://fwngc24x76xi" path="res://components/level.gd" id="1_h4ce7"]
 [ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://player/player.tscn" id="1_orunl"]
-[ext_resource type="PackedScene" uid="uid://bn51dvq1hy65u" path="res://scenes/levels/lighting_day.tscn" id="4_o1chu"]
 [ext_resource type="PackedScene" uid="uid://df74d6rxmrbfp" path="res://scenes/ui/game_ui.tscn" id="6_3rriw"]
 
 [node name="BaseLevel" type="Node3D" unique_id=688875371]
@@ -15,9 +14,6 @@ script = ExtResource("1_h4ce7")
 [node name="Game_UI" parent="CanvasLayer" unique_id=531994181 instance=ExtResource("6_3rriw")]
 
 [node name="food_grp" type="Node" parent="." unique_id=1148034658]
-
-[node name="LightingDay" parent="." unique_id=441363176 instance=ExtResource("4_o1chu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -2)
 
 [node name="env_grp" type="Node" parent="." unique_id=47825553]
 

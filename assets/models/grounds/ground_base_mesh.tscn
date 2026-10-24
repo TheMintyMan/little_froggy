@@ -3,7 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://df2cn81pgykq" path="res://assets/models/grounds/src/ground_base.glb" id="1_y8xes"]
 [ext_resource type="Material" uid="uid://cdisar0x60rwx" path="res://assets/materials/ground_mat.tres" id="2_bdi1v"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_y8xgx"]
+
 [node name="ground_base" unique_id=76220537 instance=ExtResource("1_y8xes")]
 
-[node name="ground_base_mesh" parent="." index="0" unique_id=1070904301]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0" unique_id=1303389147 groups=["floor"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=961884268]
+shape = SubResource("BoxShape3D_y8xgx")
+
+[node name="ground_base_mesh" parent="." index="1" unique_id=1070904301]
 surface_material_override/0 = ExtResource("2_bdi1v")

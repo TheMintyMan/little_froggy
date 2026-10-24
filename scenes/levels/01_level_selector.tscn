@@ -37,6 +37,7 @@ shader_parameter/ColorParameter = Color(0.037800003, 0.51155984, 0.63, 1)
 
 [node name="BaseLevel" type="Node3D" unique_id=688875371]
 script = ExtResource("1_f1clp")
+can_fall_off = false
 
 [node name="player" parent="." unique_id=788165335 instance=ExtResource("3_gj351")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)

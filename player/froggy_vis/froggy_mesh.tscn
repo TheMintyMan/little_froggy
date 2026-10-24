@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b0msjixjwi0ug"]
 
 [ext_resource type="PackedScene" uid="uid://bc1efvrjnst67" path="res://player/froggy_vis/froggy.glb" id="1_kufho"]
-[ext_resource type="Material" uid="uid://f6ehtoqq0i88" path="res://player/froggy_vis/froggy_mat.tres" id="2_72as8"]
+[ext_resource type="Material" path="res://assets/materials/cloud_creature_mat.tres" id="2_72as8"]
 
 [node name="froggy" unique_id=602929358 instance=ExtResource("1_kufho")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)

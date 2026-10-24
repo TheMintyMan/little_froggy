@@ -14,6 +14,23 @@ signal food_count_changed(count: int)
 ## Seconds between repeated moves once auto-repeat has started.
 @export var repeat_interval: float = 0.15
 
+@export_group("Gap Jump")
+## How many gap tiles (water or empty) in a row the frog can jump over.
+## Wider than that, it lands in the gap and drowns or falls.
+@export var gap_jump_tiles: int = 1
+## A gap jump takes this many times longer than a normal hop.
+@export var gap_jump_duration_scale: float = 1.6
+## Arc height of a gap jump.
+@export var gap_jump_height: float = 0.9
+## Seconds the frog sits in the water before the level resets.
+@export var drown_reset_delay: float = 0.6
+
+@export_group("Falling")
+## Seconds the frog falls (as a rigid body) before the level resets.
+@export var fall_duration: float = 2.0
+## How fast the frog tumbles forward while falling.
+@export var fall_tumble_speed: float = 3.0
+
 var facing_dir: Vector2 = Vector2.ZERO
 var in_house: bool = false
 #var level_root: Level
@@ -24,6 +41,12 @@ var is_movement_disabled: bool = false
 @onready var player_camera: Camera3D = %camera
 
 var previous_collider: Node3D = null
+
+# Where the frog was before each move, so undo can put it back however far it went.
+var _undo_positions: Array[Vector3] = []
+
+# Rigid body the frog follows while falling off an edge
+var _fall_body: RigidBody3D = null
 
 # Held-direction auto-repeat (DAS) state.
 var _held_dir: Vector2 = Vector2.ZERO
@@ -70,7 +93,7 @@ func get_input_direction() -> Vector2:
 	if Input.is_action_just_pressed("ability01"):
 		try_pull()
 	if Input.is_action_just_pressed("restart"):
-		get_tree().reload_current_scene()
+		restart_level()
 
 	if v.x != 0 and v.y != 0:
 		return Vector2()
@@ -94,6 +117,10 @@ func get_held_direction() -> Vector2:
 	return v
 
 func try_move(dir: Vector2) -> void:
+	if movement_comp.is_moving():
+		# Later to add it to the queue if it's already moving
+		# For now, don't do anything while moving (and don't record an undo step)
+		return
 	Global.time_index += 1
 	action_manager.do_action("move", [dir])
 
@@ -125,43 +152,29 @@ func _process_move_repeat(delta: float) -> void:
 		try_move(held)
 
 func move(dir):
-	if movement_comp.is_moving():
-		# Later to add it to the queue if it's already moving
-		# For now, don't do anything while moving
-		return
-	
+	# Saved first so every "move" in the undo history has a position to go back to
+	_undo_positions.append(global_position)
+
 	movement_comp.turn_to_dir(dir)
 
 	var grid_pos = Global.get_grid_pos(self)
 	var new_grid_pos: Vector2 = grid_pos + dir
 	var new_world_pos: Vector3 = Vector3(new_grid_pos.x, 0,new_grid_pos.y)
-	
-	var collider = Global.grid_check(new_grid_pos)
-	var collider_02 = Global.grid_check(new_grid_pos, 2)
-	
+
+	# Look far enough ahead to see past the widest gap the frog can jump over
+	var tiles = scan_tiles(dir, gap_jump_tiles + 1)
+	var collider = tiles[0]["ground"]
+	var collider_02 = tiles[0]["object"]
+	var is_gap_jump = is_gap(collider)
+
 	facing_dir = dir
-	
+
 	movement_comp.jump_basic()
-	
-	if previous_collider != null:
-		if previous_collider.has_method("un_hit"):
-			#print(self.name, " is unhitting")
-			previous_collider.un_hit(self)
-			previous_collider = null
-		if previous_collider.get_parent().has_method("un_hit"):
-			#print(self.name, " is unhitting")
-			previous_collider.get_parent().un_hit(self)
-			previous_collider = null
-			
-	if collider != null:
-		previous_collider = collider
-		if collider.has_method("hit"):
-			#print(self.name, " has hit something")
-			collider.hit(self)
-		if collider.get_parent().has_method("hit"):
-			print(self.name, " has hit something")
-			collider.get_parent().hit(self)
-	
+
+	unhit_previous()
+	if not is_gap_jump:
+		hit_collider(collider)
+
 	if in_house:
 		if dir != home_dir:
 			print("Frog not facing the same direction as the home", Global.convert_rot_dir(GameManager.get_home().global_rotation.y))
@@ -170,7 +183,11 @@ func move(dir):
 			in_house = false
 			target_pos = new_world_pos
 			movement_comp.set_move(new_world_pos)
-	
+
+	if is_gap_jump:
+		gap_jump(dir, tiles)
+		return
+
 	if collider_02 is Food:
 		if collider != null:
 			if collider.is_in_group("floor"):
@@ -189,21 +206,10 @@ func move(dir):
 		return
 	
 	if collider_02 is Home:
-		if get_height_diff(self, collider_02, false) <= 0:
-			new_world_pos.y = self.position.y
-			if dir != Vector2(home_dir.x*-1, home_dir.y*-1):
-				print("Cannot enter this way")
-				return
-			print("The frog has entered home")
-			self.rotation = collider_02.rotation
-			facing_dir = convert_rot_dir()
-			target_pos = new_world_pos
-			movement_comp.set_move(new_world_pos)
-			in_house = true
-			#GameManager.check_win_condition()
-		else:
+		if not try_enter_home(collider_02, dir, new_world_pos):
 			return
-	
+		new_world_pos.y = self.position.y
+
 	if collider == null:
 		target_pos = new_world_pos
 		movement_comp.set_move(new_world_pos)
@@ -234,22 +240,23 @@ func try_pull():
 	
 	print ("collider pull far: ", grid_pos_02,", ", collider_01_02)
 	
-	# anim check
-	if collider_01_01 == null and collider_02_01 == null:
-		if collider_01_02 == null and collider_02_02 == null:
-			movement_comp.eat_far()
-			return
+	# anim: eat_far unless something in the tile right in front is at the same height
+	var blocked_in_front := false
+	for collider in [collider_01_01, collider_02_01]:
+		if collider != null and is_same_height(collider):
+			blocked_in_front = true
+	if blocked_in_front:
+		movement_comp.eat_close()
+	else:
+		movement_comp.eat_far()
+
 	# checks for the far blocks
 	if collider_01_02 != null:
 		if collider_01_02.is_in_group("pullable"):
-			movement_comp.eat_far()
 			collider_01_02.push(facing_dir*-1)
 			return
-		if collider_01_02.is_in_group("wall"):
-			movement_comp.eat_close()
 	if collider_02_02 != null:
 		if collider_02_02.is_in_group("food"):
-			movement_comp.eat_far()
 			if get_height_diff(self, collider_02_02, false) <= 0:
 				collider_02_02.eat()
 				on_food_eaten(1) # Arbitrary value currently
@@ -257,15 +264,174 @@ func try_pull():
 	# checks for the close blocks
 	if collider_01_01 != null:
 		if collider_01_01.is_in_group("pullable"):
-			movement_comp.eat_close()
 			return
 	if collider_02_01 != null:
 		if collider_02_01.is_in_group("food"):
-			movement_comp.eat_close()
 			if get_height_diff(self, collider_02_01, false) <= 0:
 				collider_02_01.eat()
 				on_food_eaten(1) # Arbitrary value currently
 				return
+				
+func tile_at(grid_pos: Vector2) -> Dictionary:
+	return {
+		"ground": Global.grid_check(grid_pos),
+		"object": Global.grid_check(grid_pos, 2),
+	}
+	
+func scan_tiles(dir: Vector2, max_dist: int) -> Array[Dictionary]:
+	var tiles: Array[Dictionary]= []
+	var grid_pos = Global.get_grid_pos(self)
+	for i in max_dist:
+		grid_pos += dir
+		var tile = tile_at(grid_pos)
+		tiles.append(tile)
+		# Water is in the wall group too, but the frog can see (and jump) past it
+		if tile["ground"] != null and tile["ground"].is_in_group("wall") and not is_water(tile["ground"]):
+			break
+	return tiles
+
+func is_water(collider: Node3D) -> bool:
+	return collider != null and collider.is_in_group("water")
+
+## True for tiles the frog has to jump over: water, or no ground at all.
+func is_gap(collider: Node3D) -> bool:
+	return is_water(collider) or is_void(collider)
+
+## Jumps over up to gap_jump_tiles of gap (water and/or empty tiles) and lands on the tile after it.
+## Wider than that, the frog lands in the gap: water drowns it, empty tiles make it fall.
+func gap_jump(dir: Vector2, tiles: Array[Dictionary]) -> void:
+	var gap_count := 0
+	while gap_count < tiles.size() and is_gap(tiles[gap_count]["ground"]):
+		gap_count += 1
+
+	var grid_pos = Global.get_grid_pos(self)
+
+	if gap_count >= tiles.size():
+		# Too wide, the frog jumps as far as it can and lands in the gap
+		var far_grid_pos: Vector2 = grid_pos + dir * tiles.size()
+		var far_ground: Node3D = tiles[-1]["ground"]
+		if is_water(far_ground):
+			drown(Vector3(far_grid_pos.x, far_ground.global_position.y, far_grid_pos.y))
+		else:
+			fall_off(dir, Vector3(far_grid_pos.x, 0, far_grid_pos.y), gap_jump_duration_scale, gap_jump_height)
+		return
+
+	var landing_grid_pos: Vector2 = grid_pos + dir * (gap_count + 1)
+	var landing_pos: Vector3 = Vector3(landing_grid_pos.x, 0, landing_grid_pos.y)
+	var ground: Node3D = tiles[gap_count]["ground"]
+	var object: Node3D = tiles[gap_count]["object"]
+
+	if object is Home:
+		try_enter_home(object as Home, dir, landing_pos, gap_jump_duration_scale, gap_jump_height)
+		return
+
+	if ground != null:
+		if not ground.is_in_group("floor"):
+			print("nowhere to land across the gap")
+			return
+		# Leaping down across a gap is fine, leaping up isn't
+		var height_diff = get_height_diff(self, ground)
+		if height_diff > 0.05:
+			print("too high to leap across the gap: ", height_diff)
+			return
+		landing_pos.y = self.position.y + height_diff
+
+	hit_collider(ground)
+
+	if object is Food:
+		(object as Food).eat()
+		on_food_eaten(1)
+
+	target_pos = landing_pos
+	movement_comp.set_move(landing_pos, gap_jump_duration_scale, gap_jump_height)
+
+func drown(water_pos: Vector3) -> void:
+	print("The frog fell in the water")
+	movement_disable()
+	target_pos = water_pos
+	movement_comp.set_move(water_pos, gap_jump_duration_scale, gap_jump_height)
+	while movement_comp.is_moving():
+		await get_tree().process_frame
+	await get_tree().create_timer(drown_reset_delay).timeout
+	restart_level()
+
+## True if there's no ground here and this level lets the frog fall off edges.
+func is_void(collider: Node3D) -> bool:
+	if collider != null:
+		return false
+	var level = GameManager.get_level()
+	return level == null or level.can_fall_off
+
+## Hops out over the edge, then hands the frog over to a rigid body so it falls, and resets the level.
+func fall_off(dir: Vector2, world_pos: Vector3, duration_scale: float = 1.0, jump_height: float = -1.0) -> void:
+	print("The frog fell off the edge")
+	movement_disable()
+	world_pos.y = self.position.y
+	target_pos = world_pos
+	movement_comp.set_move(world_pos, duration_scale, jump_height)
+	while movement_comp.is_moving():
+		await get_tree().process_frame
+
+	# The player is a StaticBody3D, so a rigid body with the same shape does the falling
+	# and the player copies its transform every physics frame (see _physics_process)
+	var body := RigidBody3D.new()
+	var shape := CollisionShape3D.new()
+	shape.shape = $CollisionShape3D.shape
+	shape.transform = $CollisionShape3D.transform
+	body.add_child(shape)
+	get_parent().add_child(body)
+	body.global_transform = global_transform
+	body.add_collision_exception_with(self)
+	var forward = Vector3(dir.x, 0, dir.y)
+	body.linear_velocity = forward
+	body.angular_velocity = Vector3.UP.cross(forward) * fall_tumble_speed
+	_fall_body = body
+
+	await get_tree().create_timer(fall_duration).timeout
+	restart_level()
+
+## Moves the frog into home if it's coming in from the open side. Returns false if it can't get in.
+func try_enter_home(home: Home, dir: Vector2, world_pos: Vector3, duration_scale: float = 1.0, jump_height: float = -1.0) -> bool:
+	if get_height_diff(self, home, false) > 0:
+		return false
+	if dir != Vector2(home_dir.x*-1, home_dir.y*-1):
+		print("Cannot enter this way")
+		return false
+	print("The frog has entered home")
+	world_pos.y = self.position.y
+	self.rotation = home.rotation
+	facing_dir = convert_rot_dir()
+	target_pos = world_pos
+	movement_comp.set_move(world_pos, duration_scale, jump_height)
+	in_house = true
+	#GameManager.check_win_condition()
+	return true
+
+func hit_collider(collider: Node3D) -> void:
+	if collider == null:
+		return
+	previous_collider = collider
+	if collider.has_method("hit"):
+		#print(self.name, " has hit something")
+		collider.hit(self)
+	if collider.get_parent().has_method("hit"):
+		print(self.name, " has hit something")
+		collider.get_parent().hit(self)
+
+func unhit_previous() -> void:
+	if not is_instance_valid(previous_collider):
+		previous_collider = null
+		return
+	if previous_collider.has_method("un_hit"):
+		#print(self.name, " is unhitting")
+		previous_collider.un_hit(self)
+	if previous_collider.get_parent().has_method("un_hit"):
+		#print(self.name, " is unhitting")
+		previous_collider.get_parent().un_hit(self)
+	previous_collider = null
+
+func restart_level() -> void:
+	get_tree().reload_current_scene()
 
 func on_food_eaten(value: int) -> void:
 	food_eaten += value 
@@ -282,12 +448,18 @@ func get_height_diff(input: Node3D, collider: Node3D, check_collision_height:boo
 			var shape = child.shape
 			if check_collision_height:
 				if shape is BoxShape3D:
-					print("height diff = ", (shape.size.y + collider.global_position.y) - input.global_position.y)
-					return (shape.size.y + collider.global_position.y) - input.global_position.y
+					# The box is centred on its CollisionShape3D, so its top is half its (scaled) height above that
+					var top = child.global_position.y + shape.size.y * 0.5 * child.global_transform.basis.get_scale().y
+					print("height diff = ", top - input.global_position.y)
+					return top - input.global_position.y
 				
 	print("no collider with BoxShape found")
 			
 	return 0.0
+
+## True if the collider's top is level with the player (the same height try_leap would put the player at)
+func is_same_height(collider: Node3D) -> bool:
+	return absf(get_height_diff(self, collider, false)) < 0.05
 
 func try_leap(height_diff: float, new_pos: Vector3) -> void:
 	# Leaping down any height is fine; leaping up is capped at leapable_height.
@@ -299,10 +471,11 @@ func try_leap(height_diff: float, new_pos: Vector3) -> void:
 	target_pos = new_pos
 	movement_comp.set_move(new_pos)
 
-func undo_move(dir):
-	var grid_pos = Global.get_grid_pos(self)
-	var new_pos = grid_pos - dir
-	Global.move_to_grid_pos(self, new_pos)
+func undo_move(_dir):
+	if _undo_positions.is_empty():
+		return
+	movement_comp.stop_move()
+	Global.move_to_grid_pos(self, _undo_positions.pop_back())
 	
 func convert_rot_dir() -> Vector2:
 	var forward = -global_transform.basis.z
@@ -324,6 +497,9 @@ func texture_swap():
 	pass
 
 func _physics_process(delta: float) -> void:
+	if _fall_body != null:
+		global_transform = _fall_body.global_transform
+		return
 	_process_move_repeat(delta)
 
 func _unhandled_input(_event: InputEvent) -> void:

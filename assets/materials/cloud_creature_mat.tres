@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dfrbgtcck5qmo"]
+
+[ext_resource type="Shader" uid="uid://bedsh8oivqbyy" path="res://assets/shaders/ground_shader.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" uid="uid://b3wl8ec803wgi" path="res://assets/textures/frogy_tex.png" id="2_tex"]
+[ext_resource type="Texture2D" uid="uid://bm6nkc2hjbg58" path="res://assets/shaders/noise_texture_2d_cloud.tres" id="3_noise"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_shader")
+shader_parameter/texture_mask = ExtResource("2_tex")
+shader_parameter/mask_scale = Vector2(1, 1)
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/texture_b = ExtResource("2_tex")
+shader_parameter/use_texture_b = true
+shader_parameter/texture_b_scale = 1.0
+shader_parameter/texture_b_offset = 0.0
+shader_parameter/color_a = Color(0.641934, 0.641934, 0.641934, 1)
+shader_parameter/color_b = Color(0.641934, 0.641934, 0.641934, 1)
+shader_parameter/blend_amount = 0.0
+shader_parameter/use_uv_mapping = true
+shader_parameter/cloud_noise = ExtResource("3_noise")
+shader_parameter/cloud_scale = Vector2(0.01, 0.01)
+shader_parameter/cloud_speed = Vector2(0.003, 0.003)
+shader_parameter/cloud_height = 15.5
+shader_parameter/coverage = 0.45
+shader_parameter/softness = 0.7
+shader_parameter/shadow_strength = 10.0
+shader_parameter/cloud_mip = 0.0

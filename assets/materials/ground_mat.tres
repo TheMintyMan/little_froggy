@@ -1,17 +1,27 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://cdisar0x60rwx"]
 
-[ext_resource type="Shader" uid="uid://bedsh8oivqbyy" path="res://assets/materials/ground_shader.gdshader" id="1_06u4m"]
+[ext_resource type="Shader" uid="uid://bedsh8oivqbyy" path="res://assets/shaders/ground_shader.gdshader" id="1_xstht"]
+[ext_resource type="Texture2D" uid="uid://bm6nkc2hjbg58" path="res://assets/shaders/noise_texture_2d_cloud.tres" id="2_am6fg"]
 [ext_resource type="Texture2D" uid="uid://cheju5heji08t" path="res://assets/textures/grid_border.png" id="2_o8f22"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_06u4m")
+shader = ExtResource("1_xstht")
 shader_parameter/texture_mask = ExtResource("2_o8f22")
 shader_parameter/mask_scale = Vector2(1, 1)
 shader_parameter/mask_offset = Vector2(0.5, 0.5)
-shader_parameter/use_texture_b = true
+shader_parameter/use_texture_b = false
 shader_parameter/texture_b_scale = 0.1
 shader_parameter/texture_b_offset = 1.0
 shader_parameter/color_a = Color(0.35, 0.35, 0.35, 1)
-shader_parameter/color_b = Color(0.23529412, 0.2784314, 0.078431375, 1)
+shader_parameter/color_b = Color(0.26163998, 0.31, 0.086799994, 1)
 shader_parameter/blend_amount = 0.5
+shader_parameter/use_uv_mapping = false
+shader_parameter/cloud_noise = ExtResource("2_am6fg")
+shader_parameter/cloud_scale = Vector2(0.01, 0.01)
+shader_parameter/cloud_speed = Vector2(0.003, 0.003)
+shader_parameter/cloud_height = 15.5
+shader_parameter/coverage = 0.45
+shader_parameter/softness = 0.7
+shader_parameter/shadow_strength = 10.0
+shader_parameter/cloud_mip = 0.0

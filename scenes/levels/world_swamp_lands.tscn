@@ -1,59 +1,112 @@
 [gd_scene format=3 uid="uid://deh7vmcmwhc"]
 
 [ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_2ds6f"]
-[ext_resource type="Material" uid="uid://f6ehtoqq0i88" path="res://player/froggy_vis/froggy_mat.tres" id="2_jane3"]
-[ext_resource type="Material" uid="uid://cdisar0x60rwx" path="res://assets/materials/ground_mat.tres" id="2_tgqbw"]
 [ext_resource type="Script" uid="uid://bqbvqpanuf0yf" path="res://player/camera_follow.gd" id="3_7tlp4"]
+[ext_resource type="PackedScene" uid="uid://cmljggbx2r7kl" path="res://assets/models/grounds/ground_base_mesh.tscn" id="3_d7kwm"]
 [ext_resource type="PackedScene" uid="uid://cpt3yxoh0ryfo" path="res://interactables/food/fly/fly_vis/fly.tscn" id="4_wg6ps"]
 [ext_resource type="PackedScene" uid="uid://bjd7hmblw3wam" path="res://assets/models/grounds/leap_box_01_mesh.tscn" id="6_7tlp4"]
+[ext_resource type="PackedScene" uid="uid://bulcsytki81dn" path="res://interactables/pullable/pullable.tscn" id="7_d7kwm"]
+[ext_resource type="Shader" uid="uid://lgf4lm28dpch" path="res://assets/shaders/cloud_shader.gdshader" id="8_jtdoy"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_y8xgx"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_mx3nr"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fc2pf"]
+noise_type = 0
+frequency = 0.1
+fractal_octaves = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6mt0n"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_fc2pf")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_reab8"]
+render_priority = 0
+shader = ExtResource("8_jtdoy")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_6mt0n")
+shader_parameter/uv_scale = Vector2(0.5, 0.5)
+shader_parameter/speed = Vector2(0.003, 0.003)
+shader_parameter/coverage = 0.45
+
+[sub_resource type="Environment" id="Environment_012kt"]
+background_energy_multiplier = 0.5
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.7
+ssil_enabled = true
 
 [node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_2ds6f")]
 
 [node name="movement_component" parent="player" parent_id_path=PackedInt32Array(788165335) index="0" unique_id=75637125]
 _rotation_curve = null
 
-[node name="tongue_mesh" parent="player/froggy_mesh/froggy_armature/Skeleton3D" parent_id_path=PackedInt32Array(788165335, 1321095365, 957726692) index="6" unique_id=851641247]
-surface_material_override/0 = ExtResource("2_jane3")
-
 [node name="camera" parent="player" parent_id_path=PackedInt32Array(788165335) index="5" unique_id=2018505148]
 script = ExtResource("3_7tlp4")
 momentum = 0.0
 speed = 5.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="env_grp/grounds_grp" parent_id_path=PackedInt32Array(319165061) index="0" unique_id=1983927679 groups=["floor"]]
-transform = Transform3D(5.5, 0, 0, 0, 1, 0, 0, 0, 5.5, 0, 0, 0)
-mesh = SubResource("PlaneMesh_y8xgx")
-skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_tgqbw")
+[node name="ground_base" parent="env_grp/grounds_grp" parent_id_path=PackedInt32Array(319165061) index="0" unique_id=76220537 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(21, 0, 0, 0, 1, 0, 0, 0, 21, 0, 0, 0)
 
-[node name="food" parent="." index="5" unique_id=1857005287 instance=ExtResource("4_wg6ps")]
+[node name="food" parent="." index="4" unique_id=1857005287 instance=ExtResource("4_wg6ps")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 3)
 
-[node name="leap_box_01" parent="." index="6" unique_id=396973513 instance=ExtResource("6_7tlp4")]
+[node name="leap_box_01" parent="." index="5" unique_id=396973513 instance=ExtResource("6_7tlp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
-[node name="leap_box_03" parent="." index="7" unique_id=992858866 instance=ExtResource("6_7tlp4")]
+[node name="leap_box_03" parent="." index="6" unique_id=992858866 instance=ExtResource("6_7tlp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
 
-[node name="leap_box_04" parent="." index="8" unique_id=1296227355 instance=ExtResource("6_7tlp4")]
+[node name="leap_box_04" parent="." index="7" unique_id=1296227355 instance=ExtResource("6_7tlp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 2)
 
-[node name="leap_box_05" parent="." index="9" unique_id=1567495944 instance=ExtResource("6_7tlp4")]
+[node name="leap_box_05" parent="." index="8" unique_id=1567495944 instance=ExtResource("6_7tlp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 3)
 
-[node name="leap_box_06" parent="." index="10" unique_id=253250152 instance=ExtResource("6_7tlp4")]
+[node name="leap_box_06" parent="." index="9" unique_id=253250152 instance=ExtResource("6_7tlp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
 
-[node name="leap_box_07" parent="." index="11" unique_id=93008846 instance=ExtResource("6_7tlp4")]
+[node name="leap_box_07" parent="." index="10" unique_id=93008846 instance=ExtResource("6_7tlp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 3)
 
-[node name="leap_box_08" parent="." index="12" unique_id=1832773001 instance=ExtResource("6_7tlp4")]
+[node name="leap_box_08" parent="." index="11" unique_id=1832773001 instance=ExtResource("6_7tlp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 
-[node name="leap_box_02" parent="." index="13" unique_id=1241377436 instance=ExtResource("6_7tlp4")]
+[node name="leap_box_02" parent="." index="12" unique_id=1241377436 instance=ExtResource("6_7tlp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
+
+[node name="pullable" parent="." index="13" unique_id=155854616 instance=ExtResource("7_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="Shadow_Mesh" type="MeshInstance3D" parent="." index="14" unique_id=1229337734]
+transform = Transform3D(27, 0, 0, 0, 27, 0, 0, 0, 27, 5, 15.5, -1.5)
+visible = false
+mesh = SubResource("PlaneMesh_mx3nr")
+skeleton = NodePath("../DirectionalLight3D")
+surface_material_override/0 = SubResource("ShaderMaterial_reab8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="15" unique_id=631687432]
+environment = SubResource("Environment_012kt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="16" unique_id=174037598]
+transform = Transform3D(-0.8660253, -0.38302225, 0.32139385, 9.78024e-09, 0.6427876, 0.76604444, -0.5, 0.6634139, -0.5566704, 0, 2, 0)
+light_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
+light_energy = 4.0
+shadow_enabled = true
+shadow_blur = 0.0
+
+[node name="ground_base" parent="." index="17" unique_id=764359626 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="ground_base2" parent="." index="18" unique_id=503113536 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
+
+[node name="ground_base3" parent="." index="19" unique_id=1617163203 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 1)
+
+[node name="ground_base4" parent="." index="20" unique_id=192698138 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 1)
 
 [editable path="player"]
 [editable path="player/froggy_mesh"]

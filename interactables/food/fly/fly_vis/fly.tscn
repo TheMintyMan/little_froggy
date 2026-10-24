@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b18d4uxkpvf3q" path="res://interactables/food/fly/fly.gd" id="1_y3sqc"]
 [ext_resource type="PackedScene" uid="uid://dvloubbptds8x" path="res://interactables/food/fly/fly_vis/fly_mesh.tscn" id="2_n34rr"]
-[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/master_mat.tres" id="3_c5akx"]
+[ext_resource type="Material" path="res://assets/materials/cloud_creature_mat.tres" id="3_c5akx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gc57"]
 

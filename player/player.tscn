@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://player/player.gd" id="1_g6k8r"]
 [ext_resource type="Script" uid="uid://h3xemvyx7jfc" path="res://player/froggy_movement.gd" id="2_boad6"]
 [ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://player/froggy_vis/froggy_mesh.tscn" id="3_rgyib"]
-[ext_resource type="Material" uid="uid://f6ehtoqq0i88" path="res://player/froggy_vis/froggy_mat.tres" id="4_hg6s5"]
+[ext_resource type="Material" uid="uid://dfrbgtcck5qmo" path="res://assets/materials/cloud_creature_mat.tres" id="4_hg6s5"]
 [ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/master_mat.tres" id="5_8t03j"]
 [ext_resource type="Script" uid="uid://bnq5mkde4jji3" path="res://player/camera_follow_old.gd" id="6_2ieo8"]
 
@@ -12,7 +12,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_xueb2"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50440526, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 3.0598636, 0, 0, Vector2(0.50440526, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.0581357, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_rot01"]
@@ -106,10 +106,10 @@ one_shot = true
 
 [node name="froggy_mesh" parent="." unique_id=1321095365 instance=ExtResource("3_rgyib")]
 
-[node name="frogy_mesh" parent="froggy_mesh/froggy_armature/Skeleton3D" parent_id_path=PackedInt32Array(1321095365, 1190040084) index="3" unique_id=598822950]
+[node name="frogy_mesh" parent="froggy_mesh/froggy_armature/Skeleton3D" parent_id_path=PackedInt32Array(1321095365, 957726692) index="3" unique_id=1535446313]
 surface_material_override/0 = ExtResource("4_hg6s5")
 
-[node name="tongue_mesh" parent="froggy_mesh/froggy_armature/Skeleton3D" parent_id_path=PackedInt32Array(1321095365, 1190040084) index="6" unique_id=1639916900]
+[node name="tongue_mesh" parent="froggy_mesh/froggy_armature/Skeleton3D" parent_id_path=PackedInt32Array(1321095365, 957726692) index="6" unique_id=851641247]
 surface_material_override/0 = ExtResource("5_8t03j")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1937179696]
