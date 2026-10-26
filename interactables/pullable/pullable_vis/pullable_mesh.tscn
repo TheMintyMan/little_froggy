@@ -1,5 +1,9 @@
 [gd_scene format=3 uid="uid://c1n54b0n2nsga"]
 
 [ext_resource type="PackedScene" uid="uid://b5myqpxsemny5" path="res://assets/models/src_models/pullable_mesh.glb" id="1_phtrt"]
+[ext_resource type="Material" uid="uid://be6wcec3qaus3" path="res://assets/materials/leaf_mat.tres" id="2_lu5x1"]
 
 [node name="pullable_mesh" unique_id=1517966532 instance=ExtResource("1_phtrt")]
+
+[node name="pullable_mesh" parent="." index="0" unique_id=1529638711]
+material_override = ExtResource("2_lu5x1")

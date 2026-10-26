@@ -25,6 +25,10 @@ signal food_count_changed(count: int)
 ## Seconds the frog sits in the water before the level resets.
 @export var drown_reset_delay: float = 0.6
 
+@export_group("Tongue")
+## How many tiles ahead the tongue reaches for food and pullables.
+@export var pull_reach: int = 2
+
 @export_group("Falling")
 ## Seconds the frog falls (as a rigid body) before the level resets.
 @export var fall_duration: float = 2.0
@@ -79,16 +83,16 @@ func get_input_direction() -> Vector2:
 		#return Vector2()
 	var v = Vector2()
 	if Input.is_action_just_pressed("playerDown"):
-		v.y = 1
-		v.x = 0
-	if Input.is_action_just_pressed("playerUp"):
 		v.y = -1
 		v.x = 0
+	if Input.is_action_just_pressed("playerUp"):
+		v.y = 1
+		v.x = 0
 	if Input.is_action_just_pressed("playerRight"):
-		v.x = 1
+		v.x = -1
 		v.y = 0
 	if Input.is_action_just_pressed("playerLeft"):
-		v.x = -1
+		v.x = 1
 		v.y= 0
 	if Input.is_action_just_pressed("ability01"):
 		try_pull()
@@ -107,13 +111,13 @@ func get_input_direction() -> Vector2:
 func get_held_direction() -> Vector2:
 	var v = Vector2.ZERO
 	if Input.is_action_pressed("playerDown"):
-		v = Vector2(0, 1)
-	if Input.is_action_pressed("playerUp"):
 		v = Vector2(0, -1)
+	if Input.is_action_pressed("playerUp"):
+		v = Vector2(0, 1)
 	if Input.is_action_pressed("playerRight"):
-		v = Vector2(1, 0)
-	if Input.is_action_pressed("playerLeft"):
 		v = Vector2(-1, 0)
+	if Input.is_action_pressed("playerLeft"):
+		v = Vector2(1, 0)
 	return v
 
 func try_move(dir: Vector2) -> void:
@@ -205,6 +209,10 @@ func move(dir):
 		movement_comp.set_move(new_world_pos)
 		return
 	
+	# A puzzle is started by pulling it, so the frog can't walk onto it
+	if collider_02 is PuzzleSelect:
+		return
+
 	if collider_02 is Home:
 		if not try_enter_home(collider_02, dir, new_world_pos):
 			return
@@ -230,55 +238,64 @@ func move(dir):
 	target_pos = new_world_pos
 	movement_comp.set_move(new_world_pos)
 
+## Shoots the tongue out tile by tile, up to pull_reach. The first thing it reaches decides
+## what happens: food is eaten, a puzzle starts, a pullable gets pulled one tile closer, a wall or anything
+## sticking up above the frog stops it.
 func try_pull():
-	var grid_pos_01 : Vector2 = Global.get_grid_pos(self) + (facing_dir)
-	var grid_pos_02 : Vector2 = Global.get_grid_pos(self) + (facing_dir*2)
-	var collider_01_01 = Global.grid_check(grid_pos_01)
-	var collider_01_02 = Global.grid_check(grid_pos_02)
-	var collider_02_01 = Global.grid_check(grid_pos_01, 2)
-	var collider_02_02 = Global.grid_check(grid_pos_02, 2)
-	
-	print ("collider pull far: ", grid_pos_02,", ", collider_01_02)
-	
-	# anim: eat_far unless something in the tile right in front is at the same height
-	var blocked_in_front := false
-	for collider in [collider_01_01, collider_02_01]:
-		if collider != null and is_same_height(collider):
-			blocked_in_front = true
-	if blocked_in_front:
+	var tiles = scan_tiles(facing_dir, pull_reach, false)
+	var stop_dist := 0
+
+	for i in tiles.size():
+		var dist = i + 1
+		var ground = tiles[i]["ground"]
+		var object = tiles[i]["object"]
+
+		if ground != null and ground.is_in_group("pullable"):
+			stop_dist = dist
+			# Already right in front, nothing to pull
+			if dist > 1:
+				ground.push(facing_dir*-1)
+			break
+
+		if object is PuzzleSelect:
+			stop_dist = dist
+			object.start_puzzle()
+			break
+
+		if object != null and object.is_in_group("food") and get_height_diff(self, object, false) <= 0:
+			stop_dist = dist
+			object.eat()
+			on_food_eaten(object.get_food_value()) # Arbitrary value currently
+			break
+
+		if blocks_tongue(ground):
+			stop_dist = dist
+			break
+
+	# anim: eat_close if the tongue stopped on the tile right in front
+	if stop_dist == 1:
 		movement_comp.eat_close()
 	else:
 		movement_comp.eat_far()
 
-	# checks for the far blocks
-	if collider_01_02 != null:
-		if collider_01_02.is_in_group("pullable"):
-			collider_01_02.push(facing_dir*-1)
-			return
-	if collider_02_02 != null:
-		if collider_02_02.is_in_group("food"):
-			if get_height_diff(self, collider_02_02, false) <= 0:
-				collider_02_02.eat()
-				on_food_eaten(1) # Arbitrary value currently
-				return
-	# checks for the close blocks
-	if collider_01_01 != null:
-		if collider_01_01.is_in_group("pullable"):
-			return
-	if collider_02_01 != null:
-		if collider_02_01.is_in_group("food"):
-			if get_height_diff(self, collider_02_01, false) <= 0:
-				collider_02_01.eat()
-				on_food_eaten(1) # Arbitrary value currently
-				return
-				
+## True if this tile's ground stops the tongue: a wall, or a floor sticking up above the frog.
+## Water and empty tiles don't, so the tongue reaches across them.
+func blocks_tongue(ground: Node3D) -> bool:
+	if ground == null or is_water(ground):
+		return false
+	if ground.is_in_group("floor"):
+		return get_height_diff(self, ground) > 0.05
+	return true
+
 func tile_at(grid_pos: Vector2) -> Dictionary:
 	return {
 		"ground": Global.grid_check(grid_pos),
 		"object": Global.grid_check(grid_pos, 2),
 	}
 	
-func scan_tiles(dir: Vector2, max_dist: int) -> Array[Dictionary]:
+## Tiles from the frog outward along dir, up to max_dist. Stops after the first (non-water) wall
+## unless stop_at_walls is false, in which case the caller decides what blocks it.
+func scan_tiles(dir: Vector2, max_dist: int, stop_at_walls: bool = true) -> Array[Dictionary]:
 	var tiles: Array[Dictionary]= []
 	var grid_pos = Global.get_grid_pos(self)
 	for i in max_dist:
@@ -286,7 +303,7 @@ func scan_tiles(dir: Vector2, max_dist: int) -> Array[Dictionary]:
 		var tile = tile_at(grid_pos)
 		tiles.append(tile)
 		# Water is in the wall group too, but the frog can see (and jump) past it
-		if tile["ground"] != null and tile["ground"].is_in_group("wall") and not is_water(tile["ground"]):
+		if stop_at_walls and tile["ground"] != null and tile["ground"].is_in_group("wall") and not is_water(tile["ground"]):
 			break
 	return tiles
 
@@ -437,6 +454,11 @@ func on_food_eaten(value: int) -> void:
 	food_eaten += value 
 	emit_signal("food_count_changed", food_eaten)
 	print("yummyy, current food count is ", food_eaten)
+
+## Sets the food counter back to zero (used when a puzzle starts)
+func reset_food_count() -> void:
+	food_eaten = 0
+	emit_signal("food_count_changed", food_eaten)
 
 ## Calculates the height difference
 func get_height_diff(input: Node3D, collider: Node3D, check_collision_height:bool = true) -> float:

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://h3xemvyx7jfc" path="res://player/froggy_movement.gd" id="2_boad6"]
 [ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://player/froggy_vis/froggy_mesh.tscn" id="3_rgyib"]
 [ext_resource type="Material" uid="uid://dfrbgtcck5qmo" path="res://assets/materials/cloud_creature_mat.tres" id="4_hg6s5"]
-[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/master_mat.tres" id="5_8t03j"]
+[ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/old/master_mat.tres" id="5_8t03j"]
 [ext_resource type="Script" uid="uid://bnq5mkde4jji3" path="res://player/camera_follow_old.gd" id="6_2ieo8"]
 
 [sub_resource type="Curve" id="Curve_ehvfd"]
@@ -123,12 +123,12 @@ parameters/conditions/jumping_basic = false
 
 [node name="camera" type="Camera3D" parent="." unique_id=2018505148 node_paths=PackedStringArray("follow_object")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.57357645, 0.81915206, 0, -0.81915206, 0.57357645, 0, 6, 3)
+transform = Transform3D(-1, 7.161255e-08, -5.0143647e-08, 0, 0.57357645, 0.81915206, 8.742278e-08, 0.81915206, -0.57357645, 0, 6, -3)
 top_level = true
 fov = 50.0
 script = ExtResource("6_2ieo8")
 follow_object = NodePath("../froggy_mesh")
-location_offset = Vector3(0, 6, 3)
+location_offset = Vector3(0, 6, -3)
 
 [node name="player_button_hb" type="Area3D" parent="." unique_id=1405034169]
 

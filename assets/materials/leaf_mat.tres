@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://be6wcec3qaus3"]
+
+[ext_resource type="Shader" uid="uid://bedsh8oivqbyy" path="res://assets/shaders/ground_shader.gdshader" id="1_3wcst"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_3wcst")
+shader_parameter/mask_scale = Vector2(1, 1)
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/use_texture_b = false
+shader_parameter/texture_b_scale = 1.0
+shader_parameter/texture_b_offset = 0.0
+shader_parameter/color_a = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/color_b = Color(0.2112194, 0.4370092, 0.29758835, 1)
+shader_parameter/blend_amount = 0.5
+shader_parameter/use_uv_mapping = false
+shader_parameter/cloud_scale = Vector2(0.01, 0.01)
+shader_parameter/cloud_speed = Vector2(0.003, 0.003)
+shader_parameter/cloud_height = 15.5
+shader_parameter/coverage = 0.45
+shader_parameter/softness = 0.7
+shader_parameter/shadow_strength = 10.0
+shader_parameter/cloud_mip = 3.0

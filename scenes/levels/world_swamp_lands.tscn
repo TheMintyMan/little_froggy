@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpt3yxoh0ryfo" path="res://interactables/food/fly/fly_vis/fly.tscn" id="4_wg6ps"]
 [ext_resource type="PackedScene" uid="uid://bjd7hmblw3wam" path="res://assets/models/grounds/leap_box_01_mesh.tscn" id="6_7tlp4"]
 [ext_resource type="PackedScene" uid="uid://bulcsytki81dn" path="res://interactables/pullable/pullable.tscn" id="7_d7kwm"]
+[ext_resource type="PackedScene" uid="uid://ck2hfa6ev7xl2" path="res://interactables/puzzle_select/puzzle_select.tscn" id="8_012kt"]
 [ext_resource type="Shader" uid="uid://lgf4lm28dpch" path="res://assets/shaders/cloud_shader.gdshader" id="8_jtdoy"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mx3nr"]
@@ -47,65 +48,73 @@ momentum = 0.0
 speed = 5.0
 
 [node name="ground_base" parent="env_grp/grounds_grp" parent_id_path=PackedInt32Array(319165061) index="0" unique_id=76220537 instance=ExtResource("3_d7kwm")]
-transform = Transform3D(21, 0, 0, 0, 1, 0, 0, 0, 21, 0, 0, 0)
+transform = Transform3D(7, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0, 0)
+
+[node name="pullable" parent="env_grp/grounds_grp" parent_id_path=PackedInt32Array(319165061) index="1" unique_id=155854616 instance=ExtResource("7_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1)
 
 [node name="food" parent="." index="4" unique_id=1857005287 instance=ExtResource("4_wg6ps")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 3)
 
-[node name="leap_box_01" parent="." index="5" unique_id=396973513 instance=ExtResource("6_7tlp4")]
+[node name="puzzle_select_01" parent="." index="5" unique_id=1991884091 instance=ExtResource("8_012kt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="ground_base2" parent="puzzle_select_01" index="2" unique_id=1322333374 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(7, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0, 2)
+
+[node name="leap_box_01" parent="." index="6" unique_id=396973513 instance=ExtResource("6_7tlp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
-[node name="leap_box_03" parent="." index="6" unique_id=992858866 instance=ExtResource("6_7tlp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+[node name="leap_box_03" parent="." index="7" unique_id=992858866 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
 
-[node name="leap_box_04" parent="." index="7" unique_id=1296227355 instance=ExtResource("6_7tlp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 2)
+[node name="leap_box_04" parent="." index="8" unique_id=1296227355 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 2)
 
-[node name="leap_box_05" parent="." index="8" unique_id=1567495944 instance=ExtResource("6_7tlp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 3)
+[node name="leap_box_05" parent="." index="9" unique_id=1567495944 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 3)
 
-[node name="leap_box_06" parent="." index="9" unique_id=253250152 instance=ExtResource("6_7tlp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
+[node name="leap_box_06" parent="." index="10" unique_id=253250152 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
 
-[node name="leap_box_07" parent="." index="10" unique_id=93008846 instance=ExtResource("6_7tlp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 3)
+[node name="leap_box_07" parent="." index="11" unique_id=93008846 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 3)
 
-[node name="leap_box_08" parent="." index="11" unique_id=1832773001 instance=ExtResource("6_7tlp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+[node name="leap_box_08" parent="." index="12" unique_id=1832773001 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
 
-[node name="leap_box_02" parent="." index="12" unique_id=1241377436 instance=ExtResource("6_7tlp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
-
-[node name="pullable" parent="." index="13" unique_id=155854616 instance=ExtResource("7_d7kwm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+[node name="leap_box_02" parent="." index="13" unique_id=1241377436 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
 
 [node name="Shadow_Mesh" type="MeshInstance3D" parent="." index="14" unique_id=1229337734]
 transform = Transform3D(27, 0, 0, 0, 27, 0, 0, 0, 27, 5, 15.5, -1.5)
 visible = false
 mesh = SubResource("PlaneMesh_mx3nr")
-skeleton = NodePath("../DirectionalLight3D")
+skeleton = NodePath("../Persistent/DirectionalLight3D")
 surface_material_override/0 = SubResource("ShaderMaterial_reab8")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="15" unique_id=631687432]
+[node name="Persistent" type="Node" parent="." index="15" unique_id=1961245845]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Persistent" index="0" unique_id=631687432]
 environment = SubResource("Environment_012kt")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="16" unique_id=174037598]
-transform = Transform3D(-0.8660253, -0.38302225, 0.32139385, 9.78024e-09, 0.6427876, 0.76604444, -0.5, 0.6634139, -0.5566704, 0, 2, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Persistent" index="1" unique_id=174037598]
+transform = Transform3D(-0.8660254, -0.38302225, 0.32139385, 9.780241e-09, 0.64278764, 0.76604444, -0.50000006, 0.66341394, -0.5566704, 0, 2, 0)
 light_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
 light_energy = 8.0
 shadow_enabled = true
 shadow_blur = 0.0
 
-[node name="ground_base" parent="." index="17" unique_id=764359626 instance=ExtResource("3_d7kwm")]
+[node name="ground_base" parent="." index="16" unique_id=764359626 instance=ExtResource("3_d7kwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
 
-[node name="ground_base2" parent="." index="18" unique_id=503113536 instance=ExtResource("3_d7kwm")]
+[node name="ground_base2" parent="." index="17" unique_id=503113536 instance=ExtResource("3_d7kwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
 
-[node name="ground_base3" parent="." index="19" unique_id=1617163203 instance=ExtResource("3_d7kwm")]
+[node name="ground_base3" parent="." index="18" unique_id=1617163203 instance=ExtResource("3_d7kwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 1)
 
-[node name="ground_base4" parent="." index="20" unique_id=192698138 instance=ExtResource("3_d7kwm")]
+[node name="ground_base4" parent="." index="19" unique_id=192698138 instance=ExtResource("3_d7kwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 1)
 
 [editable path="player"]

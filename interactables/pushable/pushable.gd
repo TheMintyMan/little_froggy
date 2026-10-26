@@ -39,6 +39,9 @@ func push(dir:Vector2) -> bool:
 	if collider.is_in_group("wall"):
 		return handle_wall(collider, dir)
 
-	# Anything else occupying the target tile (e.g. "floor" props like leap boxes)
-	# blocks the push/pull instead of being an unhandled case.
+	# The level's ground is a "floor" collider on every tile, so plain floor is open ground
+	if collider.is_in_group("floor"):
+		return handle_push(null, dir)
+
+	# Anything else occupying the target tile blocks the push/pull
 	return false

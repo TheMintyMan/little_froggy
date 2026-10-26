@@ -2,6 +2,8 @@ extends StaticBody3D
 
 class_name Food
 
+signal eaten
+
 @export var value: int = 1
 var _is_eaten = false
 #var level_root: Level
@@ -20,7 +22,11 @@ func eat() -> void:
 	#level_root.on_food_eaten()
 	GameManager.sub_food()
 	_is_eaten = true
+	eaten.emit()
 	queue_free()
+	
+func get_food_value() -> int:
+	return value
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://jjbugjk33mrx"
-path="res://.godot/imported/map_select_pad.glb-391dba8894aa1f823d76f6b3fb5167d1.scn"
+path="res://.godot/imported/map_select_pad.glb-7ea92282038265c6051f50deed4cb7c4.scn"
 
 [deps]
 
-source_file="res://interactables/level_selector/level_select_vis/map_select_pad.glb"
-dest_files=["res://.godot/imported/map_select_pad.glb-391dba8894aa1f823d76f6b3fb5167d1.scn"]
+source_file="res://interactables/world_selector/level_select_vis/map_select_pad.glb"
+dest_files=["res://.godot/imported/map_select_pad.glb-7ea92282038265c6051f50deed4cb7c4.scn"]
 
 [params]
 
