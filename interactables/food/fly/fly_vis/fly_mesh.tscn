@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dvloubbptds8x"]
 
 [ext_resource type="PackedScene" uid="uid://5kfeu2gwjvvg" path="res://interactables/food/fly/fly.glb" id="1_fdfjg"]
-[ext_resource type="Material" path="res://assets/materials/cloud_creature_mat.tres" id="2_2qmdk"]
+[ext_resource type="Material" uid="uid://dfrbgtcck5qmo" path="res://assets/materials/master_mat.tres" id="2_2qmdk"]
 [ext_resource type="Animation" uid="uid://biu30dsnsdd11" path="res://interactables/food/fly/fly_vis/fly_animations/fly_default_action.res" id="3_a27kj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dh7g6"]

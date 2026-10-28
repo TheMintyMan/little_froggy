@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://chdmurrtef4kx"]
+
+[ext_resource type="PackedScene" uid="uid://bkitvvfnix7kf" path="res://interactables/pullable/pullable_vis/crate_01.glb" id="1_c660f"]
+[ext_resource type="Material" uid="uid://dfrbgtcck5qmo" path="res://assets/materials/master_mat.tres" id="2_vokyl"]
+
+[node name="crate_01_mesh" unique_id=447520322 instance=ExtResource("1_c660f")]
+
+[node name="crate_black_mesh" parent="." index="0" unique_id=1733405204]
+material_override = ExtResource("2_vokyl")
+
+[node name="crate_wood_mesh" parent="." index="2" unique_id=650358710]
+material_override = ExtResource("2_vokyl")
+
+[node name="create_bolts_mesh" parent="." index="3" unique_id=324459527]
+material_override = ExtResource("2_vokyl")

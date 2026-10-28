@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ctyoqmjbhai75"]
+
+[ext_resource type="Shader" uid="uid://86lb7jw1kt8s" path="res://assets/shaders/unlit_shader.gdshader" id="1_cgigx"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_cgigx")
+shader_parameter/color = Color(0.95, 0.7758333, 0.475, 1)

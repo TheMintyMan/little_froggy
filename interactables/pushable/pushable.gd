@@ -1,9 +1,19 @@
 extends StaticBody3D
 class_name Pushable
 
+@export var outline_mesh : MeshInstance3D
+
 var action_manager = ActionManager.new({
 	"move": [move, undo_move]
 })
+
+func outline_on():
+	if outline_mesh:
+		outline_mesh.visible = true
+
+func outline_off():
+	if outline_mesh:
+		outline_mesh.visible = false
 
 func move(dir:Vector2):
 	var new_grid_pos: Vector2 = Global.get_grid_pos(self) + dir

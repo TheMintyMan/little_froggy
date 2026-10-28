@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://hbdqglmm8cfc"]
+
+[ext_resource type="PackedScene" uid="uid://chdmurrtef4kx" path="res://interactables/pullable/pullable_vis/crate_01_mesh.tscn" id="1_bk0sq"]
+[ext_resource type="Script" uid="uid://d21xoor4rxnfr" path="res://interactables/pushable/pushable.gd" id="2_6qign"]
+[ext_resource type="Material" uid="uid://ctyoqmjbhai75" path="res://assets/materials/unlit_brown_mat.tres" id="3_7112d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y8xgx"]
+size = Vector3(1, 0.5, 1)
+
+[node name="Crate01" type="StaticBody3D" unique_id=1329535503 node_paths=PackedStringArray("outline_mesh") groups=["floor", "pullable"]]
+script = ExtResource("2_6qign")
+outline_mesh = NodePath("crate_01_mesh/crate_outline_mesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1709582356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_y8xgx")
+
+[node name="crate_01_mesh" parent="." unique_id=447520322 instance=ExtResource("1_bk0sq")]
+
+[node name="crate_outline_mesh" parent="crate_01_mesh" index="1" unique_id=720073122]
+visible = false
+material_override = ExtResource("3_7112d")
+
+[editable path="crate_01_mesh"]

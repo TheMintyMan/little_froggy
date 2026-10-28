@@ -30,9 +30,8 @@ signal food_count_changed(count: int)
 @export var pull_reach: int = 2
 
 @export_group("Falling")
-## Seconds the frog falls (as a rigid body) before the level resets.
+@export var fall_hang_time: float = 0.5
 @export var fall_duration: float = 2.0
-## How fast the frog tumbles forward while falling.
 @export var fall_tumble_speed: float = 3.0
 
 var facing_dir: Vector2 = Vector2.ZERO
@@ -56,6 +55,11 @@ var _fall_body: RigidBody3D = null
 var _held_dir: Vector2 = Vector2.ZERO
 var _held_time: float = 0.0
 var _repeating: bool = false
+
+# Whatever outline_on was called on after the last move, turned back off when the next action starts
+var _outlined: Array[Node3D] = []
+# Bumped every time an action starts, so an outline check still waiting on an older move gives up
+var _action_id: int = 0
 
 var action_manager = ActionManager.new({
 	"move": [move, undo_move],
@@ -125,11 +129,39 @@ func try_move(dir: Vector2) -> void:
 		# Later to add it to the queue if it's already moving
 		# For now, don't do anything while moving (and don't record an undo step)
 		return
+	start_action()
 	Global.time_index += 1
 	action_manager.do_action("move", [dir])
+	outline_interactables()
 
-## Handles holding a direction down: waits repeat_delay, then fires a move
-## every repeat_interval for as long as that direction stays held.
+## Called as each action starts: turns off every outline the last check turned on.
+func start_action() -> void:
+	_action_id += 1
+	for node in _outlined:
+		if is_instance_valid(node) and node.has_method("outline_off"):
+			node.outline_off()
+	_outlined.clear()
+
+## Waits for the frog to finish moving, then outlines whatever the tongue could interact with next turn.
+func outline_interactables() -> void:
+	var action_id = _action_id
+	while movement_comp.is_moving():
+		await get_tree().process_frame
+	# Another action started while we waited, or the frog is drowning/falling
+	if action_id != _action_id or is_movement_disabled:
+		return
+
+	var hit = get_tongue_hit()
+	var target: Node3D = hit["target"]
+	if target == null:
+		return
+	# A pullable right in front can't be pulled any closer
+	if target.is_in_group("pullable") and hit["dist"] <= 1:
+		return
+	if target.has_method("outline_on"):
+		target.outline_on()
+		_outlined.append(target)
+
 func _process_move_repeat(delta: float) -> void:
 	if is_movement_disabled or not repeat_move:
 		return
@@ -242,8 +274,29 @@ func move(dir):
 ## what happens: food is eaten, a puzzle starts, a pullable gets pulled one tile closer, a wall or anything
 ## sticking up above the frog stops it.
 func try_pull():
+	start_action()
+	var hit = get_tongue_hit()
+	var target: Node3D = hit["target"]
+
+	if target != null:
+		if target.is_in_group("pullable"):
+			# Already right in front, nothing to pull
+			if hit["dist"] > 1:
+				target.push(facing_dir*-1)
+		elif target is PuzzleSelect:
+			target.start_puzzle()
+		else:
+			target.eat()
+			on_food_eaten(target.get_food_value()) # Arbitrary value currently
+
+	# anim: eat_close if the tongue stopped on the tile right in front
+	if hit["dist"] == 1:
+		movement_comp.eat_close()
+	else:
+		movement_comp.eat_far()
+
+func get_tongue_hit() -> Dictionary:
 	var tiles = scan_tiles(facing_dir, pull_reach, false)
-	var stop_dist := 0
 
 	for i in tiles.size():
 		var dist = i + 1
@@ -251,32 +304,18 @@ func try_pull():
 		var object = tiles[i]["object"]
 
 		if ground != null and ground.is_in_group("pullable"):
-			stop_dist = dist
-			# Already right in front, nothing to pull
-			if dist > 1:
-				ground.push(facing_dir*-1)
-			break
+			return {"dist": dist, "target": ground}
 
 		if object is PuzzleSelect:
-			stop_dist = dist
-			object.start_puzzle()
-			break
+			return {"dist": dist, "target": object}
 
 		if object != null and object.is_in_group("food") and get_height_diff(self, object, false) <= 0:
-			stop_dist = dist
-			object.eat()
-			on_food_eaten(object.get_food_value()) # Arbitrary value currently
-			break
+			return {"dist": dist, "target": object}
 
 		if blocks_tongue(ground):
-			stop_dist = dist
-			break
+			return {"dist": dist, "target": null}
 
-	# anim: eat_close if the tongue stopped on the tile right in front
-	if stop_dist == 1:
-		movement_comp.eat_close()
-	else:
-		movement_comp.eat_far()
+	return {"dist": 0, "target": null}
 
 ## True if this tile's ground stops the tongue: a wall, or a floor sticking up above the frog.
 ## Water and empty tiles don't, so the tongue reaches across them.
@@ -314,8 +353,6 @@ func is_water(collider: Node3D) -> bool:
 func is_gap(collider: Node3D) -> bool:
 	return is_water(collider) or is_void(collider)
 
-## Jumps over up to gap_jump_tiles of gap (water and/or empty tiles) and lands on the tile after it.
-## Wider than that, the frog lands in the gap: water drowns it, empty tiles make it fall.
 func gap_jump(dir: Vector2, tiles: Array[Dictionary]) -> void:
 	var gap_count := 0
 	while gap_count < tiles.size() and is_gap(tiles[gap_count]["ground"]):
@@ -325,12 +362,7 @@ func gap_jump(dir: Vector2, tiles: Array[Dictionary]) -> void:
 
 	if gap_count >= tiles.size():
 		# Too wide, the frog jumps as far as it can and lands in the gap
-		var far_grid_pos: Vector2 = grid_pos + dir * tiles.size()
-		var far_ground: Node3D = tiles[-1]["ground"]
-		if is_water(far_ground):
-			drown(Vector3(far_grid_pos.x, far_ground.global_position.y, far_grid_pos.y))
-		else:
-			fall_off(dir, Vector3(far_grid_pos.x, 0, far_grid_pos.y), gap_jump_duration_scale, gap_jump_height)
+		land_in_gap(dir, tiles.size(), tiles[-1]["ground"])
 		return
 
 	var landing_grid_pos: Vector2 = grid_pos + dir * (gap_count + 1)
@@ -349,7 +381,9 @@ func gap_jump(dir: Vector2, tiles: Array[Dictionary]) -> void:
 		# Leaping down across a gap is fine, leaping up isn't
 		var height_diff = get_height_diff(self, ground)
 		if height_diff > 0.05:
+			# Can't make it up, the frog comes down in the last gap tile instead
 			print("too high to leap across the gap: ", height_diff)
+			land_in_gap(dir, gap_count, tiles[gap_count - 1]["ground"])
 			return
 		landing_pos.y = self.position.y + height_diff
 
@@ -362,6 +396,14 @@ func gap_jump(dir: Vector2, tiles: Array[Dictionary]) -> void:
 	target_pos = landing_pos
 	movement_comp.set_move(landing_pos, gap_jump_duration_scale, gap_jump_height)
 
+## The frog jumps dist tiles ahead into a gap: water drowns it, an empty tile makes it fall.
+func land_in_gap(dir: Vector2, dist: int, gap_ground: Node3D) -> void:
+	var gap_grid_pos: Vector2 = Global.get_grid_pos(self) + dir * dist
+	if is_water(gap_ground):
+		drown(Vector3(gap_grid_pos.x, gap_ground.global_position.y, gap_grid_pos.y))
+	else:
+		fall_off(dir, Vector3(gap_grid_pos.x, 0, gap_grid_pos.y), gap_jump_duration_scale, gap_jump_height)
+
 func drown(water_pos: Vector3) -> void:
 	print("The frog fell in the water")
 	movement_disable()
@@ -372,14 +414,14 @@ func drown(water_pos: Vector3) -> void:
 	await get_tree().create_timer(drown_reset_delay).timeout
 	restart_level()
 
-## True if there's no ground here and this level lets the frog fall off edges.
+# True if there's no ground here and this level lets the frog fall off edges.
 func is_void(collider: Node3D) -> bool:
 	if collider != null:
 		return false
 	var level = GameManager.get_level()
 	return level == null or level.can_fall_off
 
-## Hops out over the edge, then hands the frog over to a rigid body so it falls, and resets the level.
+# Hops out over the edge, then hands the frog over to a rigid body so it falls, and resets the level.
 func fall_off(dir: Vector2, world_pos: Vector3, duration_scale: float = 1.0, jump_height: float = -1.0) -> void:
 	print("The frog fell off the edge")
 	movement_disable()
@@ -388,6 +430,7 @@ func fall_off(dir: Vector2, world_pos: Vector3, duration_scale: float = 1.0, jum
 	movement_comp.set_move(world_pos, duration_scale, jump_height)
 	while movement_comp.is_moving():
 		await get_tree().process_frame
+	await get_tree().create_timer(fall_hang_time).timeout
 
 	# The player is a StaticBody3D, so a rigid body with the same shape does the falling
 	# and the player copies its transform every physics frame (see _physics_process)
@@ -529,6 +572,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 		var input_direction = get_input_direction()
 
 		if Input.is_action_just_pressed("undo"):
+			start_action()
 			Global.undo()
+			outline_interactables()
 		if input_direction != Vector2.ZERO:
 			try_move(input_direction)

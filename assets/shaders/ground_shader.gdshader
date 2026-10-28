@@ -1,5 +1,8 @@
 shader_type spatial;
 
+uniform float custom_metallic : hint_range(0.0, 1.0) = 0.0;
+uniform float custom_roughness : hint_range(0.0, 1.0) = 1.0;
+
 uniform sampler2D texture_mask: source_color, repeat_enable;
 uniform vec2 mask_scale = vec2(1.0, 1.0);
 uniform vec2 mask_offset = vec2(0.0, 0.0);
@@ -36,6 +39,9 @@ void vertex() {
 }
 
 void fragment() {
+METALLIC = custom_metallic;
+ROUGHNESS = custom_roughness;
+
 	vec4 vertex = INV_VIEW_MATRIX * vec4(VERTEX, 1.0);
 	vec3 normal = normalize((INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz);
 	// Calculate triplanar projection weights with normalized sum

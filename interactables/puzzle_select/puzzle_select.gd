@@ -11,6 +11,9 @@ var flies_eaten: int = 0
 var is_active: bool = false
 var is_completed: bool = false
 
+# The golden fly the frog pulls on to start the puzzle. Hidden while the puzzle is running.
+@onready var golden_fly: Node3D = $fly
+
 # Off-tree copies of the flies as they were placed, so a reset can bring back the ones that were eaten
 var _starting_flies: Array[Food] = []
 # Visibility and collision each hidden node had before the puzzle hid it, so they can be put back
@@ -30,6 +33,7 @@ func start_puzzle() -> void:
 		return
 	is_active = true
 	flies_eaten = 0
+	golden_fly.visible = false
 	var player := GameManager.get_player()
 	if player != null:
 		player.reset_food_count()
@@ -61,6 +65,7 @@ func _complete_puzzle() -> void:
 func _reset_puzzle() -> void:
 	is_active = false
 	flies_eaten = 0
+	golden_fly.visible = true
 	_reset_flies()
 	_show_level()
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://player/player.gd" id="1_g6k8r"]
 [ext_resource type="Script" uid="uid://h3xemvyx7jfc" path="res://player/froggy_movement.gd" id="2_boad6"]
 [ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://player/froggy_vis/froggy_mesh.tscn" id="3_rgyib"]
-[ext_resource type="Material" uid="uid://dfrbgtcck5qmo" path="res://assets/materials/cloud_creature_mat.tres" id="4_hg6s5"]
+[ext_resource type="Material" uid="uid://dfrbgtcck5qmo" path="res://assets/materials/master_mat.tres" id="4_hg6s5"]
 [ext_resource type="Material" uid="uid://br7g6ii55qi78" path="res://assets/materials/old/master_mat.tres" id="5_8t03j"]
 [ext_resource type="Script" uid="uid://bnq5mkde4jji3" path="res://player/camera_follow_old.gd" id="6_2ieo8"]
 

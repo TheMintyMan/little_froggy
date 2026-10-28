@@ -1,8 +1,7 @@
 extends Node
 class_name Level
 
-## If true, stepping onto a tile with no ground makes the frog fall and the level resets.
-## Turn off for levels without floor colliders (like the level selector), where empty tiles are walkable.
+# Set whether the player can fall off the world or not
 @export var can_fall_off: bool = true
 
 # Called when the node enters the scene tree for the first time.
