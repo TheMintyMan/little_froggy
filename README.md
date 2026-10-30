@@ -8,6 +8,8 @@ Other working game titles:
 - Froggies Feast
 - The Frog Leaps
 
+## Core Loop
+explore → pull/interact with objects → eat bugs → next level
 
 # General Game Design I'm currently thinking about:
 
