@@ -45,8 +45,8 @@ var is_movement_disabled: bool = false
 
 var previous_collider: Node3D = null
 
-# Where the frog was before each move, so undo can put it back however far it went.
-var _undo_positions: Array[Vector3] = []
+# How the frog was before each move, so undo can put it back however far it went.
+var _undo_states: Array[Dictionary] = []
 
 # Rigid body the frog follows while falling off an edge
 var _fall_body: RigidBody3D = null
@@ -73,7 +73,8 @@ func _ready() -> void:
 	#main = get_tree().current_scene
 	facing_dir = convert_rot_dir()
 	GameManager.set_player(self)
-	
+	Global.reset_undo()
+
 	print('ready')
 	print("currently facing: ", facing_dir)
 	await get_tree().create_timer(0.1).timeout
@@ -130,8 +131,15 @@ func try_move(dir: Vector2) -> void:
 		# For now, don't do anything while moving (and don't record an undo step)
 		return
 	start_action()
+	var facing_before = facing_dir
+	var food_before = food_eaten
 	Global.time_index += 1
 	action_manager.do_action("move", [dir])
+	# Bumping into something changes nothing, so it shouldn't use up a press of undo
+	if not movement_comp.is_translating() and facing_dir == facing_before and food_eaten == food_before:
+		action_manager.forget_last_action()
+		_undo_states.pop_back()
+		Global.time_index -= 1
 	outline_interactables()
 
 ## Called as each action starts: turns off every outline the last check turned on.
@@ -145,6 +153,8 @@ func start_action() -> void:
 ## Waits for the frog to finish moving, then outlines whatever the tongue could interact with next turn.
 func outline_interactables() -> void:
 	var action_id = _action_id
+	# Anything undo just moved isn't where the physics engine can see it until the next frame
+	await get_tree().process_frame
 	while movement_comp.is_moving():
 		await get_tree().process_frame
 	# Another action started while we waited, or the frog is drowning/falling
@@ -188,8 +198,14 @@ func _process_move_repeat(delta: float) -> void:
 		try_move(held)
 
 func move(dir):
-	# Saved first so every "move" in the undo history has a position to go back to
-	_undo_positions.append(global_position)
+	# Saved first so every "move" in the undo history has a state to go back to
+	_undo_states.append({
+		"transform": global_transform,
+		"facing_dir": facing_dir,
+		"in_house": in_house,
+		"target_pos": target_pos,
+		"standing_on": previous_collider,
+	})
 
 	movement_comp.turn_to_dir(dir)
 
@@ -226,18 +242,21 @@ func move(dir):
 
 	if collider_02 is Food:
 		if collider != null:
-			if collider.is_in_group("floor"):
-				try_leap(get_height_diff(self, collider), new_world_pos)
-				collider_02.eat()
-				on_food_eaten(1)
-			else:
+			if not collider.is_in_group("floor"):
 				return
-		#if self.position.y != 0:
-			#return
-		if get_height_diff(self, collider_02, false) <=0:
-			collider_02.eat()
-			on_food_eaten(1)
-			movement_comp.set_move(new_world_pos)
+			# Food sitting on a floor tile: the frog leaps up/down onto that floor and eats it there.
+			# try_leap sets the landing height, so nothing after this may call set_move again
+			# (new_world_pos.y is always 0, which would sink the frog into raised floors).
+			var height_diff = get_height_diff(self, collider)
+			if height_diff > leapable_height:
+				print("too high to leap: ", height_diff)
+				return
+			eat_food(collider_02)
+			try_leap(height_diff, new_world_pos)
+			return
+		if get_height_diff(self, collider_02, false) <= 0:
+			eat_food(collider_02)
+		target_pos = new_world_pos
 		movement_comp.set_move(new_world_pos)
 		return
 	
@@ -274,6 +293,8 @@ func move(dir):
 ## what happens: food is eaten, a puzzle starts, a pullable gets pulled one tile closer, a wall or anything
 ## sticking up above the frog stops it.
 func try_pull():
+	if movement_comp.is_moving():
+		return
 	start_action()
 	var hit = get_tongue_hit()
 	var target: Node3D = hit["target"]
@@ -282,12 +303,15 @@ func try_pull():
 		if target.is_in_group("pullable"):
 			# Already right in front, nothing to pull
 			if hit["dist"] > 1:
-				target.push(facing_dir*-1)
+				# A pull is its own undo step, unless the pullable couldn't move
+				Global.time_index += 1
+				if not target.push(facing_dir*-1):
+					Global.time_index -= 1
 		elif target is PuzzleSelect:
 			target.start_puzzle()
 		else:
-			target.eat()
-			on_food_eaten(target.get_food_value()) # Arbitrary value currently
+			Global.time_index += 1
+			eat_food(target)
 
 	# anim: eat_close if the tongue stopped on the tile right in front
 	if hit["dist"] == 1:
@@ -390,8 +414,7 @@ func gap_jump(dir: Vector2, tiles: Array[Dictionary]) -> void:
 	hit_collider(ground)
 
 	if object is Food:
-		(object as Food).eat()
-		on_food_eaten(1)
+		eat_food(object as Food)
 
 	target_pos = landing_pos
 	movement_comp.set_move(landing_pos, gap_jump_duration_scale, gap_jump_height)
@@ -490,8 +513,32 @@ func unhit_previous() -> void:
 		previous_collider.get_parent().un_hit(self)
 	previous_collider = null
 
+## Inside a puzzle this only restarts that puzzle. Anywhere else it reloads the level,
+## which keeps finished puzzles finished (they're remembered by GameManager).
 func restart_level() -> void:
-	get_tree().reload_current_scene()
+	var puzzle := GameManager.get_active_puzzle()
+	if puzzle != null:
+		_end_fall()
+		movement_enable()
+		puzzle.restart()
+		return
+
+	var main: Main = get_tree().get_first_node_in_group("main")
+	if main != null:
+		main.reload_level()
+	else:
+		# Running a level on its own from the editor, with no main scene around it
+		get_tree().reload_current_scene()
+
+## Stops following the rigid body that fall_off made.
+func _end_fall() -> void:
+	if _fall_body != null:
+		_fall_body.queue_free()
+		_fall_body = null
+
+func eat_food(food: Food) -> void:
+	if food.eat():
+		on_food_eaten(food.get_food_value())
 
 func on_food_eaten(value: int) -> void:
 	food_eaten += value 
@@ -537,13 +584,22 @@ func try_leap(height_diff: float, new_pos: Vector3) -> void:
 	movement_comp.set_move(new_pos)
 
 func undo_move(_dir):
-	if _undo_positions.is_empty():
+	if _undo_states.is_empty():
 		return
 	movement_comp.stop_move()
-	Global.move_to_grid_pos(self, _undo_positions.pop_back())
-	
+	var state: Dictionary = _undo_states.pop_back()
+	global_transform = state["transform"]
+	facing_dir = state["facing_dir"]
+	in_house = state["in_house"]
+	target_pos = state["target_pos"]
+	# Tell whatever the frog is leaving, and whatever it's back on (a level pad's popup, say)
+	unhit_previous()
+	if is_instance_valid(state["standing_on"]):
+		hit_collider(state["standing_on"])
+
 func convert_rot_dir() -> Vector2:
-	var forward = -global_transform.basis.z
+	# The frog model faces +Z at rotation 0 (matches turn_to_dir's atan2(dir.x, dir.y)).
+	var forward = global_transform.basis.z
 	var dir: Vector2
 	if abs(forward.x) > abs(forward.z):
 		dir.x = sign(forward.x)
@@ -567,7 +623,11 @@ func _physics_process(delta: float) -> void:
 		return
 	_process_move_repeat(delta)
 
-func _unhandled_input(_event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
+	# The checks below stay true for the whole frame, so without this any other event
+	# that frame (the mouse moving, a key being let go) would repeat the action.
+	if not event.is_pressed() or event.is_echo():
+		return
 	if !is_movement_disabled:
 		var input_direction = get_input_direction()
 

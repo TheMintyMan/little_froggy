@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://deh7vmcmwhc"]
 
 [ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_2ds6f"]
-[ext_resource type="Script" uid="uid://bqbvqpanuf0yf" path="res://player/camera_follow.gd" id="3_7tlp4"]
 [ext_resource type="PackedScene" uid="uid://cmljggbx2r7kl" path="res://assets/models/grounds/ground_base_mesh.tscn" id="3_d7kwm"]
 [ext_resource type="PackedScene" uid="uid://cpt3yxoh0ryfo" path="res://interactables/food/fly/fly_vis/fly.tscn" id="4_wg6ps"]
 [ext_resource type="PackedScene" uid="uid://bjd7hmblw3wam" path="res://assets/models/grounds/leap_box_01_mesh.tscn" id="6_7tlp4"]
-[ext_resource type="PackedScene" uid="uid://bulcsytki81dn" path="res://interactables/pullable/pullable.tscn" id="7_d7kwm"]
 [ext_resource type="PackedScene" uid="uid://ck2hfa6ev7xl2" path="res://interactables/puzzle_select/puzzle_select.tscn" id="8_012kt"]
 [ext_resource type="Shader" uid="uid://lgf4lm28dpch" path="res://assets/shaders/cloud_shader.gdshader" id="8_jtdoy"]
 [ext_resource type="PackedScene" uid="uid://hbdqglmm8cfc" path="res://interactables/pullable/crate_01.tscn" id="9_012kt"]
@@ -44,9 +42,7 @@ ssil_enabled = true
 _rotation_curve = null
 
 [node name="camera" parent="player" parent_id_path=PackedInt32Array(788165335) index="5" unique_id=2018505148]
-script = ExtResource("3_7tlp4")
-momentum = 0.0
-speed = 5.0
+speed = 6.0
 
 [node name="ground_base" parent="env_grp/grounds_grp" parent_id_path=PackedInt32Array(319165061) index="0" unique_id=76220537 instance=ExtResource("3_d7kwm")]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
@@ -54,11 +50,11 @@ transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
 [node name="ground_base2" parent="env_grp/grounds_grp" parent_id_path=PackedInt32Array(319165061) index="1" unique_id=195458175 instance=ExtResource("3_d7kwm")]
 transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 6)
 
-[node name="ground_base3" parent="env_grp/grounds_grp" parent_id_path=PackedInt32Array(319165061) index="2" unique_id=151560678 instance=ExtResource("3_d7kwm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+[node name="ground_base4" parent="env_grp/grounds_grp" parent_id_path=PackedInt32Array(319165061) index="2" unique_id=1059866331 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9)
 
-[node name="pullable" parent="env_grp/grounds_grp" parent_id_path=PackedInt32Array(319165061) index="3" unique_id=155854616 instance=ExtResource("7_d7kwm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1)
+[node name="ground_base3" parent="env_grp/grounds_grp" parent_id_path=PackedInt32Array(319165061) index="3" unique_id=151560678 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="food" parent="." index="4" unique_id=1857005287 instance=ExtResource("4_wg6ps")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 6)
@@ -66,11 +62,61 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 
 [node name="puzzle_select_01" parent="." index="5" unique_id=1991884091 instance=ExtResource("8_012kt")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 11)
 
-[node name="ground_base2" parent="puzzle_select_01" index="2" unique_id=1322333374 instance=ExtResource("3_d7kwm")]
-transform = Transform3D(7, 0, 0, 0, 1, 0, 0, 0, 7, 1.4210855e-14, 0, 13)
+[node name="leap_box_02" parent="puzzle_select_01" index="0" unique_id=396973513 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0, 1.9999999)
+
+[node name="leap_box_06" parent="puzzle_select_01" index="1" unique_id=12285225 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0, -8.7422734e-08)
+
+[node name="leap_box_03" parent="puzzle_select_01" index="2" unique_id=729236583 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, 0, 3)
+
+[node name="leap_box_04" parent="puzzle_select_01" index="3" unique_id=1938975652 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 2)
+
+[node name="leap_box_05" parent="puzzle_select_01" index="4" unique_id=839635541 instance=ExtResource("6_7tlp4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.5, 2)
+
+[node name="ground_base2" parent="puzzle_select_01" index="7" unique_id=1322333374 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 2, 1, 0, 10.5)
 top_level = true
 
-[node name="leap_box_01" parent="." index="6" unique_id=396973513 instance=ExtResource("6_7tlp4")]
+[node name="ground_base3" parent="puzzle_select_01" index="8" unique_id=1950530806 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12)
+top_level = true
+
+[node name="ground_base5" parent="puzzle_select_01" index="9" unique_id=1229737754 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+top_level = true
+
+[node name="ground_base7" parent="puzzle_select_01" index="10" unique_id=506941370 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
+top_level = true
+
+[node name="ground_base6" parent="puzzle_select_01" index="11" unique_id=759464130 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 12)
+top_level = true
+
+[node name="ground_base4" parent="puzzle_select_01" index="12" unique_id=241168769 instance=ExtResource("3_d7kwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 13)
+top_level = true
+
+[node name="food2" parent="puzzle_select_01" index="13" unique_id=530174476 instance=ExtResource("4_wg6ps")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -2, 0.5, 1.9999999)
+
+[node name="food3" parent="puzzle_select_01" index="14" unique_id=660547648 instance=ExtResource("4_wg6ps")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1, 2)
+
+[node name="food4" parent="puzzle_select_01" index="15" unique_id=409858007 instance=ExtResource("4_wg6ps")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, -2)
+
+[node name="Crate02" parent="puzzle_select_01" index="16" unique_id=1329535503 instance=ExtResource("9_012kt")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, 0, 2)
+
+[node name="Crate03" parent="puzzle_select_01" index="17" unique_id=1632549373 instance=ExtResource("9_012kt")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, 0.5, 3)
+
+[node name="leap_box_01" parent="." index="6" unique_id=57465530 instance=ExtResource("6_7tlp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 
 [node name="leap_box_03" parent="." index="7" unique_id=992858866 instance=ExtResource("6_7tlp4")]
@@ -85,17 +131,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 1)
 [node name="leap_box_08" parent="." index="10" unique_id=1832773001 instance=ExtResource("6_7tlp4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
 
-[node name="leap_box_02" parent="." index="11" unique_id=1241377436 instance=ExtResource("6_7tlp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
-
-[node name="Shadow_Mesh" type="MeshInstance3D" parent="." index="12" unique_id=1229337734]
+[node name="Shadow_Mesh" type="MeshInstance3D" parent="." index="11" unique_id=1229337734]
 transform = Transform3D(27, 0, 0, 0, 27, 0, 0, 0, 27, 5, 15.5, -1.5)
 visible = false
 mesh = SubResource("PlaneMesh_mx3nr")
 skeleton = NodePath("../Persistent/DirectionalLight3D")
 surface_material_override/0 = SubResource("ShaderMaterial_reab8")
 
-[node name="Persistent" type="Node" parent="." index="13" unique_id=1961245845]
+[node name="Persistent" type="Node" parent="." index="12" unique_id=1961245845]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Persistent" index="0" unique_id=631687432]
 environment = SubResource("Environment_012kt")
@@ -107,19 +150,19 @@ light_energy = 8.0
 shadow_enabled = true
 shadow_blur = 0.0
 
-[node name="ground_base" parent="." index="14" unique_id=764359626 instance=ExtResource("3_d7kwm")]
+[node name="ground_base" parent="." index="13" unique_id=764359626 instance=ExtResource("3_d7kwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
 
-[node name="ground_base2" parent="." index="15" unique_id=503113536 instance=ExtResource("3_d7kwm")]
+[node name="ground_base2" parent="." index="14" unique_id=503113536 instance=ExtResource("3_d7kwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
 
-[node name="ground_base3" parent="." index="16" unique_id=1617163203 instance=ExtResource("3_d7kwm")]
+[node name="ground_base3" parent="." index="15" unique_id=1617163203 instance=ExtResource("3_d7kwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 1)
 
-[node name="ground_base4" parent="." index="17" unique_id=192698138 instance=ExtResource("3_d7kwm")]
+[node name="ground_base4" parent="." index="16" unique_id=192698138 instance=ExtResource("3_d7kwm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 1)
 
-[node name="Crate01" parent="." index="18" unique_id=1329535503 instance=ExtResource("9_012kt")]
+[node name="Crate01" parent="." index="17" unique_id=1100130122 instance=ExtResource("9_012kt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9)
 
 [editable path="player"]

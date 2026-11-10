@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready() -> void:
+	%VersionLabel.text = "v" + str(ProjectSettings.get_setting("application/config/version", "0.0.0"))
 	%MainButtons.grab_focus()
 	%FULLSCREEN.button_pressed = true if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN else false
 	%mainvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
@@ -15,11 +16,7 @@ func _ready() -> void:
 	
 	
 func _on_play_pressed() -> void:
-	var main = get_tree().get_nodes_in_group("main").pop_back()
-	if main == null:
-		print("oh no! no level manager")
-		return
-	main.next_level()
+	GameManager.next_level()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

@@ -11,11 +11,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_main_menu_pressed() -> void:
-	var main = get_tree().get_nodes_in_group("main").pop_back()
-	if main == null:
-		print("oh no! no level manager")
-		return
-	main.next_level()
+	GameManager.next_level()
 
 
 func _on_quit_pressed() -> void:

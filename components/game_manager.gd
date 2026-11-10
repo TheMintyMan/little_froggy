@@ -5,12 +5,16 @@ var camera: Camera3D = null
 var level: Level = null
 var frog_home: Node3D = null
 var food_count: int = 0
+var active_puzzle: PuzzleSelect = null
+# Puzzles finished this session. Lives here so that it survives a level being reloaded.
+var completed_puzzles: Dictionary = {}
 
 func clear_all() -> void:
 	player = null
 	camera = null
 	level = null
 	frog_home = null
+	active_puzzle = null
 	food_count = 0
 	print("cleared all variable values in GameManager")
 
@@ -20,6 +24,18 @@ func set_level(in_level: Level):
 	
 func get_level() -> Level:
 	return level
+
+func get_main() -> Main:
+	var main: Main = get_tree().get_nodes_in_group("main").pop_back()
+	if main == null:
+		print("oh no! no level manager")
+	return main
+
+func next_level() -> void:
+	var main: Main = get_main()
+	if main == null:
+		return
+	main.next_level()
 	
 func set_player(in_player: Player):
 	if in_player is Player:
@@ -64,3 +80,17 @@ func sub_food() -> void:
 	
 func clear_food() -> void:
 	food_count = 0
+
+func set_active_puzzle(puzzle: PuzzleSelect) -> void:
+	active_puzzle = puzzle
+
+func get_active_puzzle() -> PuzzleSelect:
+	if is_instance_valid(active_puzzle):
+		return active_puzzle
+	return null
+
+func mark_puzzle_completed(puzzle_id: String) -> void:
+	completed_puzzles[puzzle_id] = true
+
+func is_puzzle_completed(puzzle_id: String) -> bool:
+	return completed_puzzles.has(puzzle_id)

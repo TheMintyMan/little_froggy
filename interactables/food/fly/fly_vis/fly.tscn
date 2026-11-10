@@ -6,7 +6,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gc57"]
 
-[node name="food" type="StaticBody3D" unique_id=1857005287 groups=["food"]]
+[node name="fly" type="StaticBody3D" unique_id=1857005287 groups=["food"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_y3sqc")

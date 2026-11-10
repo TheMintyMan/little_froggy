@@ -22,8 +22,7 @@ func _on_btn_exit_pressed() -> void:
 
 
 func _on_btn_enter_pressed() -> void:
-	var main: Main = get_tree().get_nodes_in_group("main").pop_back()
+	var main: Main = GameManager.get_main()
 	if main == null:
-		print("oh no! no level manager")
 		return
 	main.goto_world(instantiator.get_level_select())

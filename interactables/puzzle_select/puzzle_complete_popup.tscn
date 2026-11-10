@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d2jbfry4ju788"]
+
+[ext_resource type="Script" uid="uid://bl0drx58c4ado" path="res://interactables/puzzle_select/puzzle_complete_popup.gd" id="1_popup"]
+
+[node name="PuzzleCompletePopup" type="CanvasLayer" unique_id=65158432]
+script = ExtResource("1_popup")
+
+[node name="Label" type="Label" parent="." unique_id=639217254]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Puzzle Complete"
+horizontal_alignment = 1
+vertical_alignment = 1

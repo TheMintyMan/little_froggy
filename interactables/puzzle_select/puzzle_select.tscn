@@ -2,9 +2,34 @@
 
 [ext_resource type="Script" uid="uid://calhspmrpxr8n" path="res://interactables/puzzle_select/puzzle_select.gd" id="1_xpv6e"]
 [ext_resource type="PackedScene" uid="uid://dvloubbptds8x" path="res://interactables/food/fly/fly_vis/fly_mesh.tscn" id="2_3ixgn"]
-[ext_resource type="Material" uid="uid://bjeqxkf4xrsy7" path="res://interactables/food/fly/fly_vis/gold_mat.tres" id="3_12grw"]
+[ext_resource type="Shader" uid="uid://bedsh8oivqbyy" path="res://assets/shaders/ground_shader.gdshader" id="3_qp3mj"]
+[ext_resource type="Texture2D" uid="uid://bm6nkc2hjbg58" path="res://assets/shaders/noise_texture_2d_cloud.tres" id="4_ymvcj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gc57"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wuja6"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_qp3mj")
+shader_parameter/custom_metallic = 0.0
+shader_parameter/custom_roughness = 1.0
+shader_parameter/mask_scale = Vector2(1, 1)
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/use_texture_b = false
+shader_parameter/texture_b_scale = 0.1
+shader_parameter/texture_b_offset = 1.0
+shader_parameter/color_a = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/color_b = Color(0.5871397, 0.45791996, 0.135106, 1)
+shader_parameter/blend_amount = 0.5
+shader_parameter/use_uv_mapping = false
+shader_parameter/cloud_noise = ExtResource("4_ymvcj")
+shader_parameter/cloud_scale = Vector2(0.01, 0.01)
+shader_parameter/cloud_speed = Vector2(0.003, 0.003)
+shader_parameter/cloud_height = 15.5
+shader_parameter/coverage = 0.45
+shader_parameter/softness = 0.7
+shader_parameter/shadow_strength = 10.0
+shader_parameter/cloud_mip = 3.0
 
 [node name="puzzle_select" type="StaticBody3D" unique_id=1857005287]
 collision_layer = 2
@@ -18,59 +43,59 @@ shape = SubResource("BoxShape3D_1gc57")
 [node name="fly" parent="." unique_id=2002339381 instance=ExtResource("2_3ixgn")]
 
 [node name="Cylinder" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="0" unique_id=901546223]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Cylinder_002" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="1" unique_id=1562705689]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Cylinder_003" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="2" unique_id=1906871304]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Cylinder_004" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="3" unique_id=951208717]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Cylinder_005" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="4" unique_id=2812716]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Cylinder_006" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="5" unique_id=899875051]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Cylinder_007" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="6" unique_id=380847936]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Cylinder_008" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="7" unique_id=413231932]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Cylinder_009" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="8" unique_id=1698735442]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Plane_001" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="9" unique_id=911635071]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Sphere_001" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="10" unique_id=1515711425]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Sphere_002" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="11" unique_id=1749424849]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Sphere_003" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="12" unique_id=1099596241]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [node name="Sphere_004" parent="fly/fly_armature/Skeleton3D" parent_id_path=PackedInt32Array(2002339381, 1260344950) index="13" unique_id=1343497682]
-material_override = ExtResource("3_12grw")
+material_override = SubResource("ShaderMaterial_wuja6")
 surface_material_override/0 = null
 
 [editable path="fly"]

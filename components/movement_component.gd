@@ -34,6 +34,10 @@ func _ready() -> void:
 func is_moving() -> bool:
 	return _moving or _rotating
 
+## True while changing position, ignoring any turn on the spot.
+func is_translating() -> bool:
+	return _moving
+
 ## duration_scale stretches the move time. A negative jump_height keeps the default arc.
 func set_move(pos: Vector3, duration_scale: float = 1.0, jump_height: float = -1.0):
 	_start_pos = _parent.global_position
@@ -42,10 +46,12 @@ func set_move(pos: Vector3, duration_scale: float = 1.0, jump_height: float = -1
 	_current_jump_height = _jump_height if jump_height < 0.0 else jump_height
 	_moving = true
 
-## Cancels the move in progress, leaving the parent wherever it is.
+## Cancels the move and turn in progress, leaving the parent wherever it is.
 func stop_move():
 	_moving = false
 	_time_elapsed_move = 0.0
+	_rotating = false
+	_time_elapsed_rot = 0.0
 
 func _move(delta: float):
 	_time_elapsed_move += delta
